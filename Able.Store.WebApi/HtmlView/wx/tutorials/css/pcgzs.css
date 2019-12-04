@@ -1,0 +1,67 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {margin:0;padding:0;}
+body, button, input, select, textarea {font-family:\5FAE\8F6F\96C5\9ED1,Arial, Helvetica, sans-serif;color:#5b5b5b; line-height:normal;}
+h1, h2, h3, h4, h5, h6 {font-size:100%;}
+address, cite, dfn, em, var {font-style:normal;}
+small {font-size:12px;}
+s{font-style:normal;margin:0;padding:0; text-decoration:none;}
+i{font-style:normal;}
+ul, ol {list-style:none outside none;margin:0;padding:0;}
+a {text-decoration:none; cursor:pointer;}
+a {-webkit-tap-highlight-color:rgba(0,0,0,0); }
+a:hover {text-decoration:none;}
+a,a:visited{color:#333;}
+sup {vertical-align:text-top;}
+sub {vertical-align:text-bottom;}
+legend {color:#000000;}
+fieldset, img {border:0 none;}
+footer,nav,header{margin:0;padding:0;}
+.clear{clear:both;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-table;}
+/* Hides from IE-mac \*/
+*html .clearfix{height:1%;}
+.clearfix{display:block;}
+/* End hide from IE-mac */
+input{outline: none;}
+.st{ font-family:\5B8B\4F53;}
+*+html .clearfix{min-height:1%;}
+/*a:focus,a:hover,input:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+}*/
+a{outline:none;}
+input,textarea{
+/*-webkit-appearance: none;*/ -webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-user-modify: read-write-plaintext-only; 
+}
+.dlfl dt,.dlfl dd{float:left;display:inline;}
+input:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-modify:read-write-plaintext-only;
+}
+
+a{outline:none;}
+input{outline: none;}
+button, input, select, textarea {font-size:100%;}
+table {border-collapse:collapse;border-spacing:0;table-layout: fixed;}
+table,th,tr,td{font-size:12px;font:12px/1.5 \5FAE\8F6F\96C5\9ED1,Arial, Helvetica, sans-serif;}
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;}
+@media screen and (max-width: 640px) { html,body{ font-size: 16px; }}
+@media screen and (max-width: 480px) { html,body{ font-size: 14px; }}
+@media screen and (max-width: 320px) { html,body{ font-size: 12px; }}
+section{font-size:1rem;}
+body{background-color:#fff;color:#333;}
+.help-header{width:100%;}
+.help-header img{display:block;width:100%;}
+.help-nav{height:3rem; line-height:3rem; background-color:#f2f2f2;width:96%;padding:0 2%;overflow:hidden;}
+.help-nav .swiper-slide{float:left;margin:0;cursor:pointer;position:relative;  text-align:center;}
+.help-nav .swiper-wrapper{height:100%;overflow:hidden;font-size:1.2rem;}
+.help-nav .cur{color:#efa014;}
+.help-nav .swiper-slide i{position:absolute;left:0;bottom:0;width:100%;display:none;}
+.help-nav .swiper-slide i s{width:30px;height:2px;display:block; background-color:#efa014;margin:0 auto;}
+.help-nav .cur i{display:block;}
+.help-nav .swiper-slide:nth-child(5) i s,.help-nav .swiper-slide:nth-child(6) i s{width:60px;}
+.help-tips{ background-color:#fce255;padding:2rem 15%;font-size:1.2rem;}
+.help-tips a{display:block;padding:1rem 0;margin:0 auto;width:100%; text-align:center;}
+.help-info img{display:block;width:100%;}

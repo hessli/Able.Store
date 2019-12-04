@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>正在跳转</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var jump = window.location.search;
+	jump = jump.substring(1,jump.length).split("&");
+	for (var i=0;i<jump.length;i++ ){
+		var jumps = jump[i].split("=");
+		if ( jumps[0] == "token" ){
+			window.token = decodeURIComponent(jumps[1]);
+		}
+		if ( jumps[0] == "shopid" ){
+			window.shopid = jumps[1];
+		}
+	}
+	window.localStorage.token = window.token;
+	if ( typeof(window.localStorage.url) == "undefined" ){
+		window.location.href = "index.html?&shopid=" + shopid;
+	}
+	else{
+		window.location.href = window.localStorage.url;
+	}
+</script>
+</head>
+<body style="text-align:center;line-height:4">
+	<span>正在跳转...</span>
+</body>
+</html>

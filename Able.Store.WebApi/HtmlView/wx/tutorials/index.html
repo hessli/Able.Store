@@ -1,0 +1,139 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新手课程</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+
+    <meta content="新手教程" name="sharetitle" />
+    <meta content="新手教程 - 让你马上玩转师徒部落，玩转人脉" name="sharedesc" />
+    <meta content="http://test-img.stblcdn.com//mall/goods/201604/29/14617527023935/1461913195719935/s/1461913200684.jpg" name="shareimgurl" />
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/pcgzs.js"></script>
+    <link href="css/pcgzs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="help-header"><img src="images/helpad.png"></div>
+    <div class="help-nav">
+        <div class="swiper-container swiper-parent">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide cur">下载<i><s></s></i></div>
+                <div class="swiper-slide">注册<i><s></s></i></div>
+                <div class="swiper-slide">收徒<i><s></s></i></div>
+                <div class="swiper-slide">分享<i><s></s></i></div>
+                <div class="swiper-slide">支付密码<i><s></s></i></div>
+                <div class="swiper-slide">个人设置<i><s></s></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="help-con">
+        <div class="help-tips">
+            师徒部落帮您打造属于自己的人脉资源平台，为您开启强人脉之旅，下面让小编告诉大家如何下载吧！
+
+
+        </div>
+        <div class="help-info">
+            <img src="images/down01.png">
+            <img src="images/down02.png">
+            <img src="images/down03.png">
+            <img src="images/down04.png">
+            <img src="images/down05.png">
+            <img src="images/down06.png">
+            <img src="images/down07.png">
+            <img src="images/down08.png">
+            <img src="images/down09.png">
+            <img src="images/down10.png">
+        </div>
+    </div>
+    <div class="help-con" style="display:none;">
+        <div class="help-tips">
+            强人脉社交之旅，从注册拜师开始。建议通过好友分享的H5分享页面进行注册。
+        </div>
+        <div class="help-info">
+            <img src="images/rex01.png">
+            <img src="images/rex02.png">
+            <img src="images/rex03.png">
+            <img src="images/rex04.png">
+            <img src="images/rex05.png">
+            <img src="images/rex06.png">
+            <img src="images/rex07.png">
+            <img src="images/rex08.png">
+            <img src="images/rex09.png">
+        </div>
+    </div>
+    <div class="help-con" style="display:none;">
+        <div class="help-tips">
+            师徒部落里，人人都可以做师傅，收徒弟，增强人脉关系，下面以Iphone为例说明如何收徒。
+        </div>
+        <div class="help-info">
+            <img src="images/master01.png">
+            <img src="images/master02.png">
+            <img src="images/master03.png">
+            <img src="images/master04.png">
+            <img src="images/master05.png">
+            <img src="images/master06.png">
+        </div>
+    </div>
+    <div class="help-con" style="display:none;">
+        <div class="help-tips">
+            师徒部落是个注重分享的平台。无论是动态、商品，还是部落、软件都可以向好友分享。
+        </div>
+        <div class="help-info">
+            <img src="images/share01.png">
+            <img src="images/share02.png">
+            <img src="images/share03.png">
+            <img src="images/share04.png">
+        </div>
+    </div>
+    <div class="help-con" style="display:none;">
+        <div class="help-tips">
+            支付密码用于保护您在师徒部落商城购物过程中的资金安全，请记得尽快设置喔！
+        </div>
+        <div class="help-info">
+            <img src="images/psw01.png">
+            <img src="images/psw02.png">
+            <img src="images/psw03.png">
+            <img src="images/psw04.png">
+            <img src="images/psw05.png">
+            <img src="images/psw06.png">
+        </div>
+    </div>
+    <div class="help-con" style="display:none;">
+        <div class="help-tips">
+            在"我的"模块，可以对个人资料及账号设置进行修改。
+            <a href="#">【修改个人资料】</a>
+        </div>
+        <div class="help-info">
+            <img src="images/set01.png">
+            <img src="images/set02.png">
+            <img src="images/set03.png">
+            <img src="images/set04.png">
+            <img src="images/set05.png">
+        </div>
+    </div>
+    <script>
+        var swiperParent = new Swiper('.swiper-parent', {
+            pagination: '',
+            paginationClickable: false,
+            slidesPerView: 4
+        });
+        $(".swiper-slide").click(function () {
+            $(this).addClass("cur").siblings(".swiper-slide").removeClass("cur");
+            $(".help-con").eq($(this).index()).show().siblings(".help-con").hide();
+        });
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../js/jssdk.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var sdk = new JSSDK();
+            sdk.init();
+            sdk.shareDefault();
+        });
+    </script>
+</body>
+</html>

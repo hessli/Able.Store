@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>师徒部落</title>
+    <link rel="stylesheet" href="css/skin.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="MobileOptimized" content="320" />
+
+    <!--分享meta-->
+    <meta content="新手教程" name="sharetitle" />
+    <meta content="新手教程 - 让你马上玩转师徒部落，玩转人脉" name="sharedesc" />
+    <meta content="http://test-img.stblcdn.com//mall/goods/201604/29/14617527023935/1461913195719935/s/1461913200684.jpg" name="shareimgurl" />
+
+    <script type="text/javascript">
+        function setElement() { var clientWidth = document.documentElement.clientWidth; scale = clientWidth / 360; if (scale < 1) { document.documentElement.setAttribute("style", "font-size:100px") } else { if (scale > 1.15) { document.documentElement.setAttribute("style", "font-size:115px") } else { document.documentElement.setAttribute("style", "font-size:" + Math.ceil(scale * 100) + "px") } } } window.onresize = function () { setElement() }; setElement();
+    </script>
+    <script type="text/javascript" src="common/config.js"></script>
+</head>
+<body>
+    <!--顶部 start-->
+    <!-- <header class="header">
+        <a class="back" href="javascript:history.go(-1);">返回</a>
+        <h1 class="title">微信注册帐号</h1>
+    </header> -->
+    <!--顶部 end-->
+    <!--主体 start-->
+    <section class="main">
+        <div class="photo">
+            <input type="file" capture="camera" accept="image/*" class="upload" />
+        </div>
+        <div class="welcome"></div>
+        <a href="reg-1.html" class="button">OK</a>
+    </section>
+    <!--主体 end-->
+    <!--头像编辑 start-->
+    <div class="page" id="photo">
+        <div class="photo-photo">
+            <div id="img"></div>
+            <div id="move"></div>
+        </div>
+        <div class="photo-button">
+            <a class="photo-false">取消</a>
+            <a class="photo-submit">确定</a>
+        </div>
+    </div>
+    <!--头像编辑 end-->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/hammer.js"></script>
+    <script type="text/javascript" src="js/images.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/jssdk.js"></script>
+</body>
+</html>

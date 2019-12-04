@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>师徒部落</title>
+    <link rel="stylesheet" href="css/skin.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="MobileOptimized" content="320" />
+    <script type="text/javascript">
+        function setElement() { var clientWidth = document.documentElement.clientWidth; scale = clientWidth / 360; if (scale < 1) { document.documentElement.setAttribute("style", "font-size:100px") } else { if (scale > 1.15) { document.documentElement.setAttribute("style", "font-size:115px") } else { document.documentElement.setAttribute("style", "font-size:" + Math.ceil(scale * 100) + "px") } } } window.onresize = function () { setElement() }; setElement();
+    </script>
+    <script type="text/javascript" src="common/config.js"></script>
+</head>
+<body>
+    <!--顶部 start-->
+    <!-- <header class="header">
+        <a class="back" href="javascript:history.go(-1);">返回</a>
+        <h1 class="title">2/3 帐号密码</h1>
+    </header> -->
+    <!--顶部 end-->
+    <!--主体 start-->
+    <div class="main">
+        <form class="form">
+            <div class="reg-tip">设置手机号以保障您的账号安全</div>
+            <div class="row select">
+                <input type="text" value="国家地区" class="input" id="name" />
+                <select id="country"></select>
+            </div>
+            <div class="row">
+                <input type="tel" placeholder="输入手机号码" class="input" id="tel" />
+            </div>
+            <div class="row">
+                <input type="password" placeholder="输入密码，长度不少于6位" class="input" id="password" />
+            </div>
+            <div class="submit"><input type="submit" value="下一步" /></div>
+        </form>
+    </div>
+    <!--主体 end-->
+    <!--提示 start-->
+    <div class="bar">手机号仅用于登录和保护帐户安全</div>
+    <!--提示 end-->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/reg-2.js"></script>
+
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/jssdk.js"></script>
+</body>
+</html>

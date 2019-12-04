@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3CD0DE8C-D663-4951-9127-CB2D12962FD1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Able.Store.WebApi</RootNamespace>
+    <AssemblyName>Able.Store.WebApi</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.3.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.3.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\Amal.Canteen\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\Amal.Canteen\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutofacBoot.cs" />
+    <Compile Include="App_Start\Boot.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministrativeAreaController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="HtmlView\404.html" />
+    <Content Include="HtmlView\500.html" />
+    <Content Include="HtmlView\address.html" />
+    <Content Include="HtmlView\ajax.html" />
+    <Content Include="HtmlView\buy.html" />
+    <Content Include="HtmlView\css\skin.css" />
+    <Content Include="HtmlView\favicon.ico" />
+    <Content Include="HtmlView\images\arrow-black.png" />
+    <Content Include="HtmlView\images\arrow-left.png" />
+    <Content Include="HtmlView\images\arrow-right.png" />
+    <Content Include="HtmlView\images\arrow-white.png" />
+    <Content Include="HtmlView\images\arrow.png" />
+    <Content Include="HtmlView\images\arrows.png" />
+    <Content Include="HtmlView\images\back.png" />
+    <Content Include="HtmlView\images\bi.png" />
+    <Content Include="HtmlView\images\bq.png" />
+    <Content Include="HtmlView\images\car.png" />
+    <Content Include="HtmlView\images\card.png" />
+    <Content Include="HtmlView\images\cards.png" />
+    <Content Include="HtmlView\images\center.png" />
+    <Content Include="HtmlView\images\class-1.png" />
+    <Content Include="HtmlView\images\class-2.png" />
+    <Content Include="HtmlView\images\class-3.png" />
+    <Content Include="HtmlView\images\class-4.png" />
+    <Content Include="HtmlView\images\class-more.png" />
+    <Content Include="HtmlView\images\clock.png" />
+    <Content Include="HtmlView\images\close-shade.png" />
+    <Content Include="HtmlView\images\close.png" />
+    <Content Include="HtmlView\images\code.png" />
+    <Content Include="HtmlView\images\codes.png" />
+    <Content Include="HtmlView\images\coin.png" />
+    <Content Include="HtmlView\images\complete.png" />
+    <Content Include="HtmlView\images\cover.png" />
+    <Content Include="HtmlView\images\data\1.jpg" />
+    <Content Include="HtmlView\images\data\1.png" />
+    <Content Include="HtmlView\images\data\10.jpg" />
+    <Content Include="HtmlView\images\data\11.jpg" />
+    <Content Include="HtmlView\images\data\2.jpg" />
+    <Content Include="HtmlView\images\data\2.png" />
+    <Content Include="HtmlView\images\data\3.jpg" />
+    <Content Include="HtmlView\images\data\3.png" />
+    <Content Include="HtmlView\images\data\4.jpg" />
+    <Content Include="HtmlView\images\data\4.png" />
+    <Content Include="HtmlView\images\data\5.png" />
+    <Content Include="HtmlView\images\data\6.jpg" />
+    <Content Include="HtmlView\images\data\6.png" />
+    <Content Include="HtmlView\images\data\7.jpg" />
+    <Content Include="HtmlView\images\data\8.jpg" />
+    <Content Include="HtmlView\images\data\9.jpg" />
+    <Content Include="HtmlView\images\data\share.png" />
+    <Content Include="HtmlView\images\data\team-1.png" />
+    <Content Include="HtmlView\images\data\team-2.png" />
+    <Content Include="HtmlView\images\emo\emo_01.gif" />
+    <Content Include="HtmlView\images\emo\emo_02.gif" />
+    <Content Include="HtmlView\images\emo\emo_03.gif" />
+    <Content Include="HtmlView\images\emo\emo_04.gif" />
+    <Content Include="HtmlView\images\emo\emo_05.gif" />
+    <Content Include="HtmlView\images\emo\emo_06.gif" />
+    <Content Include="HtmlView\images\emo\emo_07.gif" />
+    <Content Include="HtmlView\images\emo\emo_08.gif" />
+    <Content Include="HtmlView\images\emo\emo_09.gif" />
+    <Content Include="HtmlView\images\emo\emo_10.gif" />
+    <Content Include="HtmlView\images\emo\emo_11.gif" />
+    <Content Include="HtmlView\images\emo\emo_12.gif" />
+    <Content Include="HtmlView\images\emo\emo_13.gif" />
+    <Content Include="HtmlView\images\emo\emo_14.gif" />
+    <Content Include="HtmlView\images\emo\emo_15.gif" />
+    <Content Include="HtmlView\images\emo\emo_16.gif" />
+    <Content Include="HtmlView\images\emo\emo_17.gif" />
+    <Content Include="HtmlView\images\emo\emo_18.gif" />
+    <Content Include="HtmlView\images\emo\emo_19.gif" />
+    <Content Include="HtmlView\images\emo\emo_20.gif" />
+    <Content Include="HtmlView\images\emo\emo_21.gif" />
+    <Content Include="HtmlView\images\emo\emo_22.gif" />
+    <Content Include="HtmlView\images\emo\emo_23.gif" />
+    <Content Include="HtmlView\images\emo\emo_24.gif" />
+    <Content Include="HtmlView\images\emo\emo_25.gif" />
+    <Content Include="HtmlView\images\emo\emo_26.gif" />
+    <Content Include="HtmlView\images\emo\emo_27.gif" />
+    <Content Include="HtmlView\images\emo\emo_28.gif" />
+    <Content Include="HtmlView\images\emo\emo_29.gif" />
+    <Content Include="HtmlView\images\emo\emo_30.gif" />
+    <Content Include="HtmlView\images\emo\emo_31.gif" />
+    <Content Include="HtmlView\images\emo\emo_32.gif" />
+    <Content Include="HtmlView\images\emo\emo_33.gif" />
+    <Content Include="HtmlView\images\emo\emo_34.gif" />
+    <Content Include="HtmlView\images\emo\emo_35.gif" />
+    <Content Include="HtmlView\images\emo\emo_36.gif" />
+    <Content Include="HtmlView\images\emo\emo_37.gif" />
+    <Content Include="HtmlView\images\emo\emo_38.gif" />
+    <Content Include="HtmlView\images\emo\emo_39.gif" />
+    <Content Include="HtmlView\images\emo\emo_40.gif" />
+    <Content Include="HtmlView\images\emo\emo_41.gif" />
+    <Content Include="HtmlView\images\emo\emo_42.gif" />
+    <Content Include="HtmlView\images\emo\emo_43.gif" />
+    <Content Include="HtmlView\images\emo\emo_44.gif" />
+    <Content Include="HtmlView\images\emo\emo_45.gif" />
+    <Content Include="HtmlView\images\emo\emo_46.gif" />
+    <Content Include="HtmlView\images\emo\emo_47.gif" />
+    <Content Include="HtmlView\images\emo\emo_48.gif" />
+    <Content Include="HtmlView\images\emo\emo_49.gif" />
+    <Content Include="HtmlView\images\emo\emo_50.gif" />
+    <Content Include="HtmlView\images\emo\emo_51.gif" />
+    <Content Include="HtmlView\images\emo\emo_52.gif" />
+    <Content Include="HtmlView\images\emo\emo_53.gif" />
+    <Content Include="HtmlView\images\emo\emo_54.gif" />
+    <Content Include="HtmlView\images\emo\emo_55.gif" />
+    <Content Include="HtmlView\images\emo\emo_56.gif" />
+    <Content Include="HtmlView\images\emo\emo_57.gif" />
+    <Content Include="HtmlView\images\emo\emo_58.gif" />
+    <Content Include="HtmlView\images\emo\emo_59.gif" />
+    <Content Include="HtmlView\images\emo\emo_60.gif" />
+    <Content Include="HtmlView\images\fail.png" />
+    <Content Include="HtmlView\images\fanli-qianbao.png" />
+    <Content Include="HtmlView\images\have-jifen.png" />
+    <Content Include="HtmlView\images\in-qianbao.png" />
+    <Content Include="HtmlView\images\jifen.png" />
+    <Content Include="HtmlView\images\jifens.png" />
+    <Content Include="HtmlView\images\jinhuo-percent.png" />
+    <Content Include="HtmlView\images\k.png" />
+    <Content Include="HtmlView\images\kk.png" />
+    <Content Include="HtmlView\images\magnifier.png" />
+    <Content Include="HtmlView\images\man.png" />
+    <Content Include="HtmlView\images\manage-service.png" />
+    <Content Include="HtmlView\images\manage.png" />
+    <Content Include="HtmlView\images\maotai.png" />
+    <Content Include="HtmlView\images\message-1.png" />
+    <Content Include="HtmlView\images\message-2.png" />
+    <Content Include="HtmlView\images\message-3.png" />
+    <Content Include="HtmlView\images\message-4.png" />
+    <Content Include="HtmlView\images\message-xfz.png" />
+    <Content Include="HtmlView\images\msg.png" />
+    <Content Include="HtmlView\images\my-photo.png" />
+    <Content Include="HtmlView\images\nav.png" />
+    <Content Include="HtmlView\images\notice.png" />
+    <Content Include="HtmlView\images\online.png" />
+    <Content Include="HtmlView\images\order.png" />
+    <Content Include="HtmlView\images\out-qianbao.png" />
+    <Content Include="HtmlView\images\out.png" />
+    <Content Include="HtmlView\images\percent.png" />
+    <Content Include="HtmlView\images\photo.png" />
+    <Content Include="HtmlView\images\point.png" />
+    <Content Include="HtmlView\images\right.png" />
+    <Content Include="HtmlView\images\say.png" />
+    <Content Include="HtmlView\images\select.png" />
+    <Content Include="HtmlView\images\set.png" />
+    <Content Include="HtmlView\images\show-style.png" />
+    <Content Include="HtmlView\images\ss.png" />
+    <Content Include="HtmlView\images\success.png" />
+    <Content Include="HtmlView\images\talk.png" />
+    <Content Include="HtmlView\images\team.png" />
+    <Content Include="HtmlView\images\tiao.png" />
+    <Content Include="HtmlView\images\woman.png" />
+    <Content Include="HtmlView\images\wuliu.png" />
+    <Content Include="HtmlView\index.html" />
+    <Content Include="HtmlView\jifen.html" />
+    <Content Include="HtmlView\join.html" />
+    <Content Include="HtmlView\js\address.js" />
+    <Content Include="HtmlView\js\buy.js" />
+    <Content Include="HtmlView\js\hammer.js" />
+    <Content Include="HtmlView\js\idangerous.swiper-2.6.1.min.js" />
+    <Content Include="HtmlView\js\images.js" />
+    <Content Include="HtmlView\js\index.js" />
+    <Content Include="HtmlView\js\iscroll.js" />
+    <Content Include="HtmlView\js\jifen.js" />
+    <Content Include="HtmlView\js\jquery-2.1.1.min.js" />
+    <Content Include="HtmlView\js\js.js" />
+    <Content Include="HtmlView\js\message-feitian.js" />
+    <Content Include="HtmlView\js\message-order.js" />
+    <Content Include="HtmlView\js\message-return.js" />
+    <Content Include="HtmlView\js\message-service-list.js" />
+    <Content Include="HtmlView\js\message-service.js" />
+    <Content Include="HtmlView\js\message-system.js" />
+    <Content Include="HtmlView\js\message.js" />
+    <Content Include="HtmlView\js\message.mp3" />
+    <Content Include="HtmlView\js\MessageClient.js" />
+    <Content Include="HtmlView\js\my.js" />
+    <Content Include="HtmlView\js\order-detail.js" />
+    <Content Include="HtmlView\js\order-return-detail.js" />
+    <Content Include="HtmlView\js\order.js" />
+    <Content Include="HtmlView\js\pay-fail.js" />
+    <Content Include="HtmlView\js\pay-success.js" />
+    <Content Include="HtmlView\js\pay.js" />
+    <Content Include="HtmlView\js\product-class.js" />
+    <Content Include="HtmlView\js\product-detail.js" />
+    <Content Include="HtmlView\js\product-list.js" />
+    <Content Include="HtmlView\js\return.js" />
+    <Content Include="HtmlView\js\set.js" />
+    <Content Include="HtmlView\js\shop-car.js" />
+    <Content Include="HtmlView\js\trade-detail.js" />
+    <Content Include="HtmlView\js\write-wuliu.js" />
+    <Content Include="HtmlView\js\wuliu-return.js" />
+    <Content Include="HtmlView\js\wuliu.js" />
+    <Content Include="HtmlView\jump.html" />
+    <Content Include="HtmlView\message-feitian.html" />
+    <Content Include="HtmlView\message-order.html" />
+    <Content Include="HtmlView\message-return.html" />
+    <Content Include="HtmlView\message-service-list.html" />
+    <Content Include="HtmlView\message-service.html" />
+    <Content Include="HtmlView\message-system.html" />
+    <Content Include="HtmlView\message.html" />
+    <Content Include="HtmlView\my.html" />
+    <Content Include="HtmlView\order-detail.html" />
+    <Content Include="HtmlView\order-return-detail.html" />
+    <Content Include="HtmlView\order.html" />
+    <Content Include="HtmlView\pay-fail.html" />
+    <Content Include="HtmlView\pay-success.html" />
+    <Content Include="HtmlView\pay.html" />
+    <Content Include="HtmlView\product-class.html" />
+    <Content Include="HtmlView\product-detail.html" />
+    <Content Include="HtmlView\product-list.html" />
+    <Content Include="HtmlView\return.html" />
+    <Content Include="HtmlView\set.html" />
+    <Content Include="HtmlView\shop-car.html" />
+    <Content Include="HtmlView\trade-detail.html" />
+    <Content Include="HtmlView\write-wuliu.html" />
+    <Content Include="HtmlView\wuliu-return.html" />
+    <Content Include="HtmlView\wuliu.html" />
+    <Content Include="HtmlView\wx\.idea\misc.xml" />
+    <Content Include="HtmlView\wx\.idea\modules.xml" />
+    <Content Include="HtmlView\wx\.idea\vcs.xml" />
+    <Content Include="HtmlView\wx\.idea\workspace.xml" />
+    <Content Include="HtmlView\wx\agreement.html" />
+    <Content Include="HtmlView\wx\baocuo.html" />
+    <Content Include="HtmlView\wx\Business_help.html" />
+    <Content Include="HtmlView\wx\code.html" />
+    <Content Include="HtmlView\wx\common\config.js" />
+    <Content Include="HtmlView\wx\common_problem.html" />
+    <Content Include="HtmlView\wx\contacts.html" />
+    <Content Include="HtmlView\wx\css\mobile_style.css" />
+    <Content Include="HtmlView\wx\css\skin.css" />
+    <Content Include="HtmlView\wx\css\skin_account.css" />
+    <Content Include="HtmlView\wx\download-app.html" />
+    <Content Include="HtmlView\wx\dynamic-list.html" />
+    <Content Include="HtmlView\wx\dynamic.html" />
+    <Content Include="HtmlView\wx\dynamic_list.html" />
+    <Content Include="HtmlView\wx\financial.html" />
+    <Content Include="HtmlView\wx\function-introduction.html" />
+    <Content Include="HtmlView\wx\help_a_group_of_sign.html" />
+    <Content Include="HtmlView\wx\images\add.png" />
+    <Content Include="HtmlView\wx\images\area.png" />
+    <Content Include="HtmlView\wx\images\areas.png" />
+    <Content Include="HtmlView\wx\images\arrow.jpg" />
+    <Content Include="HtmlView\wx\images\arrow.png" />
+    <Content Include="HtmlView\wx\images\arrows.png" />
+    <Content Include="HtmlView\wx\images\back-youshi.png" />
+    <Content Include="HtmlView\wx\images\back.png" />
+    <Content Include="HtmlView\wx\images\bangyibang_peitu.jpg" />
+    <Content Include="HtmlView\wx\images\banner-1.png" />
+    <Content Include="HtmlView\wx\images\banner-2.png" />
+    <Content Include="HtmlView\wx\images\banner.png" />
+    <Content Include="HtmlView\wx\images\bbs.png" />
+    <Content Include="HtmlView\wx\images\c-1.png" />
+    <Content Include="HtmlView\wx\images\c-2.png" />
+    <Content Include="HtmlView\wx\images\c-3.png" />
+    <Content Include="HtmlView\wx\images\c-4.png" />
+    <Content Include="HtmlView\wx\images\camera.png" />
+    <Content Include="HtmlView\wx\images\checkbox.png" />
+    <Content Include="HtmlView\wx\images\chief_icon.png" />
+    <Content Include="HtmlView\wx\images\chief_sub_a.png" />
+    <Content Include="HtmlView\wx\images\chief_sub_b.png" />
+    <Content Include="HtmlView\wx\images\coin.png" />
+    <Content Include="HtmlView\wx\images\contact.png" />
+    <Content Include="HtmlView\wx\images\contacts_grade.png" />
+    <Content Include="HtmlView\wx\images\data\1.jpg" />
+    <Content Include="HtmlView\wx\images\data\1.png" />
+    <Content Include="HtmlView\wx\images\data\2.jpg" />
+    <Content Include="HtmlView\wx\images\data\2.png" />
+    <Content Include="HtmlView\wx\images\data\3.jpg" />
+    <Content Include="HtmlView\wx\images\data\3.png" />
+    <Content Include="HtmlView\wx\images\data\4.jpg" />
+    <Content Include="HtmlView\wx\images\data\4.png" />
+    <Content Include="HtmlView\wx\images\data\5.jpg" />
+    <Content Include="HtmlView\wx\images\data\5.png" />
+    <Content Include="HtmlView\wx\images\data\6.jpg" />
+    <Content Include="HtmlView\wx\images\data\6.png" />
+    <Content Include="HtmlView\wx\images\data\7.jpg" />
+    <Content Include="HtmlView\wx\images\data\map.jpg" />
+    <Content Include="HtmlView\wx\images\data\more.png" />
+    <Content Include="HtmlView\wx\images\default.jpg" />
+    <Content Include="HtmlView\wx\images\dian_hua1.jpg" />
+    <Content Include="HtmlView\wx\images\dian_hua2.jpg" />
+    <Content Include="HtmlView\wx\images\dian_hua3.jpg" />
+    <Content Include="HtmlView\wx\images\dian_hua3.png" />
+    <Content Include="HtmlView\wx\images\dian_hua4.jpg" />
+    <Content Include="HtmlView\wx\images\digg.png" />
+    <Content Include="HtmlView\wx\images\dotted.png" />
+    <Content Include="HtmlView\wx\images\down-android.png" />
+    <Content Include="HtmlView\wx\images\down-iphone.png" />
+    <Content Include="HtmlView\wx\images\download.png" />
+    <Content Include="HtmlView\wx\images\drag_down.png" />
+    <Content Include="HtmlView\wx\images\end-1.png" />
+    <Content Include="HtmlView\wx\images\end-2.png" />
+    <Content Include="HtmlView\wx\images\expression.png" />
+    <Content Include="HtmlView\wx\images\fail.png" />
+    <Content Include="HtmlView\wx\images\go-top.png" />
+    <Content Include="HtmlView\wx\images\hat.png" />
+    <Content Include="HtmlView\wx\images\help_icons_m.png" />
+    <Content Include="HtmlView\wx\images\heng.png" />
+    <Content Include="HtmlView\wx\images\hotline.png" />
+    <Content Include="HtmlView\wx\images\icon-1.png" />
+    <Content Include="HtmlView\wx\images\icon-2.png" />
+    <Content Include="HtmlView\wx\images\icon_bangqun_moren.png" />
+    <Content Include="HtmlView\wx\images\icon_dongtai_gengduo%402x.png" />
+    <Content Include="HtmlView\wx\images\icon_group_bg.png" />
+    <Content Include="HtmlView\wx\images\icon_touxiang.png" />
+    <Content Include="HtmlView\wx\images\icon_user.jpg" />
+    <Content Include="HtmlView\wx\images\lang.png" />
+    <Content Include="HtmlView\wx\images\link.png" />
+    <Content Include="HtmlView\wx\images\list-img-1.png" />
+    <Content Include="HtmlView\wx\images\list-img-2.png" />
+    <Content Include="HtmlView\wx\images\list-img-3.png" />
+    <Content Include="HtmlView\wx\images\list-img-4.png" />
+    <Content Include="HtmlView\wx\images\list-img-5.png" />
+    <Content Include="HtmlView\wx\images\list-img-6.png" />
+    <Content Include="HtmlView\wx\images\list-img-7.png" />
+    <Content Include="HtmlView\wx\images\list-img-8.png" />
+    <Content Include="HtmlView\wx\images\list-img-9.png" />
+    <Content Include="HtmlView\wx\images\liwu-1.png" />
+    <Content Include="HtmlView\wx\images\liwu-2.png" />
+    <Content Include="HtmlView\wx\images\liwu-3.png" />
+    <Content Include="HtmlView\wx\images\liwu-4.png" />
+    <Content Include="HtmlView\wx\images\liwu-5.png" />
+    <Content Include="HtmlView\wx\images\loading_list.gif" />
+    <Content Include="HtmlView\wx\images\logo-shadow.png" />
+    <Content Include="HtmlView\wx\images\mail.png" />
+    <Content Include="HtmlView\wx\images\mobile_logo.png" />
+    <Content Include="HtmlView\wx\images\name.png" />
+    <Content Include="HtmlView\wx\images\nophoto.png" />
+    <Content Include="HtmlView\wx\images\password.png" />
+    <Content Include="HtmlView\wx\images\photo.png" />
+    <Content Include="HtmlView\wx\images\play.png" />
+    <Content Include="HtmlView\wx\images\pub-time.png" />
+    <Content Include="HtmlView\wx\images\qiandaoguize_peitu.png" />
+    <Content Include="HtmlView\wx\images\report.png" />
+    <Content Include="HtmlView\wx\images\report_t.png" />
+    <Content Include="HtmlView\wx\images\reward.png" />
+    <Content Include="HtmlView\wx\images\search.png" />
+    <Content Include="HtmlView\wx\images\search_icon_m.png" />
+    <Content Include="HtmlView\wx\images\send-1.png" />
+    <Content Include="HtmlView\wx\images\send-2.png" />
+    <Content Include="HtmlView\wx\images\send-3.png" />
+    <Content Include="HtmlView\wx\images\shifu.png" />
+    <Content Include="HtmlView\wx\images\show-img.png" />
+    <Content Include="HtmlView\wx\images\sign.png" />
+    <Content Include="HtmlView\wx\images\star.png" />
+    <Content Include="HtmlView\wx\images\stars.jpg" />
+    <Content Include="HtmlView\wx\images\stars_bak20160413.jpg" />
+    <Content Include="HtmlView\wx\images\success-1.png" />
+    <Content Include="HtmlView\wx\images\success-2.png" />
+    <Content Include="HtmlView\wx\images\tel.png" />
+    <Content Include="HtmlView\wx\images\waibulianjie_404.png" />
+    <Content Include="HtmlView\wx\images\wait.png" />
+    <Content Include="HtmlView\wx\images\wealth-1.png" />
+    <Content Include="HtmlView\wx\images\wealth-2.png" />
+    <Content Include="HtmlView\wx\images\wealth_grade.png" />
+    <Content Include="HtmlView\wx\index.html" />
+    <Content Include="HtmlView\wx\introduction.html" />
+    <Content Include="HtmlView\wx\js\common\common_problem.js" />
+    <Content Include="HtmlView\wx\js\dynamic-list.js" />
+    <Content Include="HtmlView\wx\js\dynamic.js" />
+    <Content Include="HtmlView\wx\js\hammer.js" />
+    <Content Include="HtmlView\wx\js\idangerous.swiper-2.6.1.min.js" />
+    <Content Include="HtmlView\wx\js\images.js" />
+    <Content Include="HtmlView\wx\js\index.js" />
+    <Content Include="HtmlView\wx\js\introduction.js" />
+    <Content Include="HtmlView\wx\js\iscroll.js" />
+    <Content Include="HtmlView\wx\js\jquery-2.1.1.min.js" />
+    <Content Include="HtmlView\wx\js\js.js" />
+    <Content Include="HtmlView\wx\js\jss.js" />
+    <Content Include="HtmlView\wx\js\jssdk.js" />
+    <Content Include="HtmlView\wx\js\links.js" />
+    <Content Include="HtmlView\wx\js\product.js" />
+    <Content Include="HtmlView\wx\js\reg-1.js" />
+    <Content Include="HtmlView\wx\js\reg-2.js" />
+    <Content Include="HtmlView\wx\js\reg-3.js" />
+    <Content Include="HtmlView\wx\js\select-master.js" />
+    <Content Include="HtmlView\wx\js\tribe.js" />
+    <Content Include="HtmlView\wx\jump.html" />
+    <Content Include="HtmlView\wx\links.html" />
+    <Content Include="HtmlView\wx\openApp.html" />
+    <Content Include="HtmlView\wx\Pinball.html" />
+    <Content Include="HtmlView\wx\Pinball.hyperesources\blank.gif" />
+    <Content Include="HtmlView\wx\Pinball.hyperesources\HYPE-526.full.min.js" />
+    <Content Include="HtmlView\wx\Pinball.hyperesources\PIE.htc" />
+    <Content Include="HtmlView\wx\Pinball.hyperesources\pinball_hype_generated_script.js" />
+    <Content Include="HtmlView\wx\product.html" />
+    <Content Include="HtmlView\wx\product_t.html" />
+    <Content Include="HtmlView\wx\reg-1.html" />
+    <Content Include="HtmlView\wx\reg-2.html" />
+    <Content Include="HtmlView\wx\reg-3.html" />
+    <Content Include="HtmlView\wx\SciptsStbl\stbl_config.js" />
+    <Content Include="HtmlView\wx\select-master.html" />
+    <Content Include="HtmlView\wx\select.html" />
+    <Content Include="HtmlView\wx\seller.html" />
+    <Content Include="HtmlView\wx\share_test.html" />
+    <Content Include="HtmlView\wx\sign.html" />
+    <Content Include="HtmlView\wx\tribe-qrcode.html" />
+    <Content Include="HtmlView\wx\tribe.html" />
+    <Content Include="HtmlView\wx\tutorials\css\pcgzs.css" />
+    <Content Include="HtmlView\wx\tutorials\images\down01.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down02.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down03.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down04.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down05.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down06.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down07.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down08.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down09.png" />
+    <Content Include="HtmlView\wx\tutorials\images\down10.png" />
+    <Content Include="HtmlView\wx\tutorials\images\helpad.png" />
+    <Content Include="HtmlView\wx\tutorials\images\master01.png" />
+    <Content Include="HtmlView\wx\tutorials\images\master02.png" />
+    <Content Include="HtmlView\wx\tutorials\images\master03.png" />
+    <Content Include="HtmlView\wx\tutorials\images\master04.png" />
+    <Content Include="HtmlView\wx\tutorials\images\master05.png" />
+    <Content Include="HtmlView\wx\tutorials\images\master06.png" />
+    <Content Include="HtmlView\wx\tutorials\images\psw01.png" />
+    <Content Include="HtmlView\wx\tutorials\images\psw02.png" />
+    <Content Include="HtmlView\wx\tutorials\images\psw03.png" />
+    <Content Include="HtmlView\wx\tutorials\images\psw04.png" />
+    <Content Include="HtmlView\wx\tutorials\images\psw05.png" />
+    <Content Include="HtmlView\wx\tutorials\images\psw06.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex01.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex02.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex03.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex04.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex05.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex06.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex07.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex08.png" />
+    <Content Include="HtmlView\wx\tutorials\images\rex09.png" />
+    <Content Include="HtmlView\wx\tutorials\images\set01.png" />
+    <Content Include="HtmlView\wx\tutorials\images\set02.png" />
+    <Content Include="HtmlView\wx\tutorials\images\set03.png" />
+    <Content Include="HtmlView\wx\tutorials\images\set04.png" />
+    <Content Include="HtmlView\wx\tutorials\images\set05.png" />
+    <Content Include="HtmlView\wx\tutorials\images\share01.png" />
+    <Content Include="HtmlView\wx\tutorials\images\share02.png" />
+    <Content Include="HtmlView\wx\tutorials\images\share03.png" />
+    <Content Include="HtmlView\wx\tutorials\images\share04.png" />
+    <Content Include="HtmlView\wx\tutorials\index.html" />
+    <Content Include="HtmlView\wx\tutorials\js\jquery-2.1.1.min.js" />
+    <Content Include="HtmlView\wx\tutorials\js\pcgzs.js" />
+    <Content Include="HtmlView\wx\upgradeaccount\css\skin.css" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\arrow.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\arrows.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\back-youshi.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\back.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\banner-1.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\banner-2.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\checkbox.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\fail.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\icon-1.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\icon-2.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-1.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-2.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-3.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-4.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-5.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-6.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-7.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-8.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\list-img-9.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\mail.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\name.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\show-img.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\success-1.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\success-2.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\tel.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\images\wait.png" />
+    <Content Include="HtmlView\wx\upgradeaccount\js\images.js" />
+    <Content Include="HtmlView\wx\upgradeaccount\js\iscroll.js" />
+    <Content Include="HtmlView\wx\upgradeaccount\js\jquery-2.1.1.min.js" />
+    <Content Include="HtmlView\wx\upgradeaccount\js\js.js" />
+    <Content Include="HtmlView\wx\upgradeaccount\select.html" />
+    <Content Include="HtmlView\wx\upgradeaccount\seller.html" />
+    <Content Include="HtmlView\wx\upgradeaccount\warchief.html" />
+    <Content Include="HtmlView\wx\warchief.html" />
+    <Content Include="jquery-3.3.1.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HtmlView\wx\.idea\wx.iml" />
+    <Content Include="HtmlView\wx\Pinball.hyperesources\E263C6-restorable.plist" />
+    <None Include="packages.config" />
+    <Content Include="WebAppSettings.config" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Able.Store.CacheService\Able.Store.CacheService.csproj">
+      <Project>{3ca28c6e-5ff5-4eea-9b05-84b374140864}</Project>
+      <Name>Able.Store.CacheService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
+      <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
+      <Name>Able.Store.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.IService\Able.Store.IService.csproj">
+      <Project>{bad860bc-1dbf-480b-b5b2-881b66953c86}</Project>
+      <Name>Able.Store.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Model\Able.Store.Model.csproj">
+      <Project>{07d906b4-0af3-4ed5-a59d-5e1e0032fd17}</Project>
+      <Name>Able.Store.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.QueueService\Able.Store.QueueService.csproj">
+      <Project>{354ab7da-3a06-4cb8-b37c-41f2b05d03b5}</Project>
+      <Name>Able.Store.QueueService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Repository\Able.Store.Repository.csproj">
+      <Project>{a180ad29-94ed-4701-988e-ec6126496d4c}</Project>
+      <Name>Able.Store.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Service\Able.Store.Service.csproj">
+      <Project>{da584a9e-98bd-4881-a282-e1a728af15da}</Project>
+      <Name>Able.Store.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50503</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4876/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

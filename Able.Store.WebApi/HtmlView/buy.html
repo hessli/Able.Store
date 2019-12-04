@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>确认订单</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var must = [
+	    {
+	        "title": "shopid",
+	        "alert": "您所访问的店铺不存在"
+	    },
+	    {
+	        "title": "carId",
+	        "alert": "您需要结算的订单不存在"
+	    }
+	];
+</script>
+</head>
+<body>
+	<!--主体 start-->
+	<section class="main have-double">
+		<!--订单列表 start-->
+		<ul class="order-list none" id="list"></ul>
+		<!--订单列表 end-->
+		<!--留言 start-->
+		<div class="liuyan hidden none"><textarea placeholder="给卖家留言" maxlength="200" id="message"></textarea></div>
+		<!--留言 end-->
+		<!--其它属性 start-->
+		<ul class="ul-attr none">
+			<li class="js-address">
+				<h3>请填写收货地址</h3>
+				<p></p>
+			</li>
+			<li class="js-kuaidi">
+				<h3>配送方式</h3>
+				<p>快递</p>
+			</li>
+			<li class="js-fapiao">
+				<h3>发票信息</h3>
+				<p>不需要发票</p>
+			</li>
+		</ul>
+		<!--其它属性 end-->
+		<!--金额 start-->
+		<div class="buy-jine none">
+			<div class="buy-jine-jine">商品总额<em id="price">￥0.00</em></div>
+			<div class="buy-jine-yunfei">运费+<em id="yunfei">￥0.00</em></div>
+			<div class="buy-jine-pay">合计<em id="total">￥0.00</em></div>
+		</div>
+		<!--金额 end-->
+	</section>
+	<!--主体 end-->
+	<!--订单处理 start-->
+	<footer class="footer-bar none">
+		<div class="jg">
+			实付:<em><span id="totals">￥0.00</span></em>
+			<!--<p>(含运费<span id="yunfeis">￥0.00</span>)</p>-->
+		</div>
+		<div class="order-ctrl">
+			<a class="order-pay" id="buy">确认支付</a>
+		</div>
+    </footer>
+	<!--订单处理 end-->
+	<!--底部 start-->
+	<footer class="nav">
+		<ul class="ul-nav">
+			<li><a href="index.html" class="n-1">首页</a></li>
+			<li class="on"><a href="shop-car.html" class="n-2">购物车</a></li>
+			<li><a href="javascript:void(0)" class="center"></a></li>
+			<li><a href="order.html" class="n-4">订单</a></li>
+			<li><a href="my.html" class="n-5">我的</a></li>
+		</ul>
+    </footer>
+	<!--底部 end-->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/buy.js"></script>
+</body>
+</html>

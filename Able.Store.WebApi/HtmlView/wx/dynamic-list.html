@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>师徒部落</title>
+		<link rel="stylesheet" href="css/skin.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="MobileOptimized" content="320" />
+		<script type="text/javascript">
+			function setElement() {
+				var clientWidth = document.documentElement.clientWidth;
+				scale = clientWidth / 360;
+				if (scale < 1) {
+					document.documentElement.setAttribute("style", "font-size:100px")
+				} else {
+					if (scale > 1.15) {
+						document.documentElement.setAttribute("style", "font-size:115px")
+					} else {
+						document.documentElement.setAttribute("style", "font-size:" + Math.ceil(scale * 100) + "px")
+					}
+				}
+			}
+			window.onresize = function() {
+				setElement()
+			};
+			setElement();
+		</script>
+    <script type="text/javascript" src="common/config.js"></script>
+	</head>
+
+	<body>
+		<!--顶部 start-->
+		<!-- <header class="header">
+			<a class="none" id="open_app"></a>
+			<a class="back" href="javascript:history.go(-1);">返回</a>
+			<h1 class="title">动态</h1>
+		</header> -->
+		<!--顶部 end-->
+		<!--主体 start-->
+		<article class="main">
+			<div class="product-tug">
+				
+			</div>
+		</article>
+		<!--主体 end-->
+
+		<!--注册提示 start-->
+		<div id="reg-tip">
+			<div class="reg-tip-close"></div>
+			<div class="reg-tips">
+				<h3>系统提示</h3>
+				<div class="table">
+					<p>已经逛完啦，更多精彩<br>需要注册后才能观看哦！</p>
+				</div>
+				<a href="jump.html" class="go">去注册</a>
+			</div>
+		</div>
+		<!--注册提示 end-->
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/idangerous.swiper-2.6.1.min.js"></script>
+		<script type="text/javascript" src="js/jss.js"></script>
+		<script type="text/javascript" src="js/dynamic-list.js"></script>
+	<!--<script type="text/javascript" src="js/reg-1.js"></script>-->
+
+
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="js/jssdk.js"></script>
+	</body>
+</html>

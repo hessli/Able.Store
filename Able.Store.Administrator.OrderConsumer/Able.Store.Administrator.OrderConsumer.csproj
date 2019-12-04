@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DE8F0179-FE92-4717-A11A-A239A6E1A393}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Able.Store.Administrator.OrderConsumer</RootNamespace>
+    <AssemblyName>Able.Store.Administrator.OrderConsumer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\ChangeCannotQtyBusiness.cs" />
+    <Compile Include="ObjectManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abl.Store.Administrator.Repository\Abl.Store.Administrator.Repository.csproj">
+      <Project>{ed951523-e5f1-4d06-b2f2-823782f95327}</Project>
+      <Name>Abl.Store.Administrator.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Administrator.CacheService\Able.Store.Administrator.CacheService.csproj">
+      <Project>{ACFBCA63-72E5-4444-B865-280AFAE8F5DE}</Project>
+      <Name>Able.Store.Administrator.CacheService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Administrator.IService\Able.Store.Administrator.IService.csproj">
+      <Project>{53d245a6-6031-429c-bf6b-aa7e67618981}</Project>
+      <Name>Able.Store.Administrator.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Administrator.Service\Able.Store.Administrator.Service.csproj">
+      <Project>{3bc1d006-c598-412d-a90c-90e28ee58dfd}</Project>
+      <Name>Able.Store.Administrator.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Adminstrator.Model\Able.Store.Adminstrator.Model.csproj">
+      <Project>{50877e53-d138-4242-a24b-4f0273818f0d}</Project>
+      <Name>Able.Store.Adminstrator.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
+      <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
+      <Name>Able.Store.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

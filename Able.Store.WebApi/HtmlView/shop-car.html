@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>购物车</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var must = [
+	    {
+	        "title": "shopid",
+	        "alert": "您所访问的店铺不存在"
+	    }
+	];
+</script>
+</head>
+<body>
+	<!--购物车头 start-->
+	<header class="car-header none">
+		<div class="car-number"></div>
+		<a class="car-del">删除</a>
+    </header>
+	<!--购物车头 end-->
+	<!--主体 start-->
+	<section class="main have-nav">
+		<!--列表 start-->
+		<ul class="ul-car none"></ul>
+		<!--列表 end-->
+		<!--空的 start-->
+		<div class="empty none">
+			<p>你的购物车是空的～</p>
+			<a href="my.html" class="empty-my">个人中心</a>
+			<a href="product-list.html" class="empty-go">再去逛逛</a>
+		</div>
+		<!--空的 end-->
+	</section>
+	<!--主体 end-->
+	<!--操作 start-->
+	<div class="car-ctrl none">
+		<div class="select-all">全选</div>
+		<div class="jg">
+			<p>合计:<em id="price">￥0.00</em></p>
+			<p>(含运费￥0.00)</p>
+		</div>
+		<a class="go">结算</a>
+    </div>
+	<!--操作 end-->
+	<!--底部 start-->
+	<footer class="nav">
+		<ul class="ul-nav">
+			<li><a href="index.html" class="n-1">首页</a></li>
+			<li class="on"><a href="shop-car.html" class="n-2">购物车</a></li>
+			<li><a href="javascript:void(0)" class="center"></a></li>
+			<li><a href="order.html" class="n-4">订单</a></li>
+			<li><a href="my.html" class="n-5">我的</a></li>
+		</ul>
+    </footer>
+	<!--底部 end-->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/shop-car.js"></script>
+</body>
+</html>

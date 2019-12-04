@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>账户设置</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var must = [
+	    {
+	        "title": "shopid",
+	        "alert": "您所访问的店铺不存在"
+	    }
+	];
+</script>
+</head>
+<body>
+	<!--主体 start-->
+	<section class="main have-bg none">
+		<!--头像 start-->
+		<div class="my-photo">
+			<div class="photo">
+				<input type="file" capture="camera" accept="image/*"  class="upload">
+			</div>
+			<h2 class="name"></h2>
+		</div>
+		<!--头像 end-->
+		<!--列表 start-->
+		<form class="info info-save">
+			<dl>
+				<dt>姓名</dt>
+				<dd><input type="text" value="" id="name" /></dd>
+			</dl>
+			<dl>
+				<dt>性别</dt>
+				<dd>
+					<ul class="single" id="sex">
+						<li class="man">男</li>
+						<li class="woman">女</li>
+					</ul>
+				</dd>
+			</dl>
+			<dl>
+				<dt>身份证</dt>
+				<dd><input type="text" value="" id="IDcard" maxlength="18" /></dd>
+			</dl>
+			<dl>
+				<dt>绑定手机</dt>
+				<dd><input type="tel" value="" id="tel" maxlength="11" /></dd>
+			</dl>
+			<dl>
+				<dt>绑定微信</dt>
+				<dd><input type="text" value="" disabled="disabled" id="weixin" />
+					<span>不可修改</span>
+				</dd>
+			</dl>
+			<div class="save-button">
+				<input type="submit" value="保存" class="save" />
+			</div>
+		</form>
+		<!--列表 end-->
+	</section>
+	<!--主体 end-->
+	<!--头像编辑 start-->
+	<div class="page" id="photo">
+		<div class="photo-photo">
+			<div id="img"></div>
+			<div id="move"></div>
+		</div>
+		<div class="photo-button">
+			<a class="photo-false">取消</a>
+			<a class="photo-submit">确定</a>
+		</div>
+	</div>
+	<!--头像编辑 end-->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/hammer.js"></script>
+	<script type="text/javascript" src="js/images.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/set.js"></script>
+</body>
+</html>

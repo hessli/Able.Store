@@ -1,0 +1,119 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>师徒部落</title>
+    <link rel="stylesheet" href="css/skin.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="MobileOptimized" content="320" />
+    <script type="text/javascript">
+        function setElement() { var clientWidth = document.documentElement.clientWidth; scale = clientWidth / 360; if (scale < 1) { document.documentElement.setAttribute("style", "font-size:100px") } else { if (scale > 1.15) { document.documentElement.setAttribute("style", "font-size:115px") } else { document.documentElement.setAttribute("style", "font-size:" + Math.ceil(scale * 100) + "px") } } } window.onresize = function () { setElement() }; setElement();
+
+    </script>
+    <script type="text/javascript" src="common/config.js"></script>
+</head>
+<body>
+    <!--头部 start-->
+    <div class="tops">
+        <div class="sign"><img src="images/sign.png" /></div>
+        <a class="none" id="open_app"></a>
+        <a href="javascript:;" class="download regs">立即注册</a>
+    </div>
+    <!--头部 end-->
+    <!--主体 start-->
+    <div class="main hidden">
+        <ul class="line none"></ul>
+        <div class="ziliao"></div>
+        <ul class="follow regs"></ul>
+        <ul class="wealth regs"></ul>
+        <div class="other none">
+            <dl class="regs">
+                <dt>TA收到的礼物</dt>
+                <dd>
+                    <ul class="liwu"></ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt>最近帮TA签到的人</dt>
+                <dd>
+                    <div class="qiandao">
+                        <ul class="ul-qiandao"></ul>
+                        <div class="help-qiandao regs">帮TA签到</div>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt class="zhaopianshu">Ta的照片(-)</dt>
+                <dd>
+                    <div class="img" id="srcolls">
+                        <ul class="ul-img"></ul>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="links">
+            <div class="links-tit">
+                <h3>精彩链接</h3>
+                <strong>-</strong>
+            </div>
+            <ul class="ul-links"></ul>
+        </div>
+        <div class="links">
+            <div class="links-tit">
+                <h3>动态</h3>
+                <strong>-</strong>
+            </div>
+            <div class="dt dynamic-link"></div>
+        </div>
+        <ul class="sends regs">
+            <li>
+                <div class="send-div send-1">送礼物</div>
+            </li>
+            <li>
+                <div class="send-div send-2">发消息</div>
+            </li>
+            <li>
+                <div class="send-div send-3">关注Ta</div>
+            </li>
+        </ul>
+    </div>
+    <!--主体 end-->
+    <!--底部 start-->
+    <div class="footer">
+        <a class="down regs" href="javascript:;"></a>
+        <div class="lang">
+            <h3>简体中文<img src="images/lang.png" /></h3>
+            <ul class="lang-list">
+                <li class="on"><a href="">简体中文</a></li>
+                <li><a href="">English</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--底部 end-->
+    <!--注册提示 start-->
+    <div id="reg-tip">
+        <div class="reg-tip-close"></div>
+        <div class="reg-tips">
+            <h3>系统提示</h3>
+            <div class="table">
+                <p>已经逛完啦，更多精彩<br>需要注册后才能观看哦！</p>
+            </div>
+            <a href="jump.html" class="go">去注册</a>
+        </div>
+    </div>
+    <!--注册提示 end-->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/jssdk.js"></script>
+
+    <script type="text/javascript" src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/idangerous.swiper-2.6.1.min.js"></script>
+    <script type="text/javascript" src="js/jss.js"></script>
+    <script type="text/javascript" src="js/tribe.js"></script>
+
+
+
+</body>
+</html>

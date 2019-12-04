@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>商品详情</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var must = [
+	    {
+	        "title": "shopid",
+	        "alert": "您所访问的店铺不存在"
+	    },
+	    {
+	        "title": "productId",
+	        "alert": "您所访问的商品不存在"
+	    }
+	];
+</script>
+</head>
+<body>
+	<!--主体 start-->
+	<section class="main have-nav">
+		<!--图片组 start-->
+		<div class="flash">
+			<ul id="flash"></ul>
+		</div>
+		<!--图片组 end-->
+		<!--简介 start-->
+		<div class="detail-content"></div>
+		<!--简介 end-->
+		<!--属性 start-->
+		<div class="detail-select none">
+			<dl>
+				<dt class="ul-key"></dt>
+				<dd>
+					<ul class="ul-sx auto single"></ul>
+				</dd>
+			</dl>
+			<dl>
+				<dt>数　量：</dt>
+				<dd>
+					<div class="shuliang">
+						<span class="cut">－</span>
+						<input type="tel" value="1" />
+						<span class="add">+</span>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<!--属性 end-->
+		<!--详情及参数 start-->
+		<div class="detail-detail none" id="detail-move">
+			<div class="detail-border"></div>
+			<ul class="detail-tab tab">
+				<li class="on"><span>图文详情</span></li>
+				<li><span>产品参数</span></li>
+			</ul>
+			<div class="tab-div">
+				<div class="auto"></div>
+				<div class="sxs"></div>
+			</div>
+		</div>
+		<!--详情及参数 end-->
+	</section>
+	<!--主体 end-->
+	<!--底部工作条 start-->
+	<footer class="footer-bar">
+		<a href="shop-car.html" class="bar-car">购物车</a>
+		<div class="bar-ctrl">
+			<a class="add-car">加入购物车</a>
+			<a class="buy">立即购买</a>
+		</div>
+    </footer>
+	<!--底部工作条 end-->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/idangerous.swiper-2.6.1.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/product-detail.js"></script>
+</body>
+</html>

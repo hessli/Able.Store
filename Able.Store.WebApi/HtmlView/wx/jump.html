@@ -1,0 +1,139 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>加入师徒部落</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+function setElement(){var clientWidth=document.documentElement.clientWidth;scale=clientWidth/360;if(scale<1){document.documentElement.setAttribute("style","font-size:100px")}else{if(scale>1.15){document.documentElement.setAttribute("style","font-size:115px")}else{document.documentElement.setAttribute("style","font-size:"+Math.ceil(scale*100)+"px")}}}window.onresize=function(){setElement()};setElement();
+</script>
+    <script type="text/javascript" src="common/config.js"></script>
+</head>
+<body>
+    <script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jss.js"></script>
+	<script type="text/javascript">
+		// 做判断。微信则授权，其他直接打开！！！！
+
+//跳转授权
+	var jump = window.location.search;
+	jump = jump.substring(1,jump.length).split("&");
+	for (var i=0;i<jump.length;i++ ){
+		var jumps = jump[i].split("=");
+		if ( jumps[0] == "openid" ){
+			window.openid = decodeURIComponent(jumps[1]);
+		}
+		if ( jumps[0] == "nickname" ){
+			window.nickname = decodeURIComponent(jumps[1]);
+		}
+		if ( jumps[0] == "headimgurl" ){
+			window.headimgurl = decodeURIComponent(jumps[1]);
+		}
+		if ( jumps[0] == "ui" ){
+			window.ui = decodeURIComponent(jumps[1]);
+		}	
+	}
+	
+	if ( typeof(ui) != "undefined" ){
+		window.localStorage.ui = ui;
+	}
+	//window.localStorage.exptime = new Date().getTime();
+	
+	if ( typeof(openid) != "undefined" ){
+		window.localStorage.token = window.openid;
+		window.localStorage.nickname = window.nickname;
+		window.localStorage.headimgurl = window.headimgurl;
+		d = new Date();
+		window.localStorage.exptime = d.getTime() + 60000;
+		//测试
+		//alert("js:" + window.openid);
+		//alert("js:" + window.unionid);
+	}else{
+		window.nickname = window.localStorage.nickname;
+		window.headimgurl = window.localStorage.headimgurl;
+	}
+	
+//	localStorage.removeItem("token")
+	
+	window.token = window.localStorage.token;
+	window.localStorage.url = window.location.href;
+
+	//判断是否微信
+	if (browser.versions.mobile) {
+        var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            //在微信中打开
+            d = new Date();
+            nowTime = d.getTime();
+        	if ( nowTime > window.localStorage.exptime){
+				window.location.href = "http://wx-auth.stbl.cc/oauthwx/usershare?stblbackurl=" + encodeURIComponent(window.location.href);			
+			}
+			else{
+				document.body.style.visibility = "visible";
+			}
+        }else{
+        	document.body.style.visibility = "visible";
+        	$(".welcome").addClass("mar_tp");
+            $("#headerImg").remove();
+        	$("#headerImg").css("border","0");
+        }
+	}
+		$(function(){
+			var postData = {};
+			postData.openid = window.localStorage.token;
+			postData.opentype = 1;
+			postData.unionid = window.localStorage.unionid;
+			
+//			alert("openid="+postData.openid);
+//			alert("unionid="+postData.unionid);
+			//postData.count = 10;
+			$.ajax({
+				type: "post",
+				url: baseapi_url + "/h5/web/user/check/openid",
+				//contentType: "application/json; charset=utf-8",
+				data:postData,
+				dataType: "json",
+				success: function(data){
+					debugger;
+					if ( data.issuccess == 0 ){
+						window.location.href = "reg-1.html";
+						return;
+					}
+
+					window.localStorage.accesstoken = data.result.accesstoken;
+					window.localStorage.nickname = data.result.userinfo.nickname;
+					window.localStorage.cityText = data.result.userinfo.cityname;
+					window.localStorage.headimgurl = data.result.userinfo.imgurl;
+					window.localStorage.tel = data.result.userinfo.telphone;
+					window.localStorage.sex = data.result.userinfo.gender;
+					
+					var ua = navigator.userAgent.toLowerCase();
+					if(!ua.match(/MicroMessenger/i) == "micromessenger"){
+						window.localStorage.headimgurl = "";
+						$("#headerImg img").css("display","none");
+					}
+					if ( !(data.result.userinfo.roleflag & 1)){
+						window.location.href = "select-master.html";
+					}
+					else{
+						window.localStorage.groupimg = data.result.userinfo.mastergroupinfo.groupimg;
+						window.localStorage.groupname = data.result.userinfo.mastergroupinfo.groupname;
+						window.localStorage.groupdesc = data.result.userinfo.mastergroupinfo.groupdesc;
+						window.location.href = "introduction.html";
+					}
+				},
+				error:function(){
+					windowAlert("网络错误，请重试");
+				},
+				headers:{
+					"x-stbl-token": window.token,
+				}
+			});
+		})
+	</script>
+</body>
+</html>

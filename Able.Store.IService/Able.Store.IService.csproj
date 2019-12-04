@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BAD860BC-1DBF-480B-B5B2-881B66953C86}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Able.Store.IService</RootNamespace>
+    <AssemblyName>Able.Store.IService</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administration\IAdministrationCacheService.cs" />
+    <Compile Include="Administration\IAdministrationService.cs" />
+    <Compile Include="Administration\StrativeView.cs" />
+    <Compile Include="Adverts\BannerView.cs" />
+    <Compile Include="Adverts\IAdverCacheService.cs" />
+    <Compile Include="Adverts\IAdvertService.cs" />
+    <Compile Include="AutoMapperBootStrapper.cs" />
+    <Compile Include="BaseRequest.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="Categories\ICategoryCacheService.cs" />
+    <Compile Include="IBaseCacheService.cs" />
+    <Compile Include="Orders\IOrderCacheService.cs" />
+    <Compile Include="Orders\OrderView.cs" />
+    <Compile Include="Orders\MerchantView.cs" />
+    <Compile Include="ProductCatalogs\IProductCacheService.cs" />
+    <Compile Include="RedsDbZone.cs" />
+    <Compile Include="ServiceRule.cs" />
+    <Compile Include="Categories\CategoryProductRequest.cs" />
+    <Compile Include="Categories\CategoryView.cs" />
+    <Compile Include="Categories\CategroyProductView.cs" />
+    <Compile Include="Categories\ICategoryService.cs" />
+    <Compile Include="MoneyFormatter.cs" />
+    <Compile Include="Orders\CreateOrderRequest.cs" />
+    <Compile Include="Orders\IOrderService.cs" />
+    <Compile Include="Orders\OrderRequestView.cs" />
+    <Compile Include="PagingResultView.cs" />
+    <Compile Include="ProductCatalogs\SkuAttributeView.cs" />
+    <Compile Include="Comm\ImgDescView.cs" />
+    <Compile Include="ProductCatalogs\IProductCatalogService.cs" />
+    <Compile Include="ProductCatalogs\NewProductView.cs" />
+    <Compile Include="ProductCatalogs\ProductView.cs" />
+    <Compile Include="ProductCatalogs\ProductPropertyValueView.cs" />
+    <Compile Include="ProductCatalogs\BaseSkuView.cs" />
+    <Compile Include="ProductCatalogs\RecommendProductView.cs" />
+    <Compile Include="ProductCatalogs\SearchProductRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseView.cs" />
+    <Compile Include="SearchPageOrderRequest.cs" />
+    <Compile Include="SearchPageRequest.cs" />
+    <Compile Include="Shopping\BasketItemRequestView.cs" />
+    <Compile Include="Shopping\BasketRequestView.cs" />
+    <Compile Include="Shopping\BasketView.cs" />
+    <Compile Include="Shopping\ChangeNumRequestView.cs" />
+    <Compile Include="Shopping\IShoppingService.cs" />
+    <Compile Include="Shopping\BasketUserRequestView.cs" />
+    <Compile Include="Users\CreateReceiverInfoRequestView.cs" />
+    <Compile Include="Users\IUserService.cs" />
+    <Compile Include="Users\UserReceiverResponseView.cs" />
+    <Compile Include="Users\UserReceiverKeyRequest.cs" />
+    <Compile Include="ServiceInvalidException.cs" />
+    <Compile Include="ServiceInvalidBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
+      <Project>{6DFBB547-375F-49F1-83FB-11F5D8D71F06}</Project>
+      <Name>Able.Store.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.Model\Able.Store.Model.csproj">
+      <Project>{07d906b4-0af3-4ed5-a59d-5e1e0032fd17}</Project>
+      <Name>Able.Store.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

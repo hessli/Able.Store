@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>订单消息</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var must = [
+	    {
+	        "title": "shopid",
+	        "alert": "您所访问的店铺不存在"
+	    }
+	];
+</script>
+</head>
+<body>
+	<!--顶部 start-->
+	<header class="search">
+		<a href="javascript:history.go(-1);" class="back">返回</a>
+		<h1 class="title">订单消息</h1>
+    </header>
+	<!--主体 start-->
+	<section class="main have-bg">
+		<!--列表 start-->
+		<ul class="ul-msg-order" id="list"></ul>
+		<!--列表 end-->
+		<!--加载更多 start-->
+		<div class="get-more-button" id="loading">点击加载更多</div>
+		<!--加载更多 end-->
+	</section>
+	<!--主体 end-->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/message-order.js"></script>
+</body>
+</html>

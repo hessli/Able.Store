@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>师徒部落</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+function setElement(){var clientWidth=document.documentElement.clientWidth;scale=clientWidth/360;if(scale<1){document.documentElement.setAttribute("style","font-size:100px")}else{if(scale>1.15){document.documentElement.setAttribute("style","font-size:115px")}else{document.documentElement.setAttribute("style","font-size:"+Math.ceil(scale*100)+"px")}}}window.onresize=function(){setElement()};setElement();
+</script>
+    <script type="text/javascript" src="common/config.js"></script>
+</head>
+<body>
+	<!--顶部 start-->
+	<!-- <header class="header">
+		<a class="back" href="javascript:history.go(-1);">返回</a>
+		<h1 class="title">3/3 验证手机</h1>
+    </header> -->
+	<!--顶部 end-->
+	<!--主体 start-->
+	<div class="main">
+		<form class="form">
+			<div class="now-tel"></div>
+			<div class="row code">
+				<h3>验证码</h3>
+				<input type="text" placeholder="请输入收到的验证码" class="input" id="code" />
+			</div>
+			<div class="code-tip"><strong id="again">正在发送</strong>，如无法收到验证码请联系<a href="tel:400-8633-361">客服</a></div>
+			<div class="submit"><input type="submit" value="开始师徒部落之旅" /></div>
+		</form>
+	</div>
+	<!--主体 end-->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript" src="js/reg-3.js"></script>
+
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/jssdk.js"></script>
+</body>
+</html>

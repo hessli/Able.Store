@@ -1,0 +1,323 @@
+
+
+
+/*-----------------------------功能介绍--------------------------------------*/
+body {
+        font: .12rem/1 "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+        /* position: relative; */
+        color: #000;
+        min-width: 320px;
+        overflow-x: hidden;
+        background: #f7f7f7;
+        visibility: visible;
+        height: 100%;
+    }
+    
+    body,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    form,
+    fieldset,
+    span,
+    a,
+    input,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td,
+    header,
+    nav,
+    footer,
+    article,
+    section,
+    aside,
+    time,
+    figure {
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+    }
+    
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+        outline: none;
+    }
+    
+    .explain {
+        font-size: .14rem;
+        color: #a0a0a0;
+        padding: 0 .14rem .16rem;
+        line-height: .16rem;
+        position: relative;
+        overflow: hidden
+    }
+    
+    .explain p {
+        margin-top: .05rem;
+        line-height: .2rem;
+    }
+    
+    .header {
+        background: #fcd532;
+        position: relative;
+        height: .44rem;
+        line-height: .44rem;
+        padding-left: .56rem;
+        padding-right: .57rem;
+    }
+    
+    .back {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: .5rem;
+        height: .44rem;
+        text-indent: -9999px;
+        overflow: hidden;
+        background: url(../images/back.png) no-repeat center center;
+        background-size: .22rem;
+    }
+    
+    .back:active {
+        background-color: #eec930;
+    }
+    
+    .title {
+        font-size: .16rem;
+        color: #070001;
+    }
+
+
+
+
+
+
+
+
+/*-------------------常见问题及新手指南的页面样式-------------------*/
+.menu{
+    overflow: hidden;
+    height: 0;
+    transition: 0.5s;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    margin-top: 100px;
+}
+
+
+.help_search_bar{
+    position: relative;
+    width: 100%;
+    padding:0 51px 0 51px;
+    box-sizing: border-box;
+    margin-top: .2rem;
+    background: #f7f7f7;
+}
+.help_search_bar input{
+    width: 100%;
+    height: .30rem;
+    border: solid 1px #ccc;
+    background: white;
+    box-sizing: border-box;
+    /*margin-right: 61px;*/
+    padding: 0 71px 0 20px;
+    font-size: .14rem;
+}
+.help_search_bar .btn_search{
+    position: absolute;
+    right: 51px;
+    top: 0;
+    width: 61px;
+    height: .30rem;
+    float: left;
+    background-image: url(../images/search_icon_m.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ffd102;
+    background-size: .2rem .2rem;
+}
+
+.help{
+    margin: .2rem .14rem 0 .14rem;
+}
+.help_menu{
+    position: relative;
+    width: 100%;
+    /*padding:0 51px 0 51px;*/
+    box-sizing: border-box;
+    display: inline-block;
+}
+.help_menu .n{
+    position: relative;
+    float: left;
+    width: 32.3%;
+    height: .3rem;
+    background: #f2f2f2;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    text-align: center;
+    font-size: .13rem;
+    line-height: .3rem;
+    vertical-align:middle;
+}
+.help_menu .help_ulp{
+    background: #ffd102;
+}
+
+
+.help_menu .r{
+    margin-right: 0px;
+}
+
+/*----start----*/
+.help_menu .n .icon1{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/help_icons_m.png);
+    /*font-size: 34px;*/
+    padding-right: 20px;
+    vertical-align:middle;
+    background-position: -60px 0;
+}
+.help_menu .help_ulp .icon1{
+    background-image: url(../images/help_icons_m.png);
+    background-position: -40px 0;
+}
+.help_menu .cur .icon1{
+    background-position-x: 0px;
+}
+
+.help_menu .n:hover .icon1{
+    background-position-x: 0px;
+}
+/*---end-----*/
+
+.help_menu div:hover{
+    cursor:pointer;
+}
+
+.help_menu .cur{
+    background: #ffd102;
+}
+.help_menu .cur .icon{
+    background-position-x: 0px;
+}
+
+
+
+.help_menu .n:hover{
+    background: #ffd102;
+}
+.help_menu .n:hover .icon{
+    background-position-x: 0px;
+}
+.help_menu .n .i1{
+    background-position-y: 0px;
+}
+.help_menu .n .i2{
+    background-position-y: -41px;
+}
+.help_menu .n .i3{
+    background-position-y: -82px;
+}
+.help_menu .n .i4{
+    background-position-y: -121px;
+}
+.help_menu .n .i5{
+    background-position-y: -161px;
+}
+.help_menu .n .i6{
+    background-position-y: -202px;
+}
+
+
+
+.help_context{
+    position: relative;
+    width: 100%;
+    padding:.14rem 0 0 0;
+    box-sizing: border-box;
+}
+.help_context .btn_back{
+    width: .6rem;
+    height: .3rem;
+    background-color: #f7d54d;
+    border-radius: 5px;
+    line-height: .3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: white;
+    /*font-weight: bold;*/
+    font-size: .14rem;
+}
+.help_context .title{
+    /*font-size: .2rem;*/
+    margin-bottom: .1rem;
+}
+.help_context .dec{
+    font-size: .14rem;
+    color:#757575;
+    line-height: .2rem;
+    padding: 0 .14rem 0 .14rem;
+}
+.help_context .dec{
+    display: none;
+}
+
+.help_context .decoct{
+    display: block;
+}
+
+
+
+/*-----------------------使用帮助-----------------------------*/
+.use_black p{
+    color: #333;
+}
+.use_help{
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    margin-top: .05rem;
+}
+.use_help thead{
+    background-color:#e9e9e9;
+}
+.use_help thead tr td{
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.use_help thead tr td span{
+    color:#333;
+    display: block;
+    text-align: center;
+    line-height: .3rem;
+}
+
+.use_help tbody tr td{
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.use_help tbody tr td span{
+    color:#a1a1a1;
+    line-height: .3rem;
+    display: block;
+    text-align: center;
+}

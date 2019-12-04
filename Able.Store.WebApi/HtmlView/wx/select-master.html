@@ -1,0 +1,122 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>师徒部落</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+function setElement(){var clientWidth=document.documentElement.clientWidth;scale=clientWidth/360;if(scale<1){document.documentElement.setAttribute("style","font-size:100px")}else{if(scale>1.15){document.documentElement.setAttribute("style","font-size:115px")}else{document.documentElement.setAttribute("style","font-size:"+Math.ceil(scale*100)+"px")}}}window.onresize=function(){setElement()};setElement();
+</script>
+    <script type="text/javascript" src="common/config.js"></script>
+</head>
+<body>
+	<!--顶部 start-->
+	<!-- <header class="header">
+		<a class="back" href="javascript:history.go(-1);">返回</a>
+		<h1 class="title">选择师傅</h1>
+    </header> -->
+	<!--顶部 end-->
+	<!--主体 start-->
+	<div class="main">
+		<form class="form">
+			<div class="photo"><img src="images/nophoto.png" /></div>
+			<h3 class="name"></h3>
+			
+			<div class="help"><h3>不知道师傅是谁？</h3></div>
+			<ul class="ul-help">
+				<li><a class="search"><span>精确查找</span></a></li>
+				<li><a class="recommend">推荐师傅</a></li>
+			</ul>
+			
+			<div class="code-area">
+				<div class="code-tit wrong">
+					<h3>邀请码：</h3>
+					<input type="button" value="请输入师傅邀请码" id="yard" placeholder=""  class="yard_yard"/>
+				</div>
+				<div class="change change_s">更改</div>
+				<div class="code-tips"><a class="open-code">邀请码说明</a></div>
+			</div>
+			<div class="submit submit_top submit_submit"><input type="submit" value="确认完成" /></div>
+			
+			
+			
+		</form>
+	</div>
+	<!--主体 end-->
+	<!--弹出 start-->
+	<div id="shade">
+		<div class="reg-tip-close"></div>
+		<div class="input-box">
+			<h3>更改邀请码</h3>
+			<div class="box"><input type="text" id="shade-code" /></div>
+			<div class="submit" id="shade-ok"><input type="button" value="确 定" /></div>
+		</div>
+	</div>
+	<!--弹出 end-->
+	<!--弹出 start-->
+	<div id="window">
+		<div id="explain">
+			<!--顶部 start-->
+			<header class="header">
+				<a class="back go-back">返回</a>
+				<h1 class="title">邀请码说明</h1>
+		    </header>
+			<!--顶部 end-->
+			<!--主体 start-->
+			<div class="main">
+				<div class="explain">
+					<p>关于注册邀请码的说明</p>
+					<p>1.邀请码的用途：我们实行师徒邀请码注册制度。您只需要在注册页面填写正确有效的师徒邀请码及相关信息，即可拜师成功。您将可以与邀请人建立强关系网络，更多功能获益尽在师徒部落APP中，欢迎您的加入。</p>
+					<p>2.邀请码的获取：目前，成功注册的用户均拥有专属的邀请码。您可以在APP的快捷菜单中“我要收徒”的栏目中找到它，点击“复制邀请码”即可，通过分享功能来邀请您的好友加入师徒圈子。</p>
+					<p>3.危害与防范：请谨慎发放您手中的邀请码，我们希望您可以将它送给那些了解并热爱师徒部落文化的朋友。所有被邀请用户将和邀请人有某种程度的联系，如发现被邀请用户存在大量严重违规现象，我们在处理的同时可能会视情况对邀请人采取相应的措施，以防止问题进一步扩大（师徒部落账号和管理规则）。</p>
+					<p>4.其他注册方式：除邀请码注册外，您依然可以通过APP通道快速成为APP平台用户查找选 择您所喜好的师傅，我们永远对每一位用户敞开大门。</p>
+				</div>
+			</div>
+			<!--主体 end-->
+		</div>
+		<div id="find">
+			<!--顶部 start-->
+			<form class="header">
+				<a class="back go-back">返回</a>
+				<input type="search" placeholder="查找师徒部落昵称" id="keyword" />
+				<input type="submit" value="搜索" id="search-button" />
+		    </form>
+			<!--顶部 end-->
+			<!--主体 start-->
+			<div class="main">
+				<ul class="ul-master" id="find-list"></ul>
+				<div class="get-more-button none">正在加载...</div>
+			</div>
+			<!--主体 end-->
+		</div>
+		<div id="recommend">
+			<!--顶部 start-->
+			<header class="header">
+				<a class="back go-back">返回</a>
+				<h1 class="title">推荐师傅</h1>
+				<a class="changes">换一批</a>
+		    </header>
+			<!--顶部 end-->
+			<!--主体 start-->
+			<div class="main">
+				<ul class="ul-change" id="recommend-list"></ul>
+				<div class="get-more-button">正在加载...</div>
+			</div>
+			<!--主体 end-->
+		</div>
+	</div>
+	<!--弹出 end-->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<script type="text/javascript" src="js/idangerous.swiper-2.6.1.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript" src="js/select-master.js"></script>
+
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/jssdk.js"></script>
+</body>
+</html>

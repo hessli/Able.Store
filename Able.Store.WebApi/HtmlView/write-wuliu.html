@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>填写物流信息</title>
+<link rel="stylesheet" href="css/skin.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="MobileOptimized" content="320"/>
+<script type="text/javascript">
+	var must = [
+	    {
+	        "title": "shopid",
+	        "alert": "您所访问的店铺不存在"
+	    },
+	    {
+	        "title": "orderId",
+	        "alert": "订单不存在"
+	    }
+	];
+</script>
+</head>
+<body>
+	<!--主体 start-->
+	<section class="main">
+		<!--编辑地址 start-->
+		<form class="address-form">
+			<div class="return-attr">
+				<em>物流公司</em>
+				<div class="select-boxs"><input type="text" placeholder="请输入物流公司" id="company" /></div>
+			</div>
+			<div class="return-attr">
+				<em>运单号　</em>
+				<div class="select-boxs"><input type="text" placeholder="请输入快递运单号" id="waybill" /></div>
+			</div>
+			<div class="form-button">
+				<input type="submit" value="确认发货" />
+			</div>
+		</form>
+		<!--编辑地址 end-->
+	</section>
+	<!--主体 end-->
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<script type="text/javascript" src="js/write-wuliu.js"></script>
+</body>
+</html>
