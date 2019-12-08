@@ -37,8 +37,8 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.3.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.3.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.10.9\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -60,12 +60,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Diagnostics.PerformanceCounter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.PerformanceCounter.4.5.0\lib\net461\System.Diagnostics.PerformanceCounter.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Pipelines, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.Pipelines.4.5.1\lib\netstandard2.0\System.IO.Pipelines.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -86,24 +84,45 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\Redis\RabbitTempContainer\RedisConnectionJob.cs" />
-    <Compile Include="Cache\Redis\RabbitTempContainer\RedisConnectionFactory.cs" />
-    <Compile Include="Cache\Redis\RabbitTempContainer\RedisConnectionPool.cs" />
+    <Compile Include="ADO\DbHelperSQL.cs" />
+    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectFromDataBase.cs" />
+    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionJob.cs" />
+    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionFactory.cs" />
+    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionPool.cs" />
     <Compile Include="Cache\CacheController.cs" />
     <Compile Include="Cache\Redis\RedisStorage.cs" />
     <Compile Include="Cache\UpdateStrategy.cs" />
+    <Compile Include="Crypt\CryptHelper.cs" />
+    <Compile Include="Crypt\HashCryptType.cs" />
+    <Compile Include="Crypt\IHashCrypt.cs" />
+    <Compile Include="Crypt\MD5Crypt.cs" />
+    <Compile Include="Crypt\SHA1Crypt.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
+    <Compile Include="Http\IHttpParamter.cs" />
+    <Compile Include="Http\HttpWebHeaderContent.cs" />
+    <Compile Include="Http\HttpMethod.cs" />
+    <Compile Include="Http\HttpWebParameters.cs" />
+    <Compile Include="Http\HttpWebRequestOption.cs" />
+    <Compile Include="Http\HttpWebRequestUtility.cs" />
+    <Compile Include="Http\HttpWebRequestUtilityExtension.cs" />
+    <Compile Include="ISerialization.cs" />
     <Compile Include="Jobs\IJob.cs" />
     <Compile Include="Jobs\JobCollection.cs" />
     <Compile Include="Jobs\JobOption.cs" />
     <Compile Include="Jobs\JobController.cs" />
+    <Compile Include="Querying\PropertyNameHelper.cs" />
+    <Compile Include="Querying\QueryOperator.cs" />
+    <Compile Include="Querying\QueryTranslatorExpression.cs" />
     <Compile Include="Queue\NotifyOption.cs" />
+    <Compile Include="Queue\RabbitTempContainer\RabbitConnectFromDataBase.cs" />
     <Compile Include="Queue\RabbitTempContainer\RabbitConnectionJob.cs" />
     <Compile Include="Queue\Rabbit\Notify\RabbitResponseResult.cs" />
     <Compile Include="Queue\Rabbit\Notify\RabbitResponse.cs" />
@@ -129,30 +148,26 @@
     <Compile Include="Queue\RabbitTempContainer\ConnectionFactoryPool.cs" />
     <Compile Include="Queue\Rabbit\Consumer\ConsumeHandler.cs" />
     <Compile Include="Queue\Rabbit\Consumer\RabbitConsumerController.cs" />
-    <Compile Include="Queue\Rabbit\SourceConfig\RabbitConnectConfigurationSource.cs" />
-    <Compile Include="Queue\Rabbit\SourceConfig\RabbitOptionConfig.cs" />
+    <Compile Include="Queue\RabbitTempContainer\RabbitConnectFromXml.cs" />
+    <Compile Include="Queue\Rabbit\XmlConfig\RabbitOptionConfig.cs" />
     <Compile Include="Queue\Rabbit\Consumer\RabbitSimpleConsume.cs" />
-    <Compile Include="Queue\Rabbit\SourceConfig\RabbitOptionElement.cs" />
-    <Compile Include="Queue\Rabbit\SourceConfig\RabbitOptionElements.cs" />
+    <Compile Include="Queue\Rabbit\XmlConfig\RabbitOptionElement.cs" />
+    <Compile Include="Queue\Rabbit\XmlConfig\RabbitOptionElements.cs" />
     <Compile Include="Reflect\ReflectObject.cs" />
-    <Compile Include="Serve\ConfigurationBroker.cs" />
-    <Compile Include="Serve\IConfigurationSource.cs" />
-    <Compile Include="Serve\IConnectOptions.cs" />
+    <Compile Include="ConfigCenter\IConfigurationSource.cs" />
+    <Compile Include="ConfigCenter\IConnectOptions.cs" />
     <Compile Include="Cache\Redis\IRedisStorage.cs" />
     <Compile Include="Cache\Redis\RedisConnectOptions.cs" />
-    <Compile Include="Cache\Redis\RabbitTempContainer\RedisConnectConfigurationSource.cs" />
+    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionFromXml.cs" />
     <Compile Include="Domain\Events\DomainEventHandlerFactory.cs" />
     <Compile Include="Domain\EntityState.cs" />
     <Compile Include="Domain\Events\IDomaineventHandler.cs" />
     <Compile Include="Domain\Events\IDomainEventHandlerFactory.cs" />
     <Compile Include="Domain\Events\IEunmerableExtensions.cs" />
     <Compile Include="Domain\Events\DomainEvent.cs" />
-    <Compile Include="Domain\IEntityBase.cs" />
     <Compile Include="Domain\IEntityState.cs" />
-    <Compile Include="Linq\OrderParamter.cs" />
-    <Compile Include="Querying\IQuery.cs" />
     <Compile Include="Querying\OrderByClause.cs" />
-    <Compile Include="Querying\QueryOperator.cs" />
+    <Compile Include="Querying\CriteriaOperator.cs" />
     <Compile Include="Querying\Criterion.cs" />
     <Compile Include="Querying\Query.cs" />
     <Compile Include="Querying\PagingResult.cs" />
@@ -188,7 +203,9 @@
     <Compile Include="UniOfWork\IUnitOfWork.cs" />
     <Compile Include="Utils\JsonPase.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Serve\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

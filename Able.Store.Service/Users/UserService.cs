@@ -23,7 +23,7 @@ namespace Able.Store.Service.Users
 
         public ResponseView<UserReceiverResponseView> GetDefault(int userId)
         {
-            var user=_userRepository.GetFirstOrDefault(x=>x.Id==userId);
+            var user=_userRepository.GetFirstById(userId);
 
             var defaultReceiver=user.GetDefault();
 
@@ -38,7 +38,7 @@ namespace Able.Store.Service.Users
 
         public ResponseView SetDefault(int userId, int receiverId)
         {
-            var entity=  _userRepository.GetFirstOrDefault(x=>x.Id==userId);
+            var entity=  _userRepository.GetFirstById(userId);
 
             entity.SetDefaultReciverInfo(receiverId);
 
@@ -49,7 +49,7 @@ namespace Able.Store.Service.Users
 
         public ResponseView<int> ChangeReceiverInfo(CreateReceiverInfoRequestView request)
         {
-           var entity=  _userRepository.GetFirstOrDefault(x=>x.Id==request.userid);
+           var entity=  _userRepository.GetFirstById(request.userid);
 
             if (entity == null)
             {

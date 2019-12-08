@@ -16,7 +16,6 @@ namespace Able.Store.Repository.Categories
 
         }
        
-        
         public IList<Category> GetCategories(int? id, int size = 0)
         {
             IList<Category> rs = null;

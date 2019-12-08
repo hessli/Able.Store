@@ -46,7 +46,7 @@ namespace Able.Store.Administrator.Service.Skus
 
             var kvs = request.GetDic();
 
-            var skus = _skuRepository.GetList(x => request.Ids.Contains(x.Id), "Stock").ToList();
+            var skus =  //_skuRepository.GetList(x => request.Ids.Contains(x.Id), "Stock").ToList();
 
             foreach (var item in skus)
             {

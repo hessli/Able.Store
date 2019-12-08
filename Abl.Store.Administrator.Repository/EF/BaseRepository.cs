@@ -1,15 +1,16 @@
 ﻿using Able.Store.Adminstrator.Model.EF;
 using Able.Store.Infrastructure.Domain;
-using Able.Store.Infrastructure.Reflect;
+using Able.Store.Infrastructure.Querying;
 using Able.Store.Infrastructure.UniOfWork;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Abl.Store.Administrator.Repository.EF
 {
-    public abstract class BaseRepository<T> : IRepository<T>
+    public abstract class BaseRepository<T> : IEFReadOnlyRepository<T>, IRepository<T>
                                                    where T : class, IAggregateRoot
     {
         private IUnitOfWork _unitOfWork=null;
@@ -76,27 +77,6 @@ namespace Abl.Store.Administrator.Repository.EF
             return queryable;
         }
 
-        /// <summary>
-        /// 显示的调用导航属性
-        /// </summary>
-        /// <returns></returns>
-        public T GetExplicitFirstOrDefault(Expression<Func<T, bool>> expression)
-        {
-            var baseQuery = this.Entities;
-
-            ReflectEntity reflectEntity = new ReflectEntity(typeof(T));
-
-            if (reflectEntity.IncludePropertyNames.Count > 0)
-            {
-                foreach (var item in reflectEntity.IncludePropertyNames)
-                {
-                    baseQuery = baseQuery.Include(item);
-                }
-            }
-            var entity = baseQuery.FirstOrDefault(expression);
-
-            return entity;
-        }
         public void Add(T entity)
         {
             _unitOfWork.RegisterNew(entity);
@@ -112,6 +92,22 @@ namespace Abl.Store.Administrator.Repository.EF
         public virtual void Commit()
         {
             this._unitOfWork.Commit();
+        }
+        public IEnumerable<T> GetList(Query query)
+        {
+            var expression = query.CreateExpression<T>();
+
+            var queryable = this.Entities.Where(expression).Order(query.OrderByProperty);
+
+            return queryable;
+        }
+        public T GetFirstOrDefault(Query query)
+        {
+            var expression = query.CreateExpression<T>();
+
+            var data = this.Entities.Where(expression).FirstOrDefault();
+
+            return data;
         }
     }
 }

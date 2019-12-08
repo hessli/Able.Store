@@ -8,7 +8,7 @@ namespace Able.Store.Adminstrator.Model.SkusDomain
     /// 产品销售情况
     /// </summary>
     [Table("pms_sku_sale")]
-    public class SkuSale: IEntityBase<int>,ISkuSale
+    public class SkuSale: ISkuSale
     {
         [Column("sku_id")]
         [Key]

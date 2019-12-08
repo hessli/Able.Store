@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Able.Store.Adminstrator.Model.OrdersDomain
 {
     [Table("oms_order_address")]
-    public class OrderAddress : ValueOjectBase, IEntityBase<int>
+    public class OrderAddress : ValueOjectBase
     {
         public OrderAddress()
         { }

@@ -2,7 +2,7 @@
  * 全站公共脚本,基于jquery-2.1.1脚本库
 */
 //jssdk
-window.baseurl = "http://localhost:4876/";
+window.baseurl = "http://192.168.1.101:7689/";
 //显示alert
 	function windowAlert(text,alertTime){
 		if ( typeof(autoTip) != "undefined" ){

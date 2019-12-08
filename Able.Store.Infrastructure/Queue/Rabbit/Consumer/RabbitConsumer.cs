@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 
 namespace Able.Store.Infrastructure.Queue.Rabbit.Consumer
 {

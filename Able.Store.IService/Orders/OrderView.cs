@@ -1,6 +1,7 @@
 ﻿using Able.Store.Model.OrdersDomain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace Able.Store.IService.Orders
 {
     public class OrderView
@@ -58,8 +59,9 @@ namespace Able.Store.IService.Orders
                 commodity = order.TotalCost,
                 state = (int)order.Status
             };
- 
-            foreach (var item in order.OrderActions)
+
+            var actions=  order.OrderActions.ToList();
+            foreach (var item in actions)
             {
                 switch (item.Action)
                 {
@@ -81,7 +83,9 @@ namespace Able.Store.IService.Orders
                 }
             }
 
-            foreach (var item in order.Items)
+            var items = order.Items.ToList();
+
+            foreach (var item in items)
             {
                var skuItem= OrderItemView.ToItemView(item);
 

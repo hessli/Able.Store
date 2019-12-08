@@ -74,6 +74,7 @@
     <Compile Include="CategoriesDomain\ICategoryRepository.cs" />
     <Compile Include="Core\OrderEnum.cs" />
     <Compile Include="Core\PayType.cs" />
+    <Compile Include="IEFReadOnlyRepository.cs" />
     <Compile Include="OrdersDomain\CreateOrderFactory.cs" />
     <Compile Include="OrdersDomain\IOrderRepository.cs" />
     <Compile Include="OrdersDomain\OrderGenerateNo.cs" />
@@ -82,9 +83,11 @@
     <Compile Include="OrdersDomain\OrderAction.cs" />
     <Compile Include="OrdersDomain\PaymentBusinessRules.cs" />
     <Compile Include="OrdersDomain\PaymentFactory.cs" />
-    <Compile Include="OrdersDomain\States\OpenOrderState.cs" />
+    <Compile Include="OrdersDomain\States\DeliveryState.cs" />
     <Compile Include="OrdersDomain\States\OrderPayState.cs" />
     <Compile Include="OrdersDomain\States\OrderState.cs" />
+    <Compile Include="OrdersDomain\States\OutStockState.cs" />
+    <Compile Include="OrdersDomain\States\SignForState.cs" />
     <Compile Include="OrdersDomain\States\SystemLockState.cs" />
     <Compile Include="ShippingDomain\ShippingCompany.cs" />
     <Compile Include="IEFUnitOfWork.cs" />

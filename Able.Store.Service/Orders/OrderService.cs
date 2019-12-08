@@ -6,7 +6,7 @@ using Able.Store.Model.OrdersDomain;
 using Able.Store.Model.Users;
 using Able.Store.Service.IService;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace Able.Store.Service.Orders
 {
     public class OrderService:BaseService, IOrderService
@@ -14,7 +14,7 @@ namespace Able.Store.Service.Orders
         IOrderRepository _orderRepository;
         IUserRepository _userRepository;
         IBasketRepository _baseketRepository;
-        IOrderCacheService _orderCacheService; 
+        IOrderCacheService _orderCacheService;
         public OrderService(IOrderRepository orderRepository,IUserRepository userRepository,
             IBasketRepository basketRepository,
             IOrderCacheService orderCacheService)
@@ -68,16 +68,16 @@ namespace Able.Store.Service.Orders
         public ResponseView<OrderView> GetOrderDetail(int userId,int orderId)
         {
            var order=_orderRepository
-                .GetExplicitFirstOrDefault(x =>x.UserId==userId && x.Id == orderId);
+                .GetFirstOrDefault(x =>x.UserId==userId && x.Id == orderId);
 
             var data= OrderView.ToView(order);
 
             return base.OutPutResponseView(data);
         }
-
         public ResponseView<IList<MerchantView>> GetPayWay()
         {
             var data=base.OutPutResponseView(MerchantView.ToPaywayViews());
+
 
             return data;
         }

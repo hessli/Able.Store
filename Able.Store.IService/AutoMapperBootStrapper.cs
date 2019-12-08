@@ -1,4 +1,5 @@
 ﻿
+using Able.Store.Infrastructure.Querying;
 using Able.Store.IService.Adverts;
 using Able.Store.IService.ProductCatalogs;
 using Able.Store.Model.AdvertDomain;
@@ -34,7 +35,7 @@ namespace Able.Store.IService
                 #endregion
 
                 #region 通用
-                cfg.CreateMap<SearchPageOrderRequest,OrderParamter>();
+                cfg.CreateMap<SearchPageOrderRequest, OrderByClause>();
                 #endregion
                 cfg.CreateMap<Advert, BannerView>();
 

@@ -16,6 +16,8 @@ namespace Able.Store.WebApi.Controllers
         {
             var data = AdvertService.GetBanners(size);
 
+       
+
             return data;
         }
 
@@ -24,7 +26,6 @@ namespace Able.Store.WebApi.Controllers
             var data = CategoryService.GetCategories(size);
 
             return data;
-
 
         }
 

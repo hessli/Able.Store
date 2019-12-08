@@ -14,7 +14,18 @@ namespace Able.Store.Model.OrdersDomain.States
                 return OrderStatus.系统处理;
             }
         }
-        public override void Submit(Order order)
+
+        public override bool Delivery(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool SignForState(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Submit(Order order)
         {
             throw new NotImplementedException("当前订单不可以提交");
         }
@@ -26,9 +37,11 @@ namespace Able.Store.Model.OrdersDomain.States
             order.SetStateTo(orderState);
 
             var submmitted = new OrderChangeEvent() { Order = order };
-            //触发事件
-           var result=  DomainEvent.Raise<bool, OrderChangeEvent>
-                (submmitted, "OrderSystemHandler");
+            //触发锁定库存，暂时屏蔽
+            //var result=  DomainEvent.Raise<bool, OrderChangeEvent>
+            //     (submmitted, "OrderSystemHandler");
+
+          var result=DomainEvent.Raise<bool, OrderChangeEvent>(submmitted, "OrderDeliveryHandler");
 
             return result;
         }

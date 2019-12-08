@@ -1,11 +1,6 @@
-﻿using Able.Store.Infrastructure.Cache;
-using Able.Store.Infrastructure.Cache.Redis;
-using Able.Store.Infrastructure.Domain.Events;
-using Able.Store.Infrastructure.Queue.Rabbit.SourceConfig;
-using Able.Store.Infrastructure.Serve;
+﻿using Able.Store.Infrastructure.Domain.Events;
 using Able.Store.Infrastructure.UniOfWork;
 using Able.Store.Infrastructure.Utils;
-using Able.Store.IService.ProductCatalogs;
 using Able.Store.Model.OrdersDomain.Events;
 using Able.Store.Model.OrdersDomain.States;
 using Able.Store.Repository.EF;
@@ -80,14 +75,12 @@ namespace Able.Store.WebApi
             #region 领域事件注册
             builder.RegisterType<OrderSystemHandler>()
                 .Named<IDomaineventHandler<bool,OrderChangeEvent>>("OrderSystemHandler");
-
+            builder.RegisterType<OrderDeliveryHandler>()
+           .Named<IDomaineventHandler<bool, OrderChangeEvent>>("OrderDeliveryHandler");
             #endregion
 
             AutofacHelper.Container = builder.Build();
-
-           
             config.DependencyResolver = new AutofacWebApiDependencyResolver(AutofacHelper.Container);
-          
         }
     }
 }

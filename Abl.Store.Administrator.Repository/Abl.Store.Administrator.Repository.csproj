@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\BaseRepository.cs" />
-    <Compile Include="EF\EFQueryTranslator.cs" />
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skus\SkuRepository.cs" />

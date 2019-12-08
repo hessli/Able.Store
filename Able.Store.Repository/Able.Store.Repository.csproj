@@ -59,7 +59,6 @@
     <Compile Include="Adverts\AdvertRepository.cs" />
     <Compile Include="Baskets\BasketRepository.cs" />
     <Compile Include="Categories\CategoryRepository.cs" />
-    <Compile Include="EF\EFQueryTranslator.cs" />
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\BaseRepository.cs" />
     <Compile Include="Orders\OrderRepository.cs" />

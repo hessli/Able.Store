@@ -13,7 +13,17 @@ namespace Able.Store.Model.OrdersDomain.States
             }
         }
 
-        public override void Submit(Order order)
+        public override bool Delivery(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool SignForState(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Submit(Order order)
         {
             throw new NotImplementedException();
         }

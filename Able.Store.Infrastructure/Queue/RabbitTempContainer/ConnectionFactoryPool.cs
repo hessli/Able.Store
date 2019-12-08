@@ -1,8 +1,8 @@
-﻿using Able.Store.Infrastructure.Serve;
+﻿using Able.Store.Infrastructure.ConfigCenter;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
-namespace Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer
+namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
 {
     internal class ConnectionFactoryPool
     {

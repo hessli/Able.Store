@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Cache.Redis.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Cache.Redis.RedisTempContainer;
 using System.Collections.Generic;
 
 namespace Able.Store.Infrastructure.Cache.Redis

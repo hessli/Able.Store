@@ -3,7 +3,7 @@ using Able.Store.Infrastructure.Domain;
 
 namespace Able.Store.Model.OrdersDomain
 {
-    public class OrderShippingLocus:ValueOjectBase,IEntityBase<int>
+    public class OrderShippingLocus:ValueOjectBase
     {
          public int Id { get; set; }
          public string Desc { get; set; }

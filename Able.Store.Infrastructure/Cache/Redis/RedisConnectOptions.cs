@@ -1,5 +1,4 @@
-﻿
-using Able.Store.Infrastructure.Serve;
+﻿using Able.Store.Infrastructure.ConfigCenter;
 
 namespace Able.Store.Infrastructure.Cache.Redis
 {

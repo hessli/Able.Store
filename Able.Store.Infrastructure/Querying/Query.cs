@@ -2,42 +2,41 @@
 
 namespace Able.Store.Infrastructure.Querying
 {
-    public class Query: IQuery
+    public class Query
     {
-        private IList<Query> _subQueries = new List<Query>();
+        private IList<Query> _subQueries;
+        private IList<Criterion> _criteria;
 
-        private IList<Criterion> _criteria = new List<Criterion>();
-   
+        public Query()
+        {
+            _criteria = new List<Criterion>();
+            _subQueries=new List<Query>();
+        }
+
+        public void AddSubQuery(Query subQuery)
+        {
+            _subQueries.Add(subQuery);
+        }
+        public IEnumerable<Query> SubQueries
+        {
+            get { return _subQueries; }
+        }
+
         public IEnumerable<Criterion> Criteria
         {
-            get {
+            get
+            {
                 return _criteria;
-             }
-        }
-
-
-        public IEnumerable<Query> SubQueries {
-
-            get {
-                return _subQueries;
             }
         }
-        public void AddSubQueries(Query subQuery)
+
+
+        public void AddCriteria(Criterion Criterion)
         {
-
-            this._subQueries.Add(subQuery);
-
+            _criteria.Add(Criterion);
         }
-
-        public void AddCriteria(Criterion criterion)
-        {
-            this._criteria.Add(criterion);
-
-        }
-
-        //当前语句和子语句的操作符
+    
         public QueryOperator QueryOperator { get; set; }
-
         /// <summary>
         /// 排序
         /// </summary>

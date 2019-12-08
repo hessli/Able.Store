@@ -66,6 +66,7 @@
     <Compile Include="BasketsDomain\IBasketRepository.cs" />
     <Compile Include="CategoriesDomain\Category.cs" />
     <Compile Include="CategoriesDomain\ICategoryRepository.cs" />
+    <Compile Include="IEFReadOnlyRepository.cs" />
     <Compile Include="Core\ImgJson.cs" />
     <Compile Include="Core\ImgJsonCollection.cs" />
     <Compile Include="Core\OrderEnum.cs" />
