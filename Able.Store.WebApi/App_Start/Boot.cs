@@ -1,6 +1,6 @@
-﻿using Able.Store.Infrastructure.Cache.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Cache.RedisTempContainer;
 using Able.Store.Infrastructure.Jobs;
-using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
+using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 
 namespace Able.Store.WebApi.App_Start
 {

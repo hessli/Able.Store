@@ -1,16 +1,15 @@
-﻿using Able.Store.Infrastructure.Jobs;
+﻿using Able.Store.Infrastructure.ConfigCenter;
+using Able.Store.Infrastructure.Jobs;
 using Able.Store.Infrastructure.Queue.Rabbit;
-using Able.Store.Infrastructure.Queue.Rabbit.SourceConfig;
-using Able.Store.Infrastructure.Serve;
 using System.Linq;
 
-namespace Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer
+namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
 {
     public class RabbitConnectionJob : IJob
     {
         public void Excute()
         {
-            IConfigurationSource source = new RabbitConnectConfigurationSource();
+            IConfigurationSource source = new RabbitConnectFromDataBase();
             var data = source.Load<RabbitConnectOptions>();
             var length= data.Count();
 

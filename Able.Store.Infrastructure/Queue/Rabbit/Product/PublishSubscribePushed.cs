@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 using RabbitMQ.Client;
 using System;
 namespace Able.Store.Infrastructure.Queue.Rabbit.Product

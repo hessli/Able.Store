@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;

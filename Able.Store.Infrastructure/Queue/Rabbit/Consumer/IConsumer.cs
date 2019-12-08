@@ -1,10 +1,10 @@
 ﻿
 
-using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
+using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 
 namespace Able.Store.Infrastructure.Queue.Rabbit.Consumer
 {
-   public interface IConsumer
+    public interface IConsumer
     {
         RabbitConnectionFactory Factory { get; set; }
 

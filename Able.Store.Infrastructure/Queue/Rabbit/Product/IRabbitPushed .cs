@@ -1,5 +1,4 @@
-﻿using Able.Store.Infrastructure.Queue.Rabbit.Notify;
-using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 using System;
 
 namespace Able.Store.Infrastructure.Queue.Rabbit.Product

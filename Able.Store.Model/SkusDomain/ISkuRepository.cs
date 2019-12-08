@@ -9,7 +9,7 @@ namespace Able.Store.Model.SkusDomain
     {
 
         PagingResult<Sku> PagingResult(string title,
-      IList<OrderParamter> orderParamters,
+      IList<OrderByClause> orderByClause,
       int pageIndex,
       int pageSize);
         IList<Sku> GetNewProducts(int size);

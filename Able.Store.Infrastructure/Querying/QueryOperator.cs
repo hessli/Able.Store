@@ -2,7 +2,7 @@
 {
     public enum QueryOperator
     {
-        And,
-        Or
+         And,
+         Or
     }
 }

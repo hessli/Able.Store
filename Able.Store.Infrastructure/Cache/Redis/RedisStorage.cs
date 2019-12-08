@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Cache.Redis.RabbitTempContainer;
+﻿using Able.Store.Infrastructure.Cache.Redis.RedisTempContainer;
 using Able.Store.Infrastructure.Utils;
 using StackExchange.Redis;
 using System.Collections.Generic;

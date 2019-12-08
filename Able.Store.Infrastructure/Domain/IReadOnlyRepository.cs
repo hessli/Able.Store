@@ -1,7 +1,5 @@
-﻿
-using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using Able.Store.Infrastructure.Querying;
+using System.Collections.Generic;
 
 namespace Able.Store.Infrastructure.Domain
 {
@@ -9,21 +7,16 @@ namespace Able.Store.Infrastructure.Domain
     {
         T GetSingle();
 
-        /// <summary>
-        /// 显示加载导航属性
-        /// </summary>
-        /// <param name="expression"></param>
-        /// <returns></returns>
-        T GetExplicitFirstOrDefault(Expression<Func<T, bool>> expression);
+        IEnumerable<T> GetList(Query queryable);
 
-        IQueryable<T> GetList(Expression<Func<T,bool>> expression);
+        T GetFirstOrDefault(Query queryable);
 
-        T GetFirstOrDefault(Expression<Func<T, bool>> expression);
+        IEnumerable<T> GetList(Query queryable, string[] includes);
 
-        IQueryable<T> GetList(Expression<Func<T, bool>> expression, params string[] includes);
+        T GetFirstOrderDefault(Query queryable,string [] includes);
 
-        IQueryable<T> GetList<S>(Expression<Func<T, bool>> expression, Expression<Func<T, S>> orderBy, bool descending);
+        T GetSingle(string[] includes);
 
-
+        T GetFirstById(int id);
     }
 }

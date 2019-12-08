@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2F0255A9-2F63-4002-9463-BB85032B14E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Able.Store.InfrsturctureProvider.Service</RootNamespace>
+    <AssemblyName>Able.Store.InfrsturctureProvider.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\AbstractKDBirdRequest.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdHttpRequestParamter.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdCommdity.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdContact.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdPlaceOrderRequest.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KDBriderRequest.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\LogisticsKDBridProviderService.cs" />
+    <Compile Include="Interface\Logistics\SaleOrders\ICommdity.cs" />
+    <Compile Include="Interface\Logistics\SaleOrders\IContact.cs" />
+    <Compile Include="Interface\Logistics\SaleOrders\ILogisticsOrder.cs" />
+    <Compile Include="Interface\Logistics\SaleOrders\IPlaceOrderRequest.cs" />
+    <Compile Include="Interface\Logistics\SaleOrders\IPlaceOrderResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interface\Logistics\SaleOrders\ILogisticsProviderService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
+      <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
+      <Name>Able.Store.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.InfrsturctureProvider.Domain\Able.Store.InfrsturctureProvider.Domain.csproj">
+      <Project>{61e1f7ed-df76-4ac4-aa27-03c208872f25}</Project>
+      <Name>Able.Store.InfrsturctureProvider.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

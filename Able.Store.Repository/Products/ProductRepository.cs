@@ -16,6 +16,8 @@ namespace Able.Store.Repository.Products
         }
         public Product GetProduct(int id, int skuid)
         {
+
+            
             var dyProduct = (from e in Entities.Where(x => x.Id == id)
                              select new
                              {

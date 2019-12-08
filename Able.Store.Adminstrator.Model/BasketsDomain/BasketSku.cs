@@ -11,7 +11,7 @@ namespace Able.Store.Adminstrator.Model.BasketsDomain
 
     [Table("bms_basket_item_sku")]
     
-    public class BasketSku:IEntityBase<int>
+    public class BasketSku
     {
         public BasketSku()
         {

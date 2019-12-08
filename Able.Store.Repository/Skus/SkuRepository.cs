@@ -55,7 +55,7 @@ namespace Able.Store.Repository.Skus
                  }).ToList();
             return products;
         }
-        public PagingResult<Sku> PagingResult(string title, IList<OrderParamter> orderParamters,
+        public PagingResult<Sku> PagingResult(string title, IList<OrderByClause> orderParamters,
                               int pageIndex, int pageSize)
         {
             Expression<Func<Sku, bool>> expre = x => x.State == ProductState.上架;

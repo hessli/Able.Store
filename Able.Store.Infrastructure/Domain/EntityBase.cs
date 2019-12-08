@@ -1,18 +1,16 @@
 ﻿using Able.Store.Infrastructure.Domain.Business;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Able.Store.Infrastructure.Domain
 {
-    public abstract class EntityBase<TId>:IEntityBase<TId>
+    public abstract class EntityBase<TId>
     {
         private List<BusinessRule> _brokenRules = new List<BusinessRule>();
         public abstract TId Id { get; set; }
         public abstract DateTime? CreateTime { get; set; }
         protected abstract void Validate();
-
 
         public string GetBrokenRuleMessage()
         {

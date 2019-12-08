@@ -7,7 +7,7 @@ namespace Able.Store.Model.SkusDomain
 {
 
     [Table("pms_sku_stock")]
-    public class  SkuStock:IEntityBase<int>
+    public class  SkuStock
     {
     
         [InverseProperty("Stock")]

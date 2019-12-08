@@ -1,18 +1,10 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Able.Store.Model.Users;
-using Able.Store.Repository.Users;
+﻿using Able.Store.Model.Users;
+using Able.Store.Model.UsersDomain;
 using Able.Store.Repository.EF;
-using System.Linq;
-using Able.Store.Infrastructure.Queue.Rabbit;
-using Able.Store.Infrastructure.Queue.Rabbit.Consumer;
-using Able.Store.Infrastructure.Queue.Rabbit.Product;
-using Able.Store.Infrastructure.Jobs;
-using Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer;
-using Able.Store.Infrastructure.Cache.RabbitTempContainer;
-using Able.Store.Infrastructure.Cache.Redis;
+using Able.Store.Repository.Users;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq.Expressions;
 
 namespace Able.Store.UnitTest
 {
@@ -72,47 +64,45 @@ namespace Able.Store.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
-            IUserRepository r = new UserRepository(new EFUnitOfWork());
+            //IUserRepository r = new UserRepository(new EFUnitOfWork());
 
-            var u = r.GetFirstOrDefault(x => true);
-
-
-            r.Remove(u);
+            Expression<Func<User, bool>> expression = x => x.Id == 3;
 
 
-            r.Commit();
+            expression.Compile();
+
+            //var u = r.GetFirstOrDefault(x => true);
+
+
+            //r.Remove(u);
+
+
+            //r.Commit();
         }
 
         [TestMethod]
         public void TestConsumer()
         {
 
-            // JobController.AddJob(new RabbitConnectionJob(), 1300000);
+            ParameterExpression parameter = Expression.Parameter(typeof(User), "x");
 
-            //JobController.AddJob(new RedisConnectionJob(), 140000,500000);
-
-            //JobController.Start();
-
-             (new RedisConnectionJob()).Excute();
-
-            CacheController redisCache = new CacheController();
-
-            redisCache.SetStrPrimitive("s", "s");
-
-            redisCache.SetStrPrimitive("b","b");
+            Expression<Func<User, bool>> expression = x => true;
 
 
-            string a = "xx";
+            MemberExpression member = Expression.Property(parameter, "Nick");
 
-           var f= a.GetHashCode();
+            ConstantExpression constant = Expression.Constant("z");
 
-            string b = "xxx";
+            var contains = Expression.Call(constant, typeof(string).GetMethod("Contains"), member);
 
-          var qs=  b.GetHashCode();
+            var k = Expression.Not(contains);
+
+            expression = expression.And(Expression.Lambda<Func<User, bool>>(k));
+
+           var s= expression.ToString();
+
         }
 
-       
 
-        
     }
 }

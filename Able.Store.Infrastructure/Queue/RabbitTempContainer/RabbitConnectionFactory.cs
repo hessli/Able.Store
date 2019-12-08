@@ -1,7 +1,8 @@
-﻿using RabbitMQ.Client;
+﻿using Able.Store.Infrastructure.Queue.Rabbit;
+using RabbitMQ.Client;
 using System;
 using System.Threading;
-namespace Able.Store.Infrastructure.Queue.Rabbit.RabbitTempContainer
+namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
 {
     public class RabbitConnectionFactory: IDisposable
     {
