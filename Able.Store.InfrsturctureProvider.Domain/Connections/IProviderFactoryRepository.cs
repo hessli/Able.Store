@@ -1,6 +1,8 @@
-﻿namespace Able.Store.InfrsturctureProvider.Domain.Connections
+﻿using Able.Store.Infrastructure.Domain;
+
+namespace Able.Store.InfrsturctureProvider.Domain.Connections
 {
-    public interface IProviderFactoryRepository
+    public interface IProviderFactoryRepository :IRepository<ProviderFactory>
     {
         ProviderFactory GetKdBridProviderConnection( );
     }

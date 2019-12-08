@@ -118,8 +118,6 @@
     <Compile Include="Jobs\JobCollection.cs" />
     <Compile Include="Jobs\JobOption.cs" />
     <Compile Include="Jobs\JobController.cs" />
-    <Compile Include="Querying\PropertyNameHelper.cs" />
-    <Compile Include="Querying\QueryOperator.cs" />
     <Compile Include="Querying\QueryTranslatorExpression.cs" />
     <Compile Include="Queue\NotifyOption.cs" />
     <Compile Include="Queue\RabbitTempContainer\RabbitConnectFromDataBase.cs" />
@@ -167,9 +165,7 @@
     <Compile Include="Domain\Events\DomainEvent.cs" />
     <Compile Include="Domain\IEntityState.cs" />
     <Compile Include="Querying\OrderByClause.cs" />
-    <Compile Include="Querying\CriteriaOperator.cs" />
     <Compile Include="Querying\Criterion.cs" />
-    <Compile Include="Querying\Query.cs" />
     <Compile Include="Querying\PagingResult.cs" />
     <Compile Include="Domain\Business\BusinessRule.cs" />
     <Compile Include="Domain\EntityBase.cs" />

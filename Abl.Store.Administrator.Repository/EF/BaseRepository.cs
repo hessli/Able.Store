@@ -1,16 +1,14 @@
 ﻿using Able.Store.Adminstrator.Model.EF;
 using Able.Store.Infrastructure.Domain;
-using Able.Store.Infrastructure.Querying;
 using Able.Store.Infrastructure.UniOfWork;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Abl.Store.Administrator.Repository.EF
 {
-    public abstract class BaseRepository<T> : IEFReadOnlyRepository<T>, IRepository<T>
+    public abstract class BaseRepository<T> : IReadOnlyRepository<T>, IRepository<T>
                                                    where T : class, IAggregateRoot
     {
         private IUnitOfWork _unitOfWork=null;
@@ -59,7 +57,20 @@ namespace Abl.Store.Administrator.Repository.EF
             return descending ? queryable.OrderByDescending(orderBy) :
                                  queryable.OrderBy(orderBy);
         }
+        public T GetFirstById(int id)
+        {
+            ParameterExpression parameter = Expression.Parameter(typeof(T), "x");
 
+            var propertyExpression = Expression.Property(parameter, "Id");
+
+            var constant = Expression.Constant(id);
+
+            var conditon = Expression.Lambda<Expression<Func<T, bool>>>(Expression.Equal(propertyExpression, constant), parameter);
+
+            var data = this.Entities.FirstOrDefault(conditon.Compile());
+
+            return data;
+        }
 
         public IQueryable<T> GetList(Expression<Func<T, bool>> expression, params string[] includes)
         {
@@ -93,21 +104,7 @@ namespace Abl.Store.Administrator.Repository.EF
         {
             this._unitOfWork.Commit();
         }
-        public IEnumerable<T> GetList(Query query)
-        {
-            var expression = query.CreateExpression<T>();
-
-            var queryable = this.Entities.Where(expression).Order(query.OrderByProperty);
-
-            return queryable;
-        }
-        public T GetFirstOrDefault(Query query)
-        {
-            var expression = query.CreateExpression<T>();
-
-            var data = this.Entities.Where(expression).FirstOrDefault();
-
-            return data;
-        }
+     
+       
     }
 }

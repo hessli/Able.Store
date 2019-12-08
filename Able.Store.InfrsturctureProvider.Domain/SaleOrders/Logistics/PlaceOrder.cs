@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Able.Store.Infrastructure.Domain;
+using System;
 namespace Able.Store.InfrsturctureProvider.Domain.SaleOrders
 {
-    public class PlaceOrder
+    public class PlaceOrder:ValueOjectBase
     {
         public PlaceOrder()
         { }
@@ -36,5 +37,10 @@ namespace Able.Store.InfrsturctureProvider.Domain.SaleOrders
                 return (PlaceOrderResponse != null && PlaceOrderResponse.IsSuccess);
             }
         }
+        protected override void Validate()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

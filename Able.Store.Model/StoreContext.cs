@@ -20,8 +20,7 @@ namespace Able.Store.Model
         }
         static StoreContext()
         { 
-            //从不创建数据库
-            //可以提升效率，不用判断表库是否存在
+            
             Database.SetInitializer<StoreContext>(null);
         }
         public DbSet<User> Users { get; set; }

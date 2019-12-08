@@ -31,7 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.10.9\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.10.9\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connections\IProviderFactoryRepository.cs" />
@@ -39,13 +53,24 @@
     <Compile Include="Connections\KdBridConnect.cs" />
     <Compile Include="Connections\ProviderFactory.cs" />
     <Compile Include="Connections\ProviderEnum.cs" />
+    <Compile Include="IEFUnitOfWork.cs" />
     <Compile Include="SaleOrders\Logistics\PlaceOrder.cs" />
     <Compile Include="SaleOrders\Logistics\PlaceOrderRequest.cs" />
     <Compile Include="SaleOrders\Logistics\PlaceOrderResponse.cs" />
-    <Compile Include="SaleOrders\SaleOrderRepository.cs" />
+    <Compile Include="SaleOrders\ISaleOrderRepository.cs" />
     <Compile Include="SaleOrders\SaleOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreProviderContext.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
+      <Project>{6DFBB547-375F-49F1-83FB-11F5D8D71F06}</Project>
+      <Name>Able.Store.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

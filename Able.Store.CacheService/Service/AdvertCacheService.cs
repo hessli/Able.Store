@@ -51,22 +51,9 @@ namespace Able.Store.CacheService.Service
             if (data == null || data.Count == 0)
             {
 
-                IList<Criterion> criteria = new List<Criterion>();
-
-                criteria.Add(new Criterion("AdverType", AdverType.站内广告, CriteriaOperator.Equal));
-
-                criteria.Add(new Criterion("State", AdvertState.有效, CriteriaOperator.Equal));
-
-                var query = new Infrastructure.Querying.Query(criteria);
-
-                query.OrderByProperty.Add(new OrderByClause
-                {
-                    Desc = true,
-                    PropertyName = "CreateTime"
-                });
-
                 var models = _advertRepository
-                    .GetList(query)
+                    .GetList(x=>true)
+                    .OrderByDescending(x=>x.CreateTime)
                     .ToList();
 
                 data = BannerView.ToView(models);

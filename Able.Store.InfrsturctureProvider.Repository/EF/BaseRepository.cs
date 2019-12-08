@@ -1,12 +1,10 @@
 ﻿using Able.Store.Infrastructure.Domain;
 using Able.Store.Infrastructure.UniOfWork;
-using Able.Store.Model.EF;
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Able.Store.Repository.EF
+namespace Able.Store.InfrsturctureProvider.Repository
 {
     public abstract class BaseRepository<T> : IReadOnlyRepository<T>, IRepository<T>
                                                    where T : class, IAggregateRoot

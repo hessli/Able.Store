@@ -23,10 +23,8 @@ namespace Able.Store.InfrsturctureProvider.Service.Implementations.Logistics.Sal
             _connectionRepository = providerRepository;
             _saleOrderRepository = saleOrderRepository;
             _providerFactory = _connectionRepository.GetKdBridProviderConnection();
-
             _connect = _providerFactory.GetConnections<KdBridConnect>(KDBRID);
         }
-
         public void PlaceOrder(IPlaceOrderRequest placeOrderRequest)
         {
             var kdbirdPlaceOrder = placeOrderRequest as KdBirdPlaceOrderRequest;
