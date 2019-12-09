@@ -4,27 +4,29 @@ namespace Able.Store.Infrastructure.Queue.Rabbit
 {
     public class RabbitQueueNameOption
     {
+
+        private HashSet<string> _hash = new HashSet<string>();
         public RabbitQueueNameOption()
         {
-            this.QueueNames = new HashSet<string>();
+            this.QueueNames = _hash;
         }
-        public HashSet<string> QueueNames
+        public IEnumerable<string> QueueNames
         {
             get;
             private set;
         }
         public void Add(string queueName)
         {
-            if (!this.QueueNames.Contains(queueName))
+            if (!this._hash.Contains(queueName))
             {
-                this.QueueNames.Add(queueName);
+                this._hash.Add(queueName);
             }
         }
         public int Count {
 
             get {
 
-                return this.QueueNames.Count;
+                return this._hash.Count;
             }
         }
         public string GetIndexQueueName(int index)

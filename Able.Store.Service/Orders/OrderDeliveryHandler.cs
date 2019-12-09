@@ -1,21 +1,34 @@
 ﻿using Able.Store.Infrastructure.Domain.Events;
-using Able.Store.Infrasturcture.Service.Implementations.Logistics;
-using Able.Store.Infrasturcture.Service.Interface.logistics;
 using Able.Store.Model.OrdersDomain.Events;
+using Able.Store.QueueService.Interface.Orders;
+using System;
+using System.Threading.Tasks;
 
 namespace Able.Store.Service.Orders
 {
     public class OrderDeliveryHandler : IDomaineventHandler<bool, OrderChangeEvent>
     {
-        ILogisticsProviderService logisticsProviderService; 
-        public OrderDeliveryHandler()
+
+        private IOrderQueueService _queueService;
+
+        public OrderDeliveryHandler(IOrderQueueService queueService)
         {
-            logisticsProviderService = new KdBirdProvider();
+            _queueService = queueService;
         }
+     
         public bool Handler(OrderChangeEvent domainEvent)
         {
-               logisticsProviderService
-                     .PlaceOrder(domainEvent.Order.CreateKdBridPlaceOrder());
+            //推送队列就可以了
+           var request=LogisticsRequestFactory.CreateKdBridPlaceOrder(domainEvent.Order);
+
+            Action<object> action = x => {
+
+                var success= ((IOrderQueueService)x).PutLogistics(domainEvent.Order);
+
+            };
+            Task taks = new Task(action,_queueService);
+
+            taks.Start();
 
             return true;
         }

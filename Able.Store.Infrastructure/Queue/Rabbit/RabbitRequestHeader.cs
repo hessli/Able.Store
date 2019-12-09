@@ -63,7 +63,6 @@ namespace Able.Store.Infrastructure.Queue.Rabbit
             get;set;
         }
 
-
         public string GetCorrelationId()
         {
             if (Header != null)

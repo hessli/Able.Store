@@ -28,9 +28,6 @@ namespace Able.Store.InfrsturctureProvider.Service.Implementations.Logistics.Sal
 
         [Newtonsoft.Json.JsonIgnore]
         public int OrderId { get; set; }
-
-
-
       
     }
 }

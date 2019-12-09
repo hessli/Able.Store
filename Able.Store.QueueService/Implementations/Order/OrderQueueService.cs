@@ -50,9 +50,40 @@ namespace Able.Store.QueueService.Implementations.Order
             throw new NotImplementedException();
         }
 
-        public bool PutShipping()
+        public bool PutLogistics(Able.Store.Model.OrdersDomain.Order order)
         {
-            throw new NotImplementedException();
+
+            var option = new RabbitProductOption
+            {
+                AutoDelete = true,
+                Exclusive = false,
+                Durable = false,
+                PublishMethod = PublishMethod.简单工作队列,
+                AutoAck = true,
+                RoutingKey = "queue.direct.undurable.placeorder",
+                QueueNameOption = new RabbitQueueNameOption()
+            };
+            option.QueueNameOption.Add("queue.direct.undurable.placeorder");
+
+            var body= LogisticsRequestFactory.CreatePlaceOrder(order);
+
+
+            RabbitRequest request = new RabbitRequest();
+            request.Header =
+                new RabbitRequestHeader
+                {
+                    BusinessId = order.Id.ToString(),
+                    BusinessName = "saleorder.putlogistics.placeorder",
+                    IsGetNotify = false,
+                    IsSynch = false,
+                    Module = "order",
+                    PublishMethod = PublishMethod.简单工作队列,
+                };
+            request.Body = LockInventoryItemBody.ToBodys(order.Items);
+
+            _controller.Push(request, option);
+
+            return true;
         }
     }
 }

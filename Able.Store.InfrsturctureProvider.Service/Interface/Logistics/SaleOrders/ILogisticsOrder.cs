@@ -1,6 +1,8 @@
-﻿namespace Able.Store.InfrsturctureProvider.Service.Logistics.SaleOrders
+﻿using Able.Store.InfrsturctureProvider.Service.Interface.Logistics;
+
+namespace Able.Store.InfrsturctureProvider.Service.Logistics.SaleOrders
 { 
-    public class ILogisticsOrder
+    public interface ILogisticsOrder
     {
         string OrderCode { get; set; }
 

@@ -1,9 +1,10 @@
 ﻿using Able.Store.Infrastructure.Domain;
 using Able.Store.Infrastructure.UniOfWork;
+using Able.Store.InfrsturctureProvider.Domain;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-
+using System.Data.Entity;
 namespace Able.Store.InfrsturctureProvider.Repository
 {
     public abstract class BaseRepository<T> : IReadOnlyRepository<T>, IRepository<T>

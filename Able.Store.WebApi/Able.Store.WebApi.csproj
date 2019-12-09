@@ -612,10 +612,6 @@
       <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
       <Name>Able.Store.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Able.Store.Infrasturcture.Service\Able.Store.Infrasturcture.Service.csproj">
-      <Project>{b4ae75b1-7717-430c-83fc-49f0f54ce58f}</Project>
-      <Name>Able.Store.Infrasturcture.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Able.Store.IService\Able.Store.IService.csproj">
       <Project>{bad860bc-1dbf-480b-b5b2-881b66953c86}</Project>
       <Name>Able.Store.IService</Name>

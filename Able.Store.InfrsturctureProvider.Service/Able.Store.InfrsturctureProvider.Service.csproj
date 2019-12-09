@@ -38,13 +38,16 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Logistics\AbstractResponseResult.cs" />
     <Compile Include="Implementations\Logistics\SaleOrders\KdBird\AbstractKDBirdRequest.cs" />
     <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdHttpRequestParamter.cs" />
     <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdCommdity.cs" />
     <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdContact.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdLogisticsOrder.cs" />
     <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdPlaceOrderRequest.cs" />
-    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KDBriderRequest.cs" />
-    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\LogisticsKDBridProviderService.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\LogisticsKdBridProviderService.cs" />
+    <Compile Include="Implementations\Logistics\SaleOrders\KdBird\KdBirdPlaceOrderResult.cs" />
+    <Compile Include="Interface\Logistics\IResponseResult.cs" />
     <Compile Include="Interface\Logistics\SaleOrders\ICommdity.cs" />
     <Compile Include="Interface\Logistics\SaleOrders\IContact.cs" />
     <Compile Include="Interface\Logistics\SaleOrders\ILogisticsOrder.cs" />

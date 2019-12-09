@@ -2,7 +2,6 @@
 {
     public class RabbitResponseResult
     {
-
         private static readonly string Stuffix = ".r";
         public static string GetCorrelationId(string requestCorrelationId)
         {

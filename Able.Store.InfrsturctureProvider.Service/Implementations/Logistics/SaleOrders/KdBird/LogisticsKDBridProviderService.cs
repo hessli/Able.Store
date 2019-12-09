@@ -2,10 +2,11 @@
 using Able.Store.InfrsturctureProvider.Domain.Connections;
 using Able.Store.InfrsturctureProvider.Domain.SaleOrders;
 using Able.Store.InfrsturctureProvider.Service.Logistics.SaleOrders;
+using System;
 
 namespace Able.Store.InfrsturctureProvider.Service.Implementations.Logistics.SaleOrders.KdBird
 {
-    public class LogisticsKDBridProviderService : ILogisticsProviderService
+    public class LogisticsKdBridProviderService : ILogisticsProviderService
     {
         private IProviderFactoryRepository _connectionRepository;
         private ProviderFactory _providerFactory;
@@ -17,7 +18,7 @@ namespace Able.Store.InfrsturctureProvider.Service.Implementations.Logistics.Sal
         /// 下单方法
         /// </summary>
         private static readonly string PLACEORDER_METHOD = "Eorderservice";
-        public LogisticsKDBridProviderService(IProviderFactoryRepository providerRepository,
+        public LogisticsKdBridProviderService(IProviderFactoryRepository providerRepository,
             ISaleOrderRepository saleOrderRepository)
         {
             _connectionRepository = providerRepository;
@@ -25,21 +26,40 @@ namespace Able.Store.InfrsturctureProvider.Service.Implementations.Logistics.Sal
             _providerFactory = _connectionRepository.GetKdBridProviderConnection();
             _connect = _providerFactory.GetConnections<KdBridConnect>(KDBRID);
         }
-        public void PlaceOrder(IPlaceOrderRequest placeOrderRequest)
+
+        public string PlaceOrder(IPlaceOrderRequest placeOrderRequest)
         {
             var kdbirdPlaceOrder = placeOrderRequest as KdBirdPlaceOrderRequest;
+
+           var resultView=default(KdBirdPlaceOrderResult);
 
             SaleOrder sale = new SaleOrder(placeOrderRequest.OrderId,
                 placeOrderRequest.OrderCode,
                 KDBRID, kdbirdPlaceOrder.SerializeationData);
 
-            var option = new HttpWebRequestOption(_connect.Host + PLACEORDER_METHOD);
+            try
+            {
+                var option = new HttpWebRequestOption(_connect.Host + PLACEORDER_METHOD);
 
-            var resultStr = kdbirdPlaceOrder.Request(option, AbstractKDBirdRequest.PLACEORDER_REQUESTTYPE);
+                var resultStr = kdbirdPlaceOrder.Request(option, AbstractKDBirdRequest.PLACEORDER_REQUESTTYPE);
 
-            _saleOrderRepository.Add(sale);
+                 resultView = kdbirdPlaceOrder.GetResult<KdBirdPlaceOrderResult>(resultStr);
 
-            _saleOrderRepository.Commit();
+                sale.SetPlaceOrderResult(resultStr, resultView.Success, resultView.Reason);
+
+                _saleOrderRepository.Add(sale);
+
+                _saleOrderRepository.Commit();
+
+                return resultView.GetLogisticCode();
+            }
+            catch (Exception ex)
+            {
+                 if(resultView!=default(KdBirdPlaceOrderResult))
+                    return resultView.GetLogisticCode();
+
+                return string.Empty;
+            }
         }
     }
 }

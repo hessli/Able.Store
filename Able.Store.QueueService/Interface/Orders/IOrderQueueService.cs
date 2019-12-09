@@ -8,7 +8,7 @@ namespace Able.Store.QueueService.Interface.Orders
         //锁定库存
         bool Lock(Order order);
         //推配送
-        bool PutShipping();
+        bool PutLogistics(Order order);
         //支付完成后需要发送电子邮件和短信
         bool Notify();
     }

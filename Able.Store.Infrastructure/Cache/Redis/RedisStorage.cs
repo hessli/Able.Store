@@ -91,6 +91,8 @@ namespace Able.Store.Infrastructure.Cache.Redis
             }
             return false;
         }
+
+
         public bool SetStr<V>(string key, V value, 
             UpdateStrategy strategy= UpdateStrategy.忽略,
             int dataBaseIndex = 0) where V : class

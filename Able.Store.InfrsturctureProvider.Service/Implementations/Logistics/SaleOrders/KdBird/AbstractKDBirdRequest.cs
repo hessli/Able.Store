@@ -1,6 +1,7 @@
 ﻿using Able.Store.Infrastructure;
 using Able.Store.Infrastructure.Crypt;
 using Able.Store.Infrastructure.Http;
+using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Web;
@@ -52,6 +53,12 @@ namespace Able.Store.InfrsturctureProvider.Service.Implementations.Logistics.Sal
 
             return result;
         }
+
+        internal T GetResult<T>(string responseData)
+        {
+            return   JsonConvert.DeserializeObject<T>(responseData);
+        }
+
 
         protected KdBirdHttpRequestParamter CreateHttpRequest(int requestType)
         {

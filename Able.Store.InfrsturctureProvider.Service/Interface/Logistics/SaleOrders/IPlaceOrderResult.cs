@@ -6,13 +6,11 @@
 
         ILogisticsOrder  Order { get; set; }
 
-        bool Success { get; set; }
+   
 
         string SignWaybillCode { get; set; }
 
-        string ResultCode { get; set; }
 
-        string Reason { get; set; }
 
         string UniquerRequestNumber { get; set; }
 
@@ -38,5 +36,8 @@
         string SenderSafePhone { get; set; }
 
         string DialPage { get; set; }
+
+
+        string GetLogisticCode();
     }
 }
