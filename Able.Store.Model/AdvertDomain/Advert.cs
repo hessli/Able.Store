@@ -1,4 +1,5 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Adverts;
+using Able.Store.Infrastructure.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

@@ -1,4 +1,4 @@
-﻿using Able.Store.Model.Core;
+﻿using Able.Store.CommData.Orders;
 using System;
 
 namespace Able.Store.Model.OrdersDomain
@@ -11,7 +11,7 @@ namespace Able.Store.Model.OrdersDomain
             decimal amount
             )
         {
-            return new OrderPayment(orderId, datePaid, transctionId, merchant,amount);
+            return new OrderPayment(orderId, datePaid, transctionId, merchant, amount);
         }
     }
 }

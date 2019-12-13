@@ -1,5 +1,5 @@
 ﻿
-using Able.Store.Model.Core;
+using Able.Store.CommData.Products;
 
 namespace Able.Store.Model.SkusDomain
 {

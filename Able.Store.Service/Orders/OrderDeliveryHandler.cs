@@ -1,8 +1,6 @@
 ﻿using Able.Store.Infrastructure.Domain.Events;
 using Able.Store.Model.OrdersDomain.Events;
 using Able.Store.QueueService.Interface.Orders;
-using System;
-using System.Threading.Tasks;
 
 namespace Able.Store.Service.Orders
 {
@@ -19,16 +17,16 @@ namespace Able.Store.Service.Orders
         public bool Handler(OrderChangeEvent domainEvent)
         {
             //推送队列就可以了
-           var request=LogisticsRequestFactory.CreateKdBridPlaceOrder(domainEvent.Order);
+           //var request=LogisticsRequestFactory.CreateKdBridPlaceOrder(domainEvent.Order);
 
-            Action<object> action = x => {
+           // Action<object> action = x => {
 
-                var success= ((IOrderQueueService)x).PutLogistics(domainEvent.Order);
+           //     var success= ((IOrderQueueService)x).PutLogistics(domainEvent.Order);
 
-            };
-            Task taks = new Task(action,_queueService);
+           // };
+           // Task taks = new Task(action,_queueService);
 
-            taks.Start();
+           // taks.Start();
 
             return true;
         }

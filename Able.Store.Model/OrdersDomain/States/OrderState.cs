@@ -1,4 +1,4 @@
-﻿using Able.Store.Model.Core;
+﻿using Able.Store.CommData.Orders;
 
 namespace Able.Store.Model.OrdersDomain.States
 {

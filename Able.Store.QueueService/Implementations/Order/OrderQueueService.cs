@@ -1,4 +1,6 @@
-﻿using Able.Store.Infrastructure.Queue.Product;
+﻿using Able.Store.CommData.Orders;
+using Able.Store.Infrastructure.Cache;
+using Able.Store.Infrastructure.Queue.Product;
 using Able.Store.Infrastructure.Queue.Rabbit;
 using Able.Store.Infrastructure.Queue.Rabbit.Product;
 using Able.Store.QueueService.Interface.Orders;
@@ -9,9 +11,14 @@ namespace Able.Store.QueueService.Implementations.Order
     public class OrderQueueService : IOrderQueueService
     {
         private RabbitProductController _controller;
-        public OrderQueueService()
+ 
+        private readonly string MODULE = "order";
+        private readonly string LOCK = "create.change.qty";
+        private readonly string PUTLOGISTICS = "saleorder.putlogistics.placeorder";
+        public OrderQueueService(ICacheStorage cacheStorage, 
+            RabbitProductController controller)
         {
-            _controller = new RabbitProductController();
+            _controller = controller;
         }
         public bool Lock(Able.Store.Model.OrdersDomain.Order order)
         {
@@ -32,17 +39,18 @@ namespace Able.Store.QueueService.Implementations.Order
                 new RabbitRequestHeader
                 {
                     BusinessId = order.Id.ToString(),
-                    BusinessName = "create.change.qty",
-                    IsGetNotify = true,
-                    IsSynch = false,
-                    Module = "order",
+                    BusinessName = LOCK,
+                    Module = MODULE,
                     PublishMethod = PublishMethod.简单工作队列,
                 };
             request.Body = LockInventoryItemBody.ToBodys(order.Items);
 
-            var result = _controller.Push(request, option);
+            request.CacheDbIndex = OrderCacheKey.DBINDEX;
 
-            return result == null ? false : result.IsSuccess;
+            _controller.Push(request, option);
+
+            return true;
+      
         }
 
         public bool Notify()
@@ -65,21 +73,20 @@ namespace Able.Store.QueueService.Implementations.Order
             };
             option.QueueNameOption.Add("queue.direct.undurable.placeorder");
 
-            var body= LogisticsRequestFactory.CreatePlaceOrder(order);
-
+            var body = LogisticsRequestFactory.CreatePlaceOrder(order);
 
             RabbitRequest request = new RabbitRequest();
             request.Header =
                 new RabbitRequestHeader
                 {
                     BusinessId = order.Id.ToString(),
-                    BusinessName = "saleorder.putlogistics.placeorder",
-                    IsGetNotify = false,
-                    IsSynch = false,
-                    Module = "order",
+                    BusinessName = PUTLOGISTICS,
+                    Module = MODULE,
                     PublishMethod = PublishMethod.简单工作队列,
                 };
             request.Body = LockInventoryItemBody.ToBodys(order.Items);
+
+            request.CacheDbIndex = OrderCacheKey.DBINDEX;
 
             _controller.Push(request, option);
 

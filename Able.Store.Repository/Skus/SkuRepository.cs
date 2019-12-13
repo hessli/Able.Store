@@ -1,6 +1,7 @@
-﻿using Able.Store.Infrastructure.Querying;
+﻿using Able.Store.CommData.Product;
+using Able.Store.CommData.Products;
+using Able.Store.Infrastructure.Querying;
 using Able.Store.Infrastructure.UniOfWork;
-using Able.Store.Model.Core;
 using Able.Store.Model.ProductsDomain;
 using Able.Store.Model.SkusDomain;
 using Able.Store.Repository.EF;

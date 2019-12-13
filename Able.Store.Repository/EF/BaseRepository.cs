@@ -45,6 +45,19 @@ namespace Able.Store.Repository.EF
             }
         }
 
+
+        public IQueryable<T> GetList(Expression<Func<T, bool>> expression,params string[] includes)
+        {
+            var query= this.Entities.Where(expression);
+            if (includes != null && includes.Length > 0)
+            {
+                foreach (var item in includes)
+                {
+                    query = query.Include(item);
+                }
+            }
+            return query;
+        }
         
         public IQueryable<T> GetList(Expression<Func<T, bool>> expression)
         {
@@ -75,20 +88,7 @@ namespace Able.Store.Repository.EF
         {
             this._unitOfWork.Commit();
         }
-        public IQueryable<T> GetList(Expression<Func<T, bool>> expression, params string[] includes)
-        {
-
-            var queryable = this.Entities.Where(expression);
-
-            if (includes != null && includes.Length > 0)
-            {
-                foreach (var item in includes)
-                {
-                    queryable = queryable.Include(item);
-                }
-            }
-            return queryable;
-        }
+    
 
         public T GetFirstById(int id)
         {

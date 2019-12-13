@@ -1,7 +1,7 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Orders;
+using Able.Store.Infrastructure.Domain;
 using Able.Store.Infrastructure.Domain.Business;
 using Able.Store.Model.BasketsDomain;
-using Able.Store.Model.Core;
 using Able.Store.Model.OrdersDomain.States;
 using Able.Store.Model.UsersDomain;
 using System;
@@ -68,7 +68,7 @@ namespace Able.Store.Model.OrdersDomain
 
             this.OrderActions = new List<OrderAction>();
 
-            this.OrderActions.Add(CreateOrderFactory.CreateOrderAction(OrderActionEnum.订购));
+            this.OrderActions.Add(CreateOrderFactory.CreateOrderAction(OrderActionType.订购));
 
             foreach (var item in basket.BasketItems)
             {
@@ -147,10 +147,6 @@ namespace Able.Store.Model.OrdersDomain
         public bool SystemLocker()
         {
             var lockered=  _orderState.SystemLocker(this);
-            if (lockered)
-            {
-                Status = _orderState.Status;
-            }
             return lockered;
         }
         public string EmailMessage()

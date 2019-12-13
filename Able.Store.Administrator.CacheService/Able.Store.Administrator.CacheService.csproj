@@ -46,6 +46,10 @@
       <Project>{50877e53-d138-4242-a24b-4f0273818f0d}</Project>
       <Name>Able.Store.Adminstrator.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Able.Store.CommData\Able.Store.CommData.csproj">
+      <Project>{6D1D18DB-CD3E-40B9-A4AB-BC0296A6EBAB}</Project>
+      <Name>Able.Store.CommData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
       <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
       <Name>Able.Store.Infrastructure</Name>

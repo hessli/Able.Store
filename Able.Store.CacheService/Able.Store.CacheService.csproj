@@ -43,6 +43,10 @@
     <Compile Include="Service\ProductCacheService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Able.Store.CommData\Able.Store.CommData.csproj">
+      <Project>{6d1d18db-cd3e-40b9-a4ab-bc0296a6ebab}</Project>
+      <Name>Able.Store.CommData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
       <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
       <Name>Able.Store.Infrastructure</Name>

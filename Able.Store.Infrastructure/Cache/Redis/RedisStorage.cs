@@ -1,195 +1,267 @@
-﻿using Able.Store.Infrastructure.Cache.Redis.RedisTempContainer;
-using Able.Store.Infrastructure.Utils;
+﻿using Able.Store.Infrastructure.Cache.Model;
 using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
-
 namespace Able.Store.Infrastructure.Cache.Redis
 {
-    public class RedisStorage : IRedisStorage
+    public class RedisStorage : ICacheStorage
     {
-        RedisConnectionFactory _factory;
-        public RedisStorage(RedisConnectionFactory factory)
+
+        private RedisRepository _redisRepository;
+        public RedisStorage()
         {
-            _factory = factory;
-        }
-  
-        public string GetStr(string key, int dataBaseIndex = 0)
-        {
-            var database = _factory.GetDatabase(dataBaseIndex);
-
-            var redisValue = database.StringGet(key);
-
-            return redisValue;
-
-        }
-        public string HashGetPrimitive(string key, string filed, int dataBaseIndex = 0)
-        {
-            var database = _factory.GetDatabase(dataBaseIndex);
-
-            var redisValue = database.HashGet(key, filed);
-
-            return redisValue;
+            _redisRepository = new RedisRepository(new RedisUnit());
         }
 
-        public IList<T> HashValues<T>(string key, int dataBaseIndex = 0) where T : class
+        public void Delete<K>(int dataBaseIndex, K key)
         {
-            var database = _factory.GetDatabase(dataBaseIndex);
+            _redisRepository.Delete(dataBaseIndex, RedisValueKeyHelper.ToKey(key));
+        }
 
-            var values = database.HashValues(key);
+        public void Delete<K>(int dataBaseIndex, HashSet<K> keys)
+        {
+            RedisKey[] keyValues = RedisValueKeyHelper.ToKeys(keys);
 
-            IList<T> results = new List<T>();
+            _redisRepository.Delete(dataBaseIndex, keyValues);
+        }
+        public void HashRemoveFiled<Key, FiledKey>(int dataBaseIndex, Key key, FiledKey filed)
+        {
+            var keyValue = RedisValueKeyHelper.ToKey(key);
+            var fileKey = RedisValueKeyHelper.ToValue(filed);
 
-            foreach (var item in values)
+            _redisRepository.HashRemoveFiled(dataBaseIndex, keyValue, fileKey);
+        }
+
+        public void HashRemoveFiled<Key, FiledKey>(int dataBaseIndex, Key key, HashSet<FiledKey> fileds)
+        {
+            var keyValue = RedisValueKeyHelper.ToKey(key);
+            var fileKeys = RedisValueKeyHelper.ToValues(fileds);
+
+            _redisRepository.HashRemoveFiled(dataBaseIndex, keyValue, fileKeys);
+        }
+
+        public void HashSetAdd<K, KeyFiled, V>(CacheUnitModel cacheUnitModel, K key, KeyFiled filed, V value)
+        {
+            var keyValue = RedisValueKeyHelper.ToKey(key);
+
+            var fileKey = RedisValueKeyHelper.ToValue(filed);
+
+            var redisValue = RedisValueKeyHelper.ToValue(value);
+
+            _redisRepository.HashSetAdd(cacheUnitModel.DataBaseIndex, keyValue, fileKey,
+                redisValue, cacheUnitModel.Expire, cacheUnitModel.GetWhen());
+        }
+
+        public void HashSetAdd<K, KeyFiled, V>(CacheUnitModel cacheUnitModel, K key, Dictionary<KeyFiled, V> values)
+        {
+            var keyValue = RedisValueKeyHelper.ToKey(key);
+        }
+        public void StringAdd<K, V>(CacheUnitModel cacheUnitModel, K key, V value)
+        {
+            var redisValue = RedisValueKeyHelper.ToValue(value);
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+            _redisRepository.StringAdd(cacheUnitModel.DataBaseIndex, redisKey,
+                redisValue, cacheUnitModel.Expire, cacheUnitModel.GetWhen());
+        }
+
+        public void StringAdd<K, V>(CacheUnitModel cacheUnitModel, Dictionary<K, V> values)
+        {
+            throw new NotImplementedException();
+        }
+        public void SetAdd<K, V>(CacheUnitModel cacheUnitModel, K key, V value)
+        {
+            var redisValue = RedisValueKeyHelper.ToValue(value);
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+            _redisRepository.SetAdd(cacheUnitModel.DataBaseIndex, redisKey, redisValue, cacheUnitModel.Expire);
+        }
+        public void SetAdd<K, V>(CacheUnitModel cacheUnitModel, K key, IEnumerable<V> values)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+            var redisValues = RedisValueKeyHelper.ToValues(values);
+            _redisRepository.SetAdd(cacheUnitModel.DataBaseIndex, redisKey, redisValues, cacheUnitModel.Expire);
+        }
+
+        public void SortedSetAdd<Key, Value>(CacheUnitModel model, Key key, IEnumerable<KeyValuePair<Value, double>> keyValuePairs)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var values = RedisValueKeyHelper.ToEntry(keyValuePairs);
+
+            _redisRepository.SortSetAdd(model.DataBaseIndex, redisKey, values, model.Expire);
+        }
+
+        public void SortedSetAdd<Key, Value>(CacheUnitModel model, Key key, KeyValuePair<Value, double> keyValuePairs)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var redisValue = RedisValueKeyHelper.ToValue(keyValuePairs.Key);
+
+            var sortedSetEntry = new SortedSetEntry(redisValue, keyValuePairs.Value);
+
+            _redisRepository.SortSetAdd(model.DataBaseIndex, redisKey, sortedSetEntry, model.Expire);
+        }
+        public long HashIncrement(CacheUnitModel model, string key, string filed, long value = 1)
+        {
+            return  _redisRepository.HashIncrement(model.DataBaseIndex, key,filed, model.Expire, value);
+        }
+        public void ListLPush<K, V>(CacheUnitModel cacheUnitModel, K key, V value)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var redisValue = RedisValueKeyHelper.ToValue(value);
+
+            _redisRepository.ListLPush(cacheUnitModel.DataBaseIndex, redisKey,
+            redisValue, cacheUnitModel.Expire, cacheUnitModel.GetWhen());
+
+        }
+        public void ListLPush<K, V>(CacheUnitModel cacheUnitModel, K key, IEnumerable<V> values)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var redisValue = RedisValueKeyHelper.ToValues(values);
+            _redisRepository.ListLPush(cacheUnitModel.DataBaseIndex, redisKey, redisValue, cacheUnitModel.Expire);
+        }
+        public void Publish<V>(int dataBaseIndex, string channelName, V message)
+        {
+            RedisChannel channel = new RedisChannel(channelName, RedisChannel.PatternMode.Literal);
+
+            var redisValue = RedisValueKeyHelper.ToValue(message);
+
+            _redisRepository.Publish(dataBaseIndex, channel, redisValue);
+        }
+        public Value HashSetGet<Key, FiledKey, Value>(int dataBaseIndex, Key key, FiledKey filed)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var filedValue = RedisValueKeyHelper.ToValue(filed);
+
+            var data = _redisRepository.HashSetGet(dataBaseIndex, redisKey, filedValue);
+
+            var result = Utils.JsonPase.Deserialize<Value>(data);
+            return result;
+        }
+
+        public IList<Value> HashSetGet<Key, FiledKey, Value>(int dataBaseIndex, Key key, HashSet<FiledKey> fileds)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var filedValues = RedisValueKeyHelper.ToValues(fileds);
+
+            var data = _redisRepository.HashSetGet(dataBaseIndex, redisKey, filedValues);
+
+            IList<Value> result = new List<Value>();
+
+            for (var i = 0; i < data.Length; i++)
             {
-                results.Add(JsonPase.Deserialize<T>(item));
+                result.Add(Utils.JsonPase.Deserialize<Value>(data[i]));
+            }
+            return result;
+        }
+
+        public Dictionary<Key, Value> HashSetGetAll<Key, Value>(int dataBaseIndex, Key key)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var data = _redisRepository.HashSetGetAll(dataBaseIndex, redisKey);
+
+            Dictionary<Key, Value> dicResults = new Dictionary<Key, Value>();
+
+            for (var i = 0; i < data.Length; i++)
+            {
+                dicResults.Add(Utils.JsonPase.Deserialize<Key>(data[i].Name),
+                    Utils.JsonPase.Deserialize<Value>(data[i].Value));
+            }
+            return dicResults;
+        }
+
+        public IList<Value> ListRange<Key, Value>(int dataBaseIndex, Key key, long start = 0, long stop = -1)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var data = _redisRepository.ListRange(dataBaseIndex, redisKey, start, stop);
+
+            IList<Value> results = new List<Value>();
+
+            for (var i = 0; i < data.Length; i++)
+            {
+                results.Add( Utils.JsonPase.Deserialize<Value>(data[i]));
             }
             return results;
         }
-        public T HashSetSan<T>(string key, string filed, int dataBaseIndex = 0) where T : new()
-        {
-            var redisvalue = HashGetPrimitive(key, filed);
 
-            if (!string.IsNullOrWhiteSpace(redisvalue))
+      
+        public IList<Value> SortedSetRangeByRank<Key, Value>(int dataBaseIndex, Key key, long start = 0, long stop = -1)
+        {
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var data = _redisRepository.SortedSetRangeByRank(dataBaseIndex, redisKey, start, stop);
+
+            IList<Value> results = new List<Value>();
+
+            for (var i = 0; i < data.Length; i++)
             {
-                return JsonPase.Deserialize<T>(redisvalue);
+                results.Add(Utils.JsonPase.Deserialize<Value>(data[i]));
             }
-            else return default(T);
+            return results;
         }
-        public void HashSet<V>(string key, IList<KeyValuePair<string, V>> valuePairs, int dataBaseIndex = 0)
+
+        public IList<Value> SortedSetRangeByValue<Key, Value>(int dataBaseIndex, Key key, Value min, Value max, long skip, long take)
         {
-            if (valuePairs != null && valuePairs.Count > 0)
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+
+            var minRedisValue = RedisValueKeyHelper.ToValue(min);
+
+            var maxRedisValue = RedisValueKeyHelper.ToValue(max);
+
+            var data = _redisRepository.SortedSetRangeByValue(dataBaseIndex, redisKey, minRedisValue, maxRedisValue, skip, take);
+
+            IList<Value> results = new List<Value>();
+
+            for (var i = 0; i < data.Length; i++)
             {
-
-                var database = _factory.GetDatabase(dataBaseIndex);
-
-                HashEntry[] entries = new HashEntry[valuePairs.Count];
-
-                for (var i = 0; i < valuePairs.Count; i++)
-                {
-                    entries[i] = new HashEntry(valuePairs[i].Key, JsonPase.Serialize(valuePairs[i].Value));
-                }
-                database.HashSet(key, entries);
+                results.Add(Utils.JsonPase.Deserialize<Value>(data[i]));
             }
+            return results;
         }
-        public bool HashSet<V>(string key, string filed, V value,
-           UpdateStrategy strategy, int dataBaseIndex = 0)
-            where V : class
+        public Value StringGet<Key, Value>(int dataBaseIndex, Key key)
         {
-            var isSuccess = true;
-            if (value != null)
+            var redisKey = RedisValueKeyHelper.ToKey(key);
+            var data = _redisRepository.StringGet(dataBaseIndex, redisKey);
+
+            var result = Utils.JsonPase.Deserialize<Value>(data);
+
+            return result;
+        }
+        public IList<Value> StringGet<Key, Value>(int dataBaseIndex, HashSet<Key> keys)
+        {
+            var redisKeys = RedisValueKeyHelper.ToKeys(keys);
+            var data = _redisRepository.StringGet(dataBaseIndex, redisKeys);
+            IList<Value> results = new List<Value>();
+            for (var i = 0; i < data.Length; i++)
             {
-                var database = _factory.GetDatabase(dataBaseIndex);
-
-                if (strategy == UpdateStrategy.更新旧值 ||
-                    !database.HashExists(key, filed))
-                {
-                    var redisValue = JsonPase.Serialize(value);
-
-                    isSuccess = database.HashSet(key, filed, redisValue);
-                }
-                return isSuccess;
+                results.Add(Utils.JsonPase.Deserialize<Value>(data[i]));
             }
-            return false;
+            return results;
         }
 
-
-        public bool SetStr<V>(string key, V value, 
-            UpdateStrategy strategy= UpdateStrategy.忽略,
-            int dataBaseIndex = 0) where V : class
+        public void Subscrib(string channelName, Action<string, string> callback)
         {
-            if (value == null) return false;
+            var channel = new RedisChannel(channelName, RedisChannel.PatternMode.Literal);
 
-            
-            return SetStrPrimitive(key, JsonPase.Serialize(value), strategy);
-        }
-
-        public bool SetStrPrimitive(string key, string value,
-            UpdateStrategy strategy = UpdateStrategy.忽略,
-            int dataBaseIndex = 0)
-        {
-            if (value == null) return false;
-
-            var database = _factory.GetDatabase(dataBaseIndex);
-
-            if (strategy == UpdateStrategy.忽略
-                && database.KeyExists(key))
+            Action<RedisChannel, RedisValue> action = (redisChannel, redisValue) =>
             {
-                    return true;
-            }
+                var channelStr = Utils.JsonPase.Serialize(redisChannel);
+                callback(channelStr, redisValue);
+            };
 
-            var redisValue = database.StringSet(key, value);
-
-            return redisValue;
+            _redisRepository.SubScrib(channel, action);
         }
 
-
-        public void SetEntity<K, T>(K key, T value,
-            UpdateStrategy strategy = UpdateStrategy.忽略, int dataBaseIndex = 0)
+        public bool KeyExists<Key>(int dataBaseIndex, Key redisKey)
         {
-            var strKey = "";
-            if (key.GetType() == typeof(string))
-            {
-                strKey = key.ToString();
-            }
-            else
-            {
-                strKey = key.GetHashCode() + JsonPase.Serialize(key);
-            }
-            this.SetStrPrimitive(strKey, JsonPase.Serialize(value), strategy);
-        }
-    
-
-        public double GetHashIncrement(string key, string filed,
-            double seed = 1,
-            int dataBaseIndex = 0)
-        {
-
-            var database = _factory.GetDatabase(dataBaseIndex);
-
-            var value = database.HashIncrement(key, filed, seed);
-
-            return value;
-
-        }
-        public void Remove(string key,int dataBaseIndex = 0)
-        {
-            var database = _factory.GetDatabase(dataBaseIndex);
-
-            var redisValue = database.KeyDelete(key);
-        }
-        public T GetEntity<K, T>(K key,int dataBaseIndex = 0)
-        {
-            var strKey = GetKey(key);
-            var value = this.GetStr(strKey, dataBaseIndex);
-
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                return JsonPase.Deserialize<T>(value);
-            }
-            return default(T);
-        }
-        private string GetKey<K>(K key)
-        {
-            var strKey = "";
-            if (key.GetType() == typeof(string))
-            {
-                strKey = key.ToString();
-            }
-            else
-                strKey = key.GetHashCode() + JsonPase.Serialize(key);
-            return strKey;
-        }
-        public bool Exists<K>(K key,int dataBaseIndex=0)
-        {
-            var strKey = GetKey(key);
-
-            var database = _factory.GetDatabase(dataBaseIndex);
-
-            var exists=  database.KeyExists(strKey);
+           var exists=  _redisRepository.KeyExists(dataBaseIndex, Utils.JsonPase.Serialize(redisKey));
 
             return exists;
         }
-
-        
     }
 }

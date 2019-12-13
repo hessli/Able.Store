@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Products;
 using Able.Store.Model.Core;
 using Able.Store.Model.SkusDomain;
 using System;

@@ -1,4 +1,6 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Product;
+using Able.Store.CommData.Products;
+using Able.Store.Infrastructure.Domain;
 using Able.Store.Infrastructure.Domain.Business;
 using Able.Store.Model.Core;
 using Able.Store.Model.ProductsDomain;

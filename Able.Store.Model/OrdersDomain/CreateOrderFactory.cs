@@ -1,4 +1,5 @@
-﻿using Able.Store.Model.BasketsDomain;
+﻿using Able.Store.CommData.Orders;
+using Able.Store.Model.BasketsDomain;
 using Able.Store.Model.Core;
 using Able.Store.Model.UsersDomain;
 using System;
@@ -14,7 +15,7 @@ namespace Able.Store.Model.OrdersDomain
             return orderReceiver;
         }
 
-        internal static OrderAction CreateOrderAction(OrderActionEnum action)
+        internal static OrderAction CreateOrderAction(OrderActionType  action)
         {
             return new OrderAction
             {

@@ -1,44 +1,25 @@
-﻿using Able.Store.Infrastructure.Cache.Redis;
-using Able.Store.IService;
+﻿using Able.Store.CommData.Categories;
+using Able.Store.Infrastructure.Cache;
 using Able.Store.IService.Categories;
 using Able.Store.Model.CategoriesDomain;
 using Able.Store.Service.IService.Categories;
-using System;
 using System.Collections.Generic;
 namespace Able.Store.CacheService.Service
 {
     public class CategoryCacheService : ICategoryCacheService
     {
         private ICategoryRepository _categoryRepository;
-        private Lazy<CacheController> _controller=new Lazy<CacheController>();
-
-        public CategoryCacheService(ICategoryRepository categoryRepository)
+        private ICacheStorage _cacheStorage;
+        public CategoryCacheService(ICategoryRepository categoryRepository,ICacheStorage cacheStorage)
         {
             _categoryRepository = categoryRepository;
-
-
-            CacheKeys = new List<string>();
-
-            CacheKeys.Add(Index_Key);
+            _cacheStorage = cacheStorage;
         }
-        public string PREFIX {
-
-            get {
-                return "category_"; 
-            }
-        }
-        public string Index_Key {
-
-            get {
-                return string.Concat(this.PREFIX,"index");
-            }
-        }
-        public IList<string> CacheKeys { get; }
-
-        private int _dbIndex = (int)RedisDbZone.Pms;
+        
         public   IList<CategoryView> GetCategories(int size)
         {
-            var data = _controller.Value.HashValues<CategoryView>(Index_Key, _dbIndex);
+           var data= _cacheStorage.SortedSetRangeByRank<string, CategoryView>
+                (CategoryCacheKey.DBINDEX, CategoryCacheKey.INDEX,stop:size);
 
             if (data == null || data.Count == 0)
             {
@@ -51,7 +32,9 @@ namespace Able.Store.CacheService.Service
        
         public  IList<CategoryView> GetCategories(int? categoryId)
         {
-            var data =  _controller.Value.HashValues<CategoryView>(Index_Key, _dbIndex);
+
+            var data = _cacheStorage.SortedSetRangeByRank<string, CategoryView>
+               (CategoryCacheKey.DBINDEX, CategoryCacheKey.INDEX);
 
             if (data == null || data.Count == 0)
             {

@@ -1,4 +1,5 @@
-﻿using Able.Store.Model.OrdersDomain;
+﻿using Able.Store.CommData.Orders;
+using Able.Store.Model.OrdersDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,19 +66,19 @@ namespace Able.Store.IService.Orders
             {
                 switch (item.Action)
                 {
-                    case Model.Core.OrderActionEnum.订购:
+                    case OrderActionType.订购:
                         view.dateAdd = item.ActionTime;
                         break;
-                    case Model.Core.OrderActionEnum.支付:
+                    case OrderActionType.支付:
                         view.datePay = item.ActionTime;
                         break;
-                    case Model.Core.OrderActionEnum.发货:
+                    case OrderActionType.发货:
                         view.dateDelivery = item.ActionTime;
                         break;
-                    case Model.Core.OrderActionEnum.签收:
+                    case OrderActionType.签收:
                         view.dateReceipt = item.ActionTime;
                         break;
-                    case Model.Core.OrderActionEnum.取消:
+                    case OrderActionType.取消:
                         view.dateClose = item.ActionTime;
                         break;
                 }

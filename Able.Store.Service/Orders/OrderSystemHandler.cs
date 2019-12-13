@@ -27,7 +27,6 @@ namespace Able.Store.Service.Orders
                var request=  new BasketUserRequestView();
                 request.skuId = order.Items.Select(x=>x.SkuId).ToArray();
                 request.userid = order.UserId;
-
                 Action<object> ac = x =>
                   {
                       var service = (IShoppingService)x;

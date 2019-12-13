@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Able.Store.CommData.Orders;
 using Able.Store.Infrastructure.Domain.Events;
 using Able.Store.Infrastructure.Utils;
-using Able.Store.Model.Core;
 using Able.Store.Model.OrdersDomain.Events;
+using System;
 namespace Able.Store.Model.OrdersDomain.States
 {
     public class SystemLockState : OrderState
@@ -35,15 +35,14 @@ namespace Able.Store.Model.OrdersDomain.States
                 .ResolverNamed<IOrderState>("OrderPayState");  //OrderStatesFactory.GetOrderState(OrderStatus.待支付);
 
             order.SetStateTo(orderState);
-
             var submmitted = new OrderChangeEvent() { Order = order };
             //触发锁定库存，暂时屏蔽
-            //var result=  DomainEvent.Raise<bool, OrderChangeEvent>
-            //     (submmitted, "OrderSystemHandler");
+            var result = DomainEvent.Raise<bool, OrderChangeEvent>
+                 (submmitted, "OrderSystemHandler");
 
-          var result=DomainEvent.Raise<bool, OrderChangeEvent>(submmitted, "OrderDeliveryHandler");
+            //var result=DomainEvent.Raise<bool, OrderChangeEvent>(submmitted, "OrderDeliveryHandler");
 
-            return result;
+            return true;
         }
     }
 }

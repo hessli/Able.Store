@@ -1,4 +1,5 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Products;
+using Able.Store.Infrastructure.Domain;
 using Able.Store.Infrastructure.Domain.Business;
 using Able.Store.Model.Core;
 namespace Able.Store.Model.SkusDomain

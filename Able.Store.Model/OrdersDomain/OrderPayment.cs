@@ -1,4 +1,5 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Orders;
+using Able.Store.Infrastructure.Domain;
 using Able.Store.Model.Core;
 using System;
 using System.ComponentModel.DataAnnotations;

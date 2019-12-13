@@ -1,38 +1,40 @@
-﻿using Able.Store.Administrator.IService.Skus;
+﻿using Able.Store.Administrator.IService;
+using Able.Store.Administrator.IService.Skus;
 using Able.Store.Adminstrator.Model.SkusDomain;
-using Able.Store.Infrastructure.Cache.Redis;
-using Able.Store.Infrastructure.Queue.Rabbit.Notify;
-using System;
+using Able.Store.CommData.Orders;
+using Able.Store.Infrastructure.Cache;
 
 namespace Able.Store.Administrator.CacheService
 {
-    public class SkuCacheService: ISkuCacheService
+    public class SkuCacheService : ISkuCacheService
     {
         private ISkuRepository _skuRepository;
-        private Lazy<CacheController> _controller;
-        public SkuCacheService(ISkuRepository skuRepository)
+        private ICacheStorage _cacheStorage;
+
+        public SkuCacheService(ISkuRepository skuRepository,
+            ICacheStorage cacheStorage)
         {
             _skuRepository = skuRepository;
-
-            _controller = new Lazy<CacheController>();
+            _cacheStorage = cacheStorage;
         }
         public void NotifyChangeQtyNumber(string requestCorrelationId, bool isSuccess,
-            string message, int moduleId,int errorCode=0)
+            string message, int moduleId, int errorCode = 0)
         {
-            var args = new RabbitResponseResult {
-                ErrorCode=errorCode,
-                IsSuccess=isSuccess,
-                Message=message
-            };
-           _controller.Value.SetEntity(RabbitResponseResult.GetCorrelationId(requestCorrelationId),
-               args,dataBaseIndex:  moduleId);
+            var args = new ResponseView<string>(message, isSuccess, requestCorrelationId);
+
+            args.errcode = errorCode;
+
+            //发布到Redis消息队列
+            _cacheStorage.Publish(OrderCacheKey.DBINDEX,
+               OrderCacheKey.CREATE_ORDER_CHANGEQTY_CHANNELNAME, args);
         }
-
-        public bool ChangeQtyNumberExsist(string requestCorrelationId, int moduleId)
+        public bool ChangeQtyNumberExsist(string requestCorrelationId)
         {
-            var correlationId=   RabbitResponseResult.GetCorrelationId(requestCorrelationId);
+            var key = string.Concat(requestCorrelationId, ".", OrderCacheKey.CREATE_ORDER_CHANGEQTY_RESULT_STUFF);
 
-             return   _controller.Value.Exsist(correlationId, moduleId);
+            bool isExists = _cacheStorage.KeyExists(OrderCacheKey.DBINDEX, key);
+
+            return isExists;
         }
     }
 }

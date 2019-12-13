@@ -54,7 +54,6 @@
     <Compile Include="Orders\OrderView.cs" />
     <Compile Include="Orders\MerchantView.cs" />
     <Compile Include="ProductCatalogs\IProductCacheService.cs" />
-    <Compile Include="RedsDbZone.cs" />
     <Compile Include="ServiceRule.cs" />
     <Compile Include="Categories\CategoryProductRequest.cs" />
     <Compile Include="Categories\CategoryView.cs" />
@@ -92,6 +91,10 @@
     <Compile Include="ServiceInvalidBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Able.Store.CommData\Able.Store.CommData.csproj">
+      <Project>{6D1D18DB-CD3E-40B9-A4AB-BC0296A6EBAB}</Project>
+      <Name>Able.Store.CommData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
       <Project>{6DFBB547-375F-49F1-83FB-11F5D8D71F06}</Project>
       <Name>Able.Store.Infrastructure</Name>

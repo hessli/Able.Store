@@ -1,4 +1,4 @@
-﻿using Able.Store.Infrastructure.Cache.RedisTempContainer;
+﻿using Able.Store.Infrastructure.Cache.Redis;
 using Able.Store.Infrastructure.Jobs;
 using Able.Store.Infrastructure.Queue.RabbitTempContainer;
 
@@ -13,14 +13,6 @@ namespace Able.Store.WebApi.App_Start
             JobController.AddJob(new RedisConnectionJob(), 3600000, 600000);
 
             JobController.Start();
-
-            var rabbitJob= new RabbitConnectionJob();
-
-            rabbitJob.Excute();
-
-            var redisJob= new RedisConnectionJob();
-
-            redisJob.Excute();
         }
     }
 }

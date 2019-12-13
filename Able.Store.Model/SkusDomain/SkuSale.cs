@@ -1,5 +1,4 @@
-﻿using Able.Store.Infrastructure.Domain;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Able.Store.Model.SkusDomain

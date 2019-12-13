@@ -59,7 +59,6 @@
     <Compile Include="AdministrativeAreaDomain\IProvinceRepository.cs" />
     <Compile Include="AdministrativeAreaDomain\Province.cs" />
     <Compile Include="AdvertDomain\Advert.cs" />
-    <Compile Include="AdvertDomain\AdverType.cs" />
     <Compile Include="AdvertDomain\IAdvertRepository.cs" />
     <Compile Include="BasketsDomain\Basket.cs" />
     <Compile Include="BasketsDomain\BasketItem.cs" />
@@ -70,8 +69,6 @@
     <Compile Include="BasketsDomain\IBasketRepository.cs" />
     <Compile Include="CategoriesDomain\Category.cs" />
     <Compile Include="CategoriesDomain\ICategoryRepository.cs" />
-    <Compile Include="Core\OrderEnum.cs" />
-    <Compile Include="Core\PayType.cs" />
     <Compile Include="OrdersDomain\CreateOrderFactory.cs" />
     <Compile Include="OrdersDomain\IOrderRepository.cs" />
     <Compile Include="OrdersDomain\OrderGenerateNo.cs" />
@@ -110,7 +107,6 @@
     <Compile Include="SkusDomain\SkuAttribute.cs" />
     <Compile Include="SkusDomain\Sku.cs" />
     <Compile Include="SkusDomain\SkuSale.cs" />
-    <Compile Include="Core\ProductEnums.cs" />
     <Compile Include="SkusDomain\SkuStock.cs" />
     <Compile Include="SkusDomain\SkuTagFactory.cs" />
     <Compile Include="SkusDomain\RecommendTag.cs" />
@@ -130,6 +126,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Able.Store.CommData\Able.Store.CommData.csproj">
+      <Project>{6d1d18db-cd3e-40b9-a4ab-bc0296a6ebab}</Project>
+      <Name>Able.Store.CommData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
       <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>
       <Name>Able.Store.Infrastructure</Name>

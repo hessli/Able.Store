@@ -20,17 +20,18 @@ namespace Able.Store.Administrator.Service.Skus
         {
             var correlationId = request.GetCorrelationId();
 
-            if (_cacheService.ChangeQtyNumberExsist(correlationId, request.Header.ModuleId))
+            //判断是否重复推送
+            if (_cacheService.ChangeQtyNumberExsist(correlationId))
             {
                 return;
             }
             ChangeCannotQtyRequest requestBody = new ChangeCannotQtyRequest();
-            requestBody.items =
-                request.PaseBody<IList<ChangeCannotQtyItemRequest>>();
+
+            requestBody.items = request.PaseBody<IList<ChangeCannotQtyItemRequest>>();
 
             var response = ChangeCannotQty(requestBody);
-          
-             _cacheService.NotifyChangeQtyNumber(correlationId, response.issuccess, response.message, request.Header.ModuleId, response.errcode);
+
+            _cacheService.NotifyChangeQtyNumber(correlationId, response.issuccess, response.message, response.errcode);
         }
 
         public ResponseView ChangeCannotQty(ChangeCannotQtyRequest request)
@@ -46,7 +47,7 @@ namespace Able.Store.Administrator.Service.Skus
 
             var kvs = request.GetDic();
 
-            var skus =  _skuRepository.GetList(x => request.Ids.Contains(x.Id), "Stock").ToList();
+            var skus = _skuRepository.GetList(x => request.Ids.Contains(x.Id), "Stock").ToList();
 
             foreach (var item in skus)
             {
@@ -54,14 +55,14 @@ namespace Able.Store.Administrator.Service.Skus
                 item.ChangeCannotQty(subItem.qty);
                 if (item.IsBroker())
                 {
-                    var result= base.OutPutErrorResponseView(item.GetBrokenRuleMessage());
+                    var result = base.OutPutErrorResponseView(item.GetBrokenRuleMessage());
                     return result;
                 }
             }
-           _skuRepository.Commit();
+            _skuRepository.Commit();
 
             return base.OutPutSuccessResponseView();
-            
+
 
         }
     }

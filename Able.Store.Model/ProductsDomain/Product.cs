@@ -1,6 +1,6 @@
-﻿using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.CommData.Product;
+using Able.Store.Infrastructure.Domain;
 using Able.Store.Model.CategoriesDomain;
-using Able.Store.Model.Core;
 using Able.Store.Model.SkusDomain;
 using System;
 using System.Collections.Generic;

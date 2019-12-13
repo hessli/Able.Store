@@ -37,6 +37,9 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.3.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.3.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.10.9\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
@@ -92,19 +95,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADO\DbHelperSQL.cs" />
-    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectFromDataBase.cs" />
-    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionJob.cs" />
-    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionFactory.cs" />
-    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionPool.cs" />
-    <Compile Include="Cache\CacheController.cs" />
+    <Compile Include="ADO\AbstractDbSQL.cs" />
+    <Compile Include="Cache\ICacheStorage.cs" />
+    <Compile Include="Cache\Local\ILocalCachLock.cs" />
+    <Compile Include="Cache\Local\LocalCacheStorage.cs" />
+    <Compile Include="Cache\Local\LocalUnit.cs" />
+    <Compile Include="Cache\Model\AbstractCacheModel.cs" />
+    <Compile Include="Cache\Model\CacheStrategy.cs" />
+    <Compile Include="Cache\Model\CaheUnitModel.cs" />
+    <Compile Include="Cache\Redis\IRedisReadOnly.cs" />
+    <Compile Include="Cache\Redis\RedisConnectDAO.cs" />
+    <Compile Include="Cache\Redis\RedisConnectionFactory.cs" />
+    <Compile Include="Cache\Redis\RedisConnectOptions.cs" />
+    <Compile Include="Cache\Redis\RedisContext.cs" />
+    <Compile Include="Cache\Redis\RedisConnectionPool.cs" />
+    <Compile Include="Cache\Redis\RedisConnectionJob.cs" />
+    <Compile Include="Cache\Redis\RedisRepository.cs" />
     <Compile Include="Cache\Redis\RedisStorage.cs" />
-    <Compile Include="Cache\UpdateStrategy.cs" />
+    <Compile Include="Cache\Redis\RedisUnit.cs" />
+    <Compile Include="Cache\Redis\RedisValueKeyHelper.cs" />
     <Compile Include="Crypt\CryptHelper.cs" />
     <Compile Include="Crypt\HashCryptType.cs" />
     <Compile Include="Crypt\IHashCrypt.cs" />
     <Compile Include="Crypt\MD5Crypt.cs" />
     <Compile Include="Crypt\SHA1Crypt.cs" />
+    <Compile Include="Dappers\ColumnAttributeTypeMapper.cs" />
+    <Compile Include="Dappers\ColumnAttribute.cs" />
+    <Compile Include="Dappers\FallbackTypeMapper.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Http\IHttpParamter.cs" />
     <Compile Include="Http\HttpWebHeaderContent.cs" />
@@ -122,8 +139,7 @@
     <Compile Include="Queue\NotifyOption.cs" />
     <Compile Include="Queue\RabbitTempContainer\RabbitConnectFromDataBase.cs" />
     <Compile Include="Queue\RabbitTempContainer\RabbitConnectionJob.cs" />
-    <Compile Include="Queue\Rabbit\Notify\RabbitResponseResult.cs" />
-    <Compile Include="Queue\Rabbit\Notify\RabbitResponse.cs" />
+    <Compile Include="Queue\Rabbit\RabbitRequest.cs" />
     <Compile Include="Queue\Rabbit\RabbitRequestHeader.cs" />
     <Compile Include="Queue\Rabbit\RabbitBaseController.cs" />
     <Compile Include="Queue\Rabbit\Consumer\IConsumer.cs" />
@@ -138,9 +154,6 @@
     <Compile Include="Queue\Rabbit\RabbitQueueNameOption.cs" />
     <Compile Include="Queue\Rabbit\RabbitExchangeOption.cs" />
     <Compile Include="Utils\AutofacHelper.cs" />
-    <Compile Include="Cache\ICacheStorage.cs" />
-    <Compile Include="Cache\Local\GenericCacheStorage.cs" />
-    <Compile Include="Cache\Local\IGenericCacheStorage.cs" />
     <Compile Include="Domain\Business\BaseGenerateNo.cs" />
     <Compile Include="Domain\Business\IGenerateNo.cs" />
     <Compile Include="Queue\RabbitTempContainer\ConnectionFactoryPool.cs" />
@@ -154,9 +167,6 @@
     <Compile Include="Reflect\ReflectObject.cs" />
     <Compile Include="ConfigCenter\IConfigurationSource.cs" />
     <Compile Include="ConfigCenter\IConnectOptions.cs" />
-    <Compile Include="Cache\Redis\IRedisStorage.cs" />
-    <Compile Include="Cache\Redis\RedisConnectOptions.cs" />
-    <Compile Include="Cache\Redis\RedisTempContainer\RedisConnectionFromXml.cs" />
     <Compile Include="Domain\Events\DomainEventHandlerFactory.cs" />
     <Compile Include="Domain\EntityState.cs" />
     <Compile Include="Domain\Events\IDomaineventHandler.cs" />
@@ -199,9 +209,7 @@
     <Compile Include="UniOfWork\IUnitOfWork.cs" />
     <Compile Include="Utils\JsonPase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serve\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

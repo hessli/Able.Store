@@ -4,9 +4,7 @@ namespace Able.Store.Administrator.IService.Skus
 {
     public class ChangeCannotQtyRequest : ServiceInvalidBase
     {
-
-        public string NotifyKey { get; set; }
-
+         
         public IList<ChangeCannotQtyItemRequest> items { get; set; }
 
         public IList<int> Ids { get; private set; }

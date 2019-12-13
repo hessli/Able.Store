@@ -4,7 +4,7 @@ using Able.Store.Administrator.CacheService;
 using Able.Store.Administrator.IService.Skus;
 using Able.Store.Administrator.Service.Skus;
 using Able.Store.Adminstrator.Model.SkusDomain;
-using Able.Store.Infrastructure.Cache.RedisTempContainer;
+using Able.Store.Infrastructure.Cache.Redis;
 using Able.Store.Infrastructure.Jobs;
 using Able.Store.Infrastructure.Queue.Rabbit;
 using Able.Store.Infrastructure.Queue.Rabbit.Consumer;
@@ -34,10 +34,7 @@ namespace Able.Store.Administrator.OrderConsumer
             builder.RegisterType<SkuService>().As<ISkuService>();
             builder.RegisterType<EFUnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<SkuCacheService>().As<ISkuCacheService>();
-           
             AutofacHelper.Container = builder.Build();
-
-        
 
         }
         public static void Start()

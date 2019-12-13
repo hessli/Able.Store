@@ -24,6 +24,9 @@ namespace Able.Store.Model.AdministrativeAreaDomain
 
         [Column("create_time")]
         public override DateTime? CreateTime { get; set; }
+
+        [Column("score")]
+        public int Score { get; set; }
         protected override void Validate()
         {
             throw new NotImplementedException();

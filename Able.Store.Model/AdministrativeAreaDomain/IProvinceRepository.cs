@@ -5,6 +5,8 @@ namespace Able.Store.Model.AdministrativeAreaDomain
 {
     public  interface IProvinceRepository:IReadOnlyRepository<Province>
     {
-        IList<Province> GetProvinces();
+         Province  GetProvince(string provinceCode);
+
+         City GetCityArea(string cityCode);
     }
 }

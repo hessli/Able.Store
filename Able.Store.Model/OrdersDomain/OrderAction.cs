@@ -1,5 +1,5 @@
-﻿using Able.Store.Infrastructure.Domain;
-using Able.Store.Model.Core;
+﻿using Able.Store.CommData.Orders;
+using Able.Store.Infrastructure.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +22,7 @@ namespace Able.Store.Model.OrdersDomain
          public Order Order { get; set; }
        
         [Column("action_id")]
-        public OrderActionEnum Action { get; set; }
+        public OrderActionType Action { get; set; }
         [Column("action_time")]
         public DateTime ActionTime { get; set; }
         [Column("create_time")]

@@ -1,129 +1,133 @@
-﻿using Able.Store.Infrastructure.Cache.Redis;
-using Able.Store.IService;
+﻿using Able.Store.CommData.AdministrativeAreas;
+using Able.Store.Infrastructure.Cache;
+using Able.Store.Infrastructure.Cache.Model;
 using Able.Store.IService.Administration;
 using Able.Store.Model.AdministrativeAreaDomain;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace Able.Store.CacheService.Service
 {
-    public class AdministrationCacheService :IAdministrationCacheService
+    public class AdministrationCacheService : IAdministrationCacheService
     {
-        private Lazy<CacheController> _cacheController=new Lazy<CacheController>();
 
+        private ICacheStorage _cacheStorage;
         private IProvinceRepository _provinceRepository;
+        private CacheUnitModel _cacheModel;
 
-        private static object _synch = new object();
-
-        public AdministrationCacheService(IProvinceRepository provinceRepository)
+        public AdministrationCacheService(IProvinceRepository provinceRepository,
+            ICacheStorage cacheStorage)
         {
-            this.CacheKeys = new List<string>();
-            CacheKeys.Add(ProvinceKey);
-            CacheKeys.Add(CityKey);
-            CacheKeys.Add(AreaKey);
-
             _provinceRepository = provinceRepository;
-        }
-        public string PREFIX
-        {
-            get
+            _cacheStorage = cacheStorage;
+            _cacheModel = new CacheUnitModel
             {
+                CacheStrategy = CacheStrategy.Always,
+                DataBaseIndex = AdministrativeAreaCacheKey.DBINDEX
+            };
+        }
 
-                return "administrative_";
+        /// <summary>
+        /// 启动压入缓存
+        /// </summary>
+        public void BootStartInitAdministrationCache()
+        {
+            SetProvince();
+        }
+        private void SetProvince()
+        {
+            var datas = _provinceRepository
+           .GetList(x => true, "Cities", "Cities.Areas")
+           .OrderBy(x => x.Score)
+           .ToList();
+
+            var provinces = StrativeView.ToProvinces(datas);
+
+            IList<KeyValuePair<StrativeView, double>> values =
+                new List<KeyValuePair<StrativeView, double>>();
+            foreach (var item in provinces)
+            {
+                values.Add(new KeyValuePair<StrativeView, double>(item, item.score));
+            }
+            _cacheStorage.SortedSetAdd(_cacheModel,
+                AdministrativeAreaCacheKey.PROVINCE, values);
+
+            foreach (var item in datas)
+            {
+                this.SetCity(item);
             }
         }
-        public string ProvinceKey
+
+        private void SetCity(Province entity)
         {
+            IList<KeyValuePair<StrativeView, double>> values =
+              new List<KeyValuePair<StrativeView, double>>();
 
-            get
+           var cities=  StrativeView.ToCities(entity);
+
+            foreach (var item in cities)
             {
+                values.Add(new KeyValuePair<StrativeView, double>(item,item.score));
+            }
+            _cacheStorage.SortedSetAdd(_cacheModel, entity.Code, values);
 
-                return string.Concat(this.PREFIX, "province");
+            foreach (var item in entity.Cities)
+            {
+                this.SetArea(item);
             }
         }
 
-        public string CityKey
+        private void SetArea(City city)
         {
+            IList<KeyValuePair<StrativeView, double>> values =
+           new List<KeyValuePair<StrativeView, double>>();
 
-            get
+            var areas = StrativeView.ToArea(city);
+
+            foreach (var item in areas)
             {
-
-                return string.Concat(this.PREFIX, "city");
+                values.Add(new KeyValuePair<StrativeView, double>(item, item.score));
             }
+            _cacheStorage.SortedSetAdd(_cacheModel, city.Code, values);
         }
-        public string AreaKey
-        {
 
-            get
-            {
-
-                return string.Concat(this.PREFIX, "area");
-            }
-        }
-        private int _dbIndex = (int)RedisDbZone.Cms;
-        public IList<string> CacheKeys
-        {
-            get; private set;
-        }
         public IList<StrativeView> GetProvince()
         {
-            lock (_synch)
+            var data = _cacheStorage.SortedSetRangeByRank<string, StrativeView>
+                           (AdministrativeAreaCacheKey.DBINDEX, AdministrativeAreaCacheKey.PROVINCE);
+
+            if (data == null || data.Count == 0)
             {
-                var views = this._cacheController.Value.HashValues<StrativeView>(this.ProvinceKey, _dbIndex);
+                var entities = _provinceRepository.GetList(x => true).ToList();
 
-                if (views == null || views.Count==0)
-                {
-                    var entities = _provinceRepository.GetProvinces();
-
-                    var tViews = StrativeView.ToView(entities);
-
-                    SetCach(tViews);
-
-                    views = tViews.Item1;
-                }
-
-                return views;
+                data = StrativeView.ToProvinces(entities);
             }
+            return data;
         }
-        public void SetCach(Tuple<IList<StrativeView>, IList<StrativeView>, IList<StrativeView>>  tuple)
+        public IList<StrativeView> GetCities(string provinceCode)
         {
+            var data = _cacheStorage.SortedSetRangeByRank<string, StrativeView>
+                          (AdministrativeAreaCacheKey.DBINDEX, provinceCode);
 
-            IList<KeyValuePair<string, StrativeView>> rs = new List<KeyValuePair<string, StrativeView>>();
+            if (data == null || data.Count == 0)
+            {
+                var entities = _provinceRepository.GetProvince(provinceCode);
 
-            foreach (var item in tuple.Item1)
-            {
-                KeyValuePair<string, StrativeView> keyValuePair = new KeyValuePair<string, StrativeView>(item.code,item);
-                rs.Add(keyValuePair);
+                data = StrativeView.ToCities(entities);
             }
-            _cacheController.Value.HashSet(this.ProvinceKey,rs);
-
-            var items = tuple.Item2;
-            var cityDic = items.ToLookup(x => x.parentId, x => x);
-            foreach (var item in cityDic)
-            {
-                _cacheController.Value.HashSet(CityKey, item.Key, item.ToList());
-            }
-            var areaDic = tuple.Item3.ToLookup(x=>x.parentId,x=>x);
-            foreach (var item in areaDic)
-            {
-                _cacheController.Value.HashSet(AreaKey, item.Key, item.ToList());
-            }
+            return data;
         }
-
-        public IList<StrativeView> GetCities(string code)
+        public IList<StrativeView> GetAreas(string cityCode)
         {
-           var datas = this._cacheController.Value.
-                HashSetSan<List<StrativeView>>(this.CityKey,code,_dbIndex);
+            var data = _cacheStorage.SortedSetRangeByRank<string, StrativeView>
+                         (AdministrativeAreaCacheKey.DBINDEX, cityCode);
 
-            return datas;
-        }
+            if (data == null || data.Count == 0)
+            {
+                var entity = _provinceRepository.GetCityArea(cityCode);
 
-        public IList<StrativeView> GetAreas(string code)
-        {
-            var datas = this._cacheController.Value.
-                HashSetSan<List<StrativeView>>(this.AreaKey, code, _dbIndex);
-            return datas;
+                data = StrativeView.ToArea(entity);
+            }
+            return data;
         }
     }
 }
