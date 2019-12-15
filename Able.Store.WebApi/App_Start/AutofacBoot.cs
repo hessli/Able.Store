@@ -1,8 +1,12 @@
-﻿using Able.Store.Infrastructure.Domain.Events;
+﻿using Able.Store.Infrastructure.Cache;
+using Able.Store.Infrastructure.Cache.Redis;
+using Able.Store.Infrastructure.Domain.Events;
+using Able.Store.Infrastructure.Queue.Product;
 using Able.Store.Infrastructure.UniOfWork;
 using Able.Store.Infrastructure.Utils;
 using Able.Store.Model.OrdersDomain.Events;
 using Able.Store.Model.OrdersDomain.States;
+using Able.Store.QueueService.Interface.Orders;
 using Able.Store.Repository.EF;
 using Able.Store.Service.Orders;
 using Autofac;
@@ -38,6 +42,9 @@ namespace Able.Store.WebApi
             builder.RegisterType<EFUnitOfWork>().Named<IUnitOfWork>("EFUnitOfWork")
                 .AsImplementedInterfaces();
 
+            builder.RegisterType<RedisStorage>().Named<ICacheStorage>("Redis")
+                .AsImplementedInterfaces(); ;
+
             builder.RegisterAssemblyTypes(dic["Able.Store.Repository"], dic["Able.Store.Model"])
                 .Where(x => x.Name.EndsWith("Repository") && !x.IsAbstract)
                 .AsImplementedInterfaces().WithParameter(
@@ -63,6 +70,8 @@ namespace Able.Store.WebApi
                 .InstancePerRequest()
                 .PropertiesAutowired();
 
+            builder.RegisterType<RabbitProductController>().AsSelf();
+            
 
             #region 订单状态注册
             builder.RegisterType<SystemLockState>()
@@ -80,6 +89,7 @@ namespace Able.Store.WebApi
             #endregion
 
             AutofacHelper.Container = builder.Build();
+
             config.DependencyResolver = new AutofacWebApiDependencyResolver(AutofacHelper.Container);
         }
     }

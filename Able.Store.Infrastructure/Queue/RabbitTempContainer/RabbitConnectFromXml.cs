@@ -8,9 +8,9 @@ namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
 {
     public  class RabbitConnectFromXml : IConfigurationSource
     {   
-        public IEnumerable<T> Load<T>() where T: class, IConnectOptions
+        public IEnumerable<IConnectOptions> Load()
         {
-            IList<T> datas = new List<T>();
+            IList<IConnectOptions> datas = new List<IConnectOptions>();
 
             var cfg = (RabbitOptionConfig)ConfigurationManager.GetSection("rabbitOption");
 
@@ -27,7 +27,7 @@ namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
                         PassWord = item.PassWord,
                         VirtualHost = item.VirtualHost
                     };
-                    datas.Add(data as T);
+                    datas.Add(data);
                 }
             }
             return datas;

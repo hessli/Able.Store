@@ -1,5 +1,4 @@
 ﻿using Able.Store.Infrastructure.Cache.Redis;
-using Able.Store.Infrastructure.Jobs;
 
 namespace Able.Store.RedisConsumer.Start
 {
@@ -7,9 +6,9 @@ namespace Able.Store.RedisConsumer.Start
     {
         public static void Start()
         {
-            JobController.AddJob(new RedisConnectionJob(), 3600000, 600000);
-
-            JobController.Start();
+            var redisConnection= new RedisConnectionJob();
+            redisConnection.Excute();
+            ColumnMapper.SetMapper();
         }
     }
 }

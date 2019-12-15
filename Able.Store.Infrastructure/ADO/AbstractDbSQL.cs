@@ -3,6 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace Able.Store.Infrastructure.ADO
 {
@@ -19,7 +20,7 @@ namespace Able.Store.Infrastructure.ADO
         public AbstractDbSQL(string connectionName)
         {
             _connectionName = connectionName;
-            _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["_connectionName"].ConnectionString;
+            _connectionString= ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;
         }
         #region 公用方法
 

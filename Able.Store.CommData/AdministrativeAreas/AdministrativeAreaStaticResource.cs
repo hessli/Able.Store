@@ -1,6 +1,6 @@
 ﻿namespace Able.Store.CommData.AdministrativeAreas
 {
-    public class AdministrativeAreaCacheKey
+    public class AdministrativeAreaStaticResource
     {
         public static readonly int DBINDEX = (int)RedisDbZone.Comm;
         public static readonly string PREFIX = "administrative_";

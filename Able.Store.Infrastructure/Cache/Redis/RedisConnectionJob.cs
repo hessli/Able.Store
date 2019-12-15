@@ -9,12 +9,11 @@ namespace Able.Store.Infrastructure.Cache.Redis
     {
         public void Excute()
         {
-            IConfigurationSource source = new RabbitConnectFromDataBase();
-            var data = source.Load<RedisConnectOptions>();
-
+            IConfigurationSource source = new RedisConnectDAO();
+            var data = source.Load();
             foreach (var item in data)
             {
-                RedisConnectionPool.Instance.Add(item,new RedisConnectionFactory(item));
+                RedisConnectionPool.Instance.Add(item,new RedisConnectionFactory((RedisConnectOptions)item));
             }
         }
     }

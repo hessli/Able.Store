@@ -20,7 +20,7 @@ namespace Able.Store.CacheService.Service
         public IList<BannerView> GetBanners(int size)
         {
            var data=  _cacheStorage.SortedSetRangeByRank<string, BannerView>
-                (AdvertCacheKey.DBINDEX, AdvertCacheKey.BANNERKEY,stop:size);
+                (AdvertStaticResource.DBINDEX, AdvertStaticResource.BANNERKEY,stop:size);
 
             if (data == null || data.Count == 0)
             {

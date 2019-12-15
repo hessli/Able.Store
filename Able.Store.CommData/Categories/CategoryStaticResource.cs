@@ -1,6 +1,6 @@
 ﻿namespace Able.Store.CommData.Categories
 {
-    public class CategoryCacheKey
+    public class CategoryStaticResource
     {
         public static readonly string PREFIX = "category.";
         public static readonly string INDEX = string.Concat(PREFIX, "index");

@@ -39,21 +39,21 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdministrativeAreas\AdministrativeAreaCacheKey.cs" />
-    <Compile Include="Adverts\AdvertCacheKey.cs" />
+    <Compile Include="AdministrativeAreas\AdministrativeAreaStaticResource.cs" />
+    <Compile Include="Adverts\AdvertStaticResource.cs" />
     <Compile Include="Adverts\AdvertState.cs" />
     <Compile Include="Adverts\AdverType.cs" />
-    <Compile Include="Categories\CategoryCacheKey.cs" />
+    <Compile Include="Categories\CategoryStaticResource.cs" />
     <Compile Include="Orders\Merchant.cs" />
     <Compile Include="Orders\OrderActionType.cs" />
-    <Compile Include="Orders\OrderCacheKey.cs" />
+    <Compile Include="Orders\OrderStaticResource.cs" />
     <Compile Include="Orders\OrderStatus.cs" />
-    <Compile Include="Products\ProductCacheKey.cs" />
+    <Compile Include="Products\ProductStaticResource.cs" />
     <Compile Include="Products\ProductState.cs" />
     <Compile Include="Products\ProductTag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisDbZone.cs" />
-    <Compile Include="Skus\SkuCacheKey.cs" />
+    <Compile Include="Skus\SkuStaticResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

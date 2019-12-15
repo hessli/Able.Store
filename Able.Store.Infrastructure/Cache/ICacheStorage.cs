@@ -1,4 +1,5 @@
 ﻿using Able.Store.Infrastructure.Cache.Model;
+using System;
 using System.Collections.Generic;
 namespace Able.Store.Infrastructure.Cache
 {
@@ -52,6 +53,8 @@ namespace Able.Store.Infrastructure.Cache
 
         bool KeyExists<Key>(int dataBaseIndex, Key redisKey);
 
+
+        void Subscrib(string channelName, Action<string, string> callback);
 
 
     }

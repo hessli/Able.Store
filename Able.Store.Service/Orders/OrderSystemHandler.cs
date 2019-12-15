@@ -22,19 +22,19 @@ namespace Able.Store.Service.Orders
         {
             var order = domainEvent.Order;
             var  isSuccess=  _queueService.Lock(order);
-            if (isSuccess)
-            {
-               var request=  new BasketUserRequestView();
-                request.skuId = order.Items.Select(x=>x.SkuId).ToArray();
-                request.userid = order.UserId;
-                Action<object> ac = x =>
-                  {
-                      var service = (IShoppingService)x;
-                      service.RemoveItem(request);
-                  };
-                Task task = new Task(ac, _shoppingService);
-                task.Start();
-            }
+            //if (isSuccess)
+            //{
+            //   //var request=  new BasketUserRequestView();
+            //   // request.skuId = order.Items.Select(x=>x.SkuId).ToArray();
+            //   // request.userid = order.UserId;
+            //    //Action<object> ac = x =>
+            //    //  {
+            //    //      var service = (IShoppingService)x;
+            //    //      service.RemoveItem(request);
+            //    //  };
+            //    //Task task = new Task(ac, _shoppingService);
+            //    //task.Start();
+            //}
             return isSuccess;
         }
     }

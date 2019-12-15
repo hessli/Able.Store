@@ -10,7 +10,7 @@ namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
         public void Excute()
         {
             IConfigurationSource source = new RabbitConnectFromDataBase();
-            var data = source.Load<RabbitConnectOptions>();
+            var data = source.Load();
             var length= data.Count();
 
             if (length > 0)
@@ -18,7 +18,7 @@ namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
                 foreach (var item in data)
                 {
                     ConnectionFactoryPool.Instance.
-                        Add(item, new RabbitConnectionFactory(item));
+                        Add(item, new RabbitConnectionFactory((RabbitConnectOptions)item));
                 }
             }
         }

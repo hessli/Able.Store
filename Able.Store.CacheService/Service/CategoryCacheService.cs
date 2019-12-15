@@ -19,7 +19,7 @@ namespace Able.Store.CacheService.Service
         public   IList<CategoryView> GetCategories(int size)
         {
            var data= _cacheStorage.SortedSetRangeByRank<string, CategoryView>
-                (CategoryCacheKey.DBINDEX, CategoryCacheKey.INDEX,stop:size);
+                (CategoryStaticResource.DBINDEX, CategoryStaticResource.INDEX,stop:size);
 
             if (data == null || data.Count == 0)
             {
@@ -34,7 +34,7 @@ namespace Able.Store.CacheService.Service
         {
 
             var data = _cacheStorage.SortedSetRangeByRank<string, CategoryView>
-               (CategoryCacheKey.DBINDEX, CategoryCacheKey.INDEX);
+               (CategoryStaticResource.DBINDEX, CategoryStaticResource.INDEX);
 
             if (data == null || data.Count == 0)
             {

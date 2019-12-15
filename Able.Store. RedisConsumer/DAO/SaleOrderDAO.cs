@@ -5,11 +5,14 @@ namespace Able.Store.RedisConsumer.DAO
    public class SaleOrderDAO
     {
 
-        private string connectionStr = System.Configuration.ConfigurationManager.AppSettings["store"];
+        private string connectionStr = System.Configuration.ConfigurationManager.ConnectionStrings["store"].ConnectionString;
         public void UpdateState(Order order) {
 
             using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(connectionStr))
             {
+
+                connection.Open();
+
                 connection.Execute("update oms_order set order_status=@Status where id=@Id", order);
             }
         }
@@ -17,8 +20,15 @@ namespace Able.Store.RedisConsumer.DAO
         {
             using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(connectionStr))
             {
-               var order  =connection.QueryFirstOrDefault<Order>("Select * from  oms_order  where id=@id", id);
-                return order;
+                try
+                {
+                    connection.Open();
+                    var order = connection.QueryFirstOrDefault<Order>("Select * from  oms_order  where id=@Id",new { Id=id });
+                    return order;
+                }
+                finally {
+                    connection.Close();
+                }
             }
         }
     }

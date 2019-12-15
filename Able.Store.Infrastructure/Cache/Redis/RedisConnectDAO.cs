@@ -7,16 +7,16 @@ namespace Able.Store.Infrastructure.Cache.Redis
 {
     public class RedisConnectDAO: AbstractDbSQL, IConfigurationSource
     {
-        public RedisConnectDAO() : base("ProviderConnectionString")
+        public RedisConnectDAO() : base("baseProvider")
         {
 
         }
-        public IEnumerable<T> Load<T>() where T : class, IConnectOptions
+        public IEnumerable<IConnectOptions> Load()
         {
             StringBuilder sqlBuilder = new StringBuilder("SELECT* FROM cfg_provider inner join cfg_provider_redis_connect");
             sqlBuilder.AppendLine(" on cfg_provider.id = cfg_provider_redis_connect.provider_id");
             sqlBuilder.AppendLine(" where cfg_provider.record_state = 1 and cfg_provider_redis_connect.record_state = 1");
-            IList<T> results = new List<T>();
+            IList<IConnectOptions> results = new List<IConnectOptions>();
             using (var dataReader = ExecuteReader(sqlBuilder.ToString()))
             {
                 while (dataReader.Read())
@@ -35,7 +35,7 @@ namespace Able.Store.Infrastructure.Cache.Redis
                         SyncTimeout = dataReader["sync_timeout"] == null ? 0 : int.Parse(dataReader["sync_timeout"].ToString()),
                         TagName = dataReader["tag_name"] == null ? string.Empty : dataReader["tag_name"].ToString()
                     };
-                    results.Add(item as T);
+                    results.Add(item);
                 }
                 return results;
             }

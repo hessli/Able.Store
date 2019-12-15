@@ -31,10 +31,10 @@ namespace Able.Store.Administrator.Service.Skus
 
             var response = ChangeCannotQty(requestBody);
 
-            _cacheService.NotifyChangeQtyNumber(correlationId, response.issuccess, response.message, response.errcode);
+            _cacheService.NotifyChangeQtyNumber(request.Header, response.issuccess, response.message, response.errcode);
         }
 
-        public ResponseView ChangeCannotQty(ChangeCannotQtyRequest request)
+        private ResponseView ChangeCannotQty(ChangeCannotQtyRequest request)
         {
             try
             {
@@ -62,8 +62,6 @@ namespace Able.Store.Administrator.Service.Skus
             _skuRepository.Commit();
 
             return base.OutPutSuccessResponseView();
-
-
         }
     }
 }

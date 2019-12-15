@@ -1,6 +1,6 @@
 ﻿namespace Able.Store.CommData.Adverts
 {
-    public class AdvertCacheKey
+    public class AdvertStaticResource
     {
         /// <summary>
         /// 前缀

@@ -97,10 +97,11 @@ namespace Able.Store.Repository.EF
             var propertyExpression=Expression.Property(parameter,"Id");
 
             var constant = Expression.Constant(id);
+         
 
-           var conditon=  Expression.Lambda<Expression<Func<T, bool>>>(Expression.Equal(propertyExpression,constant),parameter);
+            var conditon=  Expression.Lambda<Func<T,bool>>(Expression.Equal(propertyExpression,constant), parameter);
 
-          var data=  this.Entities.FirstOrDefault(conditon.Compile());
+            var data=  this.Entities.FirstOrDefault(conditon.Compile());
 
             return data;
         }

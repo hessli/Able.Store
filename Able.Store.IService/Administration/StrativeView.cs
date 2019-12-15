@@ -18,12 +18,13 @@ namespace Able.Store.IService.Administration
         public static IList<StrativeView> ToProvinces(IList<Province> entities)
         {
             IList<StrativeView> provinces = new List<StrativeView>();
-            foreach (var item in entities)
+            foreach (var entity in entities)
             {
                 provinces.Add(new StrativeView
                 {
-                    code = item.Code,
-                    name = item.Name
+                    code = entity.Code,
+                    name = entity.Name,
+                    score = entity.Score
                 });
             }
             return provinces;
@@ -39,7 +40,9 @@ namespace Able.Store.IService.Administration
                     {
                         code = subItem.Code,
                         name = subItem.Name,
-                        parentId = entity.Code
+                        score = subItem.Score,
+                        parentId = entity.Code,
+                      
                     });
                
             }
@@ -56,7 +59,9 @@ namespace Able.Store.IService.Administration
                 {
                     code = subItem.Code,
                     name = subItem.Name,
+                    score = subItem.Score,
                     parentId = entity.Code
+                 
                 });
 
             }

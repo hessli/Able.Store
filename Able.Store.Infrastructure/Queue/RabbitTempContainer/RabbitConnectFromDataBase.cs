@@ -8,16 +8,16 @@ namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
 {
     public class RabbitConnectFromDataBase :AbstractDbSQL, IConfigurationSource
     {
-        public RabbitConnectFromDataBase():base("ProviderConnectionString")
+        public RabbitConnectFromDataBase():base("baseProvider")
         {
 
         }
-        public IEnumerable<T> Load<T>() where T : class, IConnectOptions
+        public IEnumerable<IConnectOptions> Load() 
         {
             StringBuilder sqlBuilder = new StringBuilder("SELECT* FROM cfg_provider inner join cfg_provider_rabbitmq_connect ");
             sqlBuilder.AppendLine(" on   cfg_provider.id = cfg_provider_rabbitmq_connect.provider_id");
             sqlBuilder.AppendLine(" where cfg_provider.record_state = 1 and cfg_provider_rabbitmq_connect.record_state = 1");
-            IList<T> results = new List<T>();
+            IList<IConnectOptions> results = new List<IConnectOptions>();
             using (var dataReader = ExecuteReader(sqlBuilder.ToString()))
             {
                 while (dataReader.Read())
@@ -31,9 +31,11 @@ namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
                         TagName = dataReader["tag_name"] == null ? string.Empty : dataReader["tag_name"].ToString(),
                         VirtualHost = dataReader["virtual_host"] == null ? string.Empty : dataReader["virtual_host"].ToString()
                     };
-                    results.Add(item as T);
+                    results.Add(item);
                 }
+
                 return results;
+                
             }
         }
     }

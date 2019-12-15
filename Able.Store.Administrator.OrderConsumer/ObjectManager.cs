@@ -4,6 +4,7 @@ using Able.Store.Administrator.CacheService;
 using Able.Store.Administrator.IService.Skus;
 using Able.Store.Administrator.Service.Skus;
 using Able.Store.Adminstrator.Model.SkusDomain;
+using Able.Store.Infrastructure.Cache;
 using Able.Store.Infrastructure.Cache.Redis;
 using Able.Store.Infrastructure.Jobs;
 using Able.Store.Infrastructure.Queue.Rabbit;
@@ -34,28 +35,20 @@ namespace Able.Store.Administrator.OrderConsumer
             builder.RegisterType<SkuService>().As<ISkuService>();
             builder.RegisterType<EFUnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<SkuCacheService>().As<ISkuCacheService>();
+
+            builder.RegisterType<RedisStorage>().Named<ICacheStorage>("redis")
+                .AsImplementedInterfaces();
             AutofacHelper.Container = builder.Build();
 
         }
         public static void Start()
         {
-
             var job= new RabbitConnectionJob();
-
             job.Excute();
-
             var redis = new RedisConnectionJob();
             redis.Excute();
-            JobController.AddJob(job, 1300000, 300000);
-            JobController.AddJob(redis, 1200000, 150000);
-            JobController.Start();
         }
-        public ObjectManager()
-        {
-
-        }
-
-      
+       
 
     }
 }

@@ -1,5 +1,4 @@
-﻿using Able.Store.CommData.Orders;
-using Able.Store.Infrastructure.Domain;
+﻿using Able.Store.Infrastructure.Domain;
 using Able.Store.IService;
 using Able.Store.IService.Orders;
 using Able.Store.Model.BasketsDomain;
@@ -7,7 +6,6 @@ using Able.Store.Model.OrdersDomain;
 using Able.Store.Model.Users;
 using Able.Store.Service.IService;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace Able.Store.Service.Orders
@@ -56,8 +54,7 @@ namespace Able.Store.Service.Orders
 
                 if (isSuccess)
                 {
-                    Thread.Sleep(5);
-
+                    Thread.Sleep(100);
                     return base.OutPutBrokenResponseView(order.Id);
                 }
                return  base.OutPutResponseView(0,false,"系统繁忙正在处理中....");
@@ -73,13 +70,7 @@ namespace Able.Store.Service.Orders
         {
            var order=_orderRepository
                 .GetFirstOrDefault(x =>x.UserId==userId && x.Id == orderId);
-
-            if (order.Status == OrderStatus.系统处理)
-            {
-                Thread.Sleep(10);
-                order=
-                    _orderRepository.GetFirstOrDefault(x => x.UserId == userId && x.Id == orderId);
-            }
+         
             var data= OrderView.ToView(order);
 
             return base.OutPutResponseView(data);

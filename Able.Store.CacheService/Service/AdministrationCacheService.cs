@@ -22,7 +22,7 @@ namespace Able.Store.CacheService.Service
             _cacheModel = new CacheUnitModel
             {
                 CacheStrategy = CacheStrategy.Always,
-                DataBaseIndex = AdministrativeAreaCacheKey.DBINDEX
+                DataBaseIndex = AdministrativeAreaStaticResource.DBINDEX
             };
         }
 
@@ -49,7 +49,7 @@ namespace Able.Store.CacheService.Service
                 values.Add(new KeyValuePair<StrativeView, double>(item, item.score));
             }
             _cacheStorage.SortedSetAdd(_cacheModel,
-                AdministrativeAreaCacheKey.PROVINCE, values);
+                AdministrativeAreaStaticResource.PROVINCE, values);
 
             foreach (var item in datas)
             {
@@ -93,7 +93,7 @@ namespace Able.Store.CacheService.Service
         public IList<StrativeView> GetProvince()
         {
             var data = _cacheStorage.SortedSetRangeByRank<string, StrativeView>
-                           (AdministrativeAreaCacheKey.DBINDEX, AdministrativeAreaCacheKey.PROVINCE);
+                           (AdministrativeAreaStaticResource.DBINDEX, AdministrativeAreaStaticResource.PROVINCE);
 
             if (data == null || data.Count == 0)
             {
@@ -106,7 +106,7 @@ namespace Able.Store.CacheService.Service
         public IList<StrativeView> GetCities(string provinceCode)
         {
             var data = _cacheStorage.SortedSetRangeByRank<string, StrativeView>
-                          (AdministrativeAreaCacheKey.DBINDEX, provinceCode);
+                          (AdministrativeAreaStaticResource.DBINDEX, provinceCode);
 
             if (data == null || data.Count == 0)
             {
@@ -119,7 +119,7 @@ namespace Able.Store.CacheService.Service
         public IList<StrativeView> GetAreas(string cityCode)
         {
             var data = _cacheStorage.SortedSetRangeByRank<string, StrativeView>
-                         (AdministrativeAreaCacheKey.DBINDEX, cityCode);
+                         (AdministrativeAreaStaticResource.DBINDEX, cityCode);
 
             if (data == null || data.Count == 0)
             {

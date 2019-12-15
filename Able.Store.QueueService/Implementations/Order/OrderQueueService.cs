@@ -45,7 +45,7 @@ namespace Able.Store.QueueService.Implementations.Order
                 };
             request.Body = LockInventoryItemBody.ToBodys(order.Items);
 
-            request.CacheDbIndex = OrderCacheKey.DBINDEX;
+            request.CacheDbIndex = OrderStaticResource.DBINDEX;
 
             _controller.Push(request, option);
 
@@ -86,7 +86,7 @@ namespace Able.Store.QueueService.Implementations.Order
                 };
             request.Body = LockInventoryItemBody.ToBodys(order.Items);
 
-            request.CacheDbIndex = OrderCacheKey.DBINDEX;
+            request.CacheDbIndex = OrderStaticResource.DBINDEX;
 
             _controller.Push(request, option);
 

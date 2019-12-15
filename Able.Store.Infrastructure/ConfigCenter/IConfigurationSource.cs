@@ -4,6 +4,6 @@ namespace Able.Store.Infrastructure.ConfigCenter
 {
     public interface IConfigurationSource
     {
-       IEnumerable<T> Load<T>() where T :class, IConnectOptions;
+        IEnumerable<IConnectOptions> Load();
     }
 }

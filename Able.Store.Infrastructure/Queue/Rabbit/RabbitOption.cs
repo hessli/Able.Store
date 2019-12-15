@@ -15,7 +15,7 @@ namespace Able.Store.Infrastructure.Queue.Rabbit
         /// <summary>
         /// 是否持久化
         /// </summary>
-        public bool Durable { get; set; }
+        public bool Durable { get; set; } = false; 
         /// <summary>
         /// 是否独占
         /// </summary>

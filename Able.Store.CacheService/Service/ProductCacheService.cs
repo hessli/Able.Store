@@ -24,7 +24,7 @@ namespace Able.Store.CacheService.Service
         public IList<RecommendProductView> GetRecommendProduct(int size, string baseUrl)
         {
 
-            var data = _cacheStorage.SortedSetRangeByRank<string, RecommendProductView>(ProductCacheKey.DBINDEX, ProductCacheKey.RECOMMENDKEY, stop: size);
+            var data = _cacheStorage.SortedSetRangeByRank<string, RecommendProductView>(ProductStaticResource.DBINDEX, ProductStaticResource.RECOMMENDKEY, stop: size);
 
             if (data == null || data.Count == 0)
             {
@@ -42,7 +42,7 @@ namespace Able.Store.CacheService.Service
         public IList<NewProductView> GetNewProducts(int size)
         {
             var data = _cacheStorage.SortedSetRangeByRank<string, NewProductView>
-                (ProductCacheKey.DBINDEX, ProductCacheKey.NEWKEY, stop: size);
+                (ProductStaticResource.DBINDEX, ProductStaticResource.NEWKEY, stop: size);
 
             if (data == null || data.Count == 0)
             {
