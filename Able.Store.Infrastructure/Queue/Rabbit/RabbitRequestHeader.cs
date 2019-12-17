@@ -18,6 +18,8 @@
         public string ExtentionTag { get; set; }
 
         public PublishMethod PublishMethod { get; set; }
+
+      
         /// <summary>
         /// 等待通知时长
         /// </summary>

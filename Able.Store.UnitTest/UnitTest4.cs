@@ -1,4 +1,7 @@
-﻿using Able.Store.Model.Users;
+﻿using Able.Store.Infrastructure;
+using Able.Store.Infrastructure.Crypt;
+using Able.Store.Infrastructure.Utils;
+using Able.Store.Model.Users;
 using Able.Store.Model.UsersDomain;
 using Able.Store.Repository.EF;
 using Able.Store.Repository.Users;
@@ -80,6 +83,37 @@ namespace Able.Store.UnitTest
             //r.Commit();
         }
 
+
+        [TestMethod]
+        public void TestW()
+        {
+
+
+            Base64 uy = new Base64();
+
+            //var f= uy.Base64EnCode("12345678张三李四");//\u001f 这个表示的是一个编码的对应值，其实也就是一个数字
+
+
+            var qs = uy.Base64EnCode("12345678张三李四");
+
+            var fs= uy.Base64EnCode("abcdsdfdsdfdsdfdsssssssf");
+
+            //输入一个字符串，经过64编码后有24个字符，获取字节数只有16个
+            //tiihtNczf5v6AKRyjwEUhQ==
+
+            IEncrypted encrypted = new AesEncrypt(fs, qs);
+
+            var q = encrypted.CryptStr(Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                Name = "张三",
+                Age = 14
+            }));
+
+
+          var b=  encrypted.DecryptStr(q);
+
+        }
+
         [TestMethod]
         public void TestConsumer()
         {
@@ -99,7 +133,7 @@ namespace Able.Store.UnitTest
 
             expression = expression.And(Expression.Lambda<Func<User, bool>>(k));
 
-           var s= expression.ToString();
+            var s = expression.ToString();
 
         }
 

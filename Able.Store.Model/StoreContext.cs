@@ -46,14 +46,12 @@ namespace Able.Store.Model
          public DbSet<OrderAddress> OrderAddresses { get; set; }
          public DbSet<OrderReceiver> OrderReceivers { get; set; }
          public DbSet<OrderPayment> OrderPayments { get; set; }
+         public DbSet<UserWXAccount> UserWXAccount { get; set; }
 
         //public DbSet<OrderShipping> OrderShippings { get; set; }
         //public DbSet<OrderShippingLocus> OrderShippingLocus { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserMoney>().HasRequired(s => s.User)
-                .WithMany(s => s.UserMoneys).WillCascadeOnDelete(true);
-
            
             base.OnModelCreating(modelBuilder);
 

@@ -57,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Able.Store. RedisConsumer",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Able.Store.CommData", "Able.Store.CommData\Able.Store.CommData.csproj", "{6D1D18DB-CD3E-40B9-A4AB-BC0296A6EBAB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotifySystem", "NotifySystem", "{CAC082F2-664A-4AD3-B539-E33794AF9A0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogSystem", "LogSystem", "{2AD74F52-D2A6-47CF-952F-13C6904737AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

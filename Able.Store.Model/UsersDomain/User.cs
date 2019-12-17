@@ -15,21 +15,25 @@ namespace Able.Store.Model.UsersDomain
         {
             ReceiveInfos = new List<Receiver>();
         }
+        public User(string wxJwt):this()
+        {
+             
+        }
         [Column("id")]
         [Key]
         public override int Id { get; set; }
+        [Column("user_name")]
+        public string UserName { get; set; }
+        [Column("pass_word")]
+        public string PassWord { get; set; }
+        [Column("email")]
+        public string Email { get; set; }
+        /// <summary>
+        /// 微信账号信息
+        /// </summary>
+        public virtual UserWXAccount WXAccount { get; set; }
 
-        [Column("nick")]
-        public string Nick { get; set; }
-
-        [Column("sex")]
-        public int Sex { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<UserMoney> UserMoneys { get; set; }
         public virtual ICollection<Receiver> ReceiveInfos { get; set; }
-
-     
 
         [Column("create_time")]
         public override DateTime? CreateTime { get; set; }
@@ -53,7 +57,6 @@ namespace Able.Store.Model.UsersDomain
 
             return defaultReceiver;
         }
-
         public void RemoveReciverInfo(int reciverInfoId)
         {
             var addr=ReceiveInfos.FirstOrDefault(x=>x.Id== reciverInfoId);

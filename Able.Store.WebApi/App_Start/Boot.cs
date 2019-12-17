@@ -15,11 +15,9 @@ namespace Able.Store.WebApi.App_Start
 
             using (var scope = AutofacHelper.Container.BeginLifetimeScope())
             {
-
                 var service= scope.Resolve<IAdministrationCacheService>();
                 service.BootStartInitAdministrationCache();
             }
-              
         }
     }
 }

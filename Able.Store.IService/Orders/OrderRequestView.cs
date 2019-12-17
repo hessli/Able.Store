@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Able.Store.IService.Orders
+﻿namespace Able.Store.IService.Orders
 {
-   public class OrderRequestView
+    public class OrderRequestView
     {
          public string name { get; set; }
 

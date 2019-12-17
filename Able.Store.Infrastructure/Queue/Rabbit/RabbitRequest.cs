@@ -17,11 +17,14 @@ namespace Able.Store.Infrastructure.Queue.Rabbit
 
             return "";
         }
-
         /// <summary>
         /// 缓存数据库
         /// </summary>
         public int CacheDbIndex { get; set; }
+        /// <summary>
+        /// 是否允许重复发布
+        /// </summary>
+        public bool AllowDuplicatePublishing { get; set; } = false;
         public object Body { get; set; }
 
         internal byte[] GetData()

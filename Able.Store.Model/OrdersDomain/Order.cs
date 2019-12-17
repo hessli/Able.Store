@@ -56,7 +56,7 @@ namespace Able.Store.Model.OrdersDomain
 
             this.UserId = userInfo.Id;
 
-            this.UserName = userInfo.Nick;
+            this.UserName = userInfo.UserName;
 
             this.TotalQty = basket.Qty;
 

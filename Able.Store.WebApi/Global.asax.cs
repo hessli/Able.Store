@@ -1,6 +1,6 @@
-﻿
-using Able.Store.IService;
+﻿using Able.Store.IService;
 using Able.Store.WebApi.App_Start;
+using Able.Store.WebApi.Filter;
 using System.Web.Http;
 
 namespace Able.Store.WebApi
@@ -9,13 +9,16 @@ namespace Able.Store.WebApi
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configure(x =>
+            {
+                WebApiConfig.Register(x);
+                x.Filters.Add(new ExceptionFilter());
+                x.Filters.Add(new StoreAuthorizeFilter());
+            });
+            AutofacBoot.Init();
+            AutoMapperBootStrapper.ConfigureAutoMapper();
 
-             AutofacBoot.Init();
-
-             AutoMapperBootStrapper.ConfigureAutoMapper();
-
-              Boot.Init();
+            Boot.Init();
         }
     }
 }

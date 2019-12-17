@@ -96,7 +96,7 @@
                 }
             },
             headers: {
-                "x-moutai-token": window.token,
+                token:"Bearer "+"xxxxxx"
             }
         });
         ////分类
@@ -117,7 +117,7 @@
                 $(".class").prepend(html).show();
             },
             headers: {
-                "x-moutai-token": window.token,
+                token: "Bearer " + "xxxxxx"
             }
         });
         ////推荐产品
@@ -139,7 +139,7 @@
                 loadsrc();
             },
             headers: {
-                "x-moutai-token": window.token,
+                token: "Bearer " + "xxxxxx"
             }
         });
         ////新品上架
@@ -165,7 +165,7 @@
                 $("body").show();  
             },
             headers: {
-                "x-moutai-token": window.token,
+                token: "xxxxxx"
             }
         });
         ////读取客服消息

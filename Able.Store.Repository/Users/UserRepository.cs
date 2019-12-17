@@ -21,7 +21,7 @@ namespace Able.Store.Repository.Users
                           select new
                           {
                               a.Id,
-                              a.Nick,
+                              a.UserName,
                               b.ReceiverName,
                               b.Tel,
                               b.Address
@@ -30,7 +30,7 @@ namespace Able.Store.Repository.Users
             User user = new User
             {
                 Id = entity.Id,
-                Nick = entity.Nick,
+                UserName = entity.UserName,
             };
 
             user.ReceiveInfos.Add(new Receiver

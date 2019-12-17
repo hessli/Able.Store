@@ -120,6 +120,7 @@
     <Compile Include="UsersDomain\User.cs" />
     <Compile Include="UsersDomain\UserMoney.cs" />
     <Compile Include="UsersDomain\UserMoneyMap.cs" />
+    <Compile Include="UsersDomain\UserWXAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

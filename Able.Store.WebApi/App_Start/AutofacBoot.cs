@@ -34,10 +34,8 @@ namespace Able.Store.WebApi
 
             var dic = assemblys.ToDictionary(x => x.GetName().Name, x => x);
 
-
             builder.RegisterType<DomainEventHandlerFactory>()
                 .As<IDomainEventHandlerFactory>().PropertiesAutowired();
-
 
             builder.RegisterType<EFUnitOfWork>().Named<IUnitOfWork>("EFUnitOfWork")
                 .AsImplementedInterfaces();
@@ -55,12 +53,10 @@ namespace Able.Store.WebApi
                 .Where(x => x.Name.EndsWith("Service") && !x.Name.Equals("BaseService"))
                 .AsImplementedInterfaces();
 
-
             builder.RegisterAssemblyTypes(dic["Able.Store.IService"]
                 ,dic["Able.Store.CacheService"])
                 .Where(x=>x.Name.EndsWith("CacheService"))
                 .AsImplementedInterfaces();
-
 
             builder.RegisterAssemblyTypes(dic["Able.Store.QueueService"])
                 .Where(x=>x.Name.EndsWith("Service"))

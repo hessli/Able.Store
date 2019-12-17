@@ -95,6 +95,11 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filter\ExceptionFilter.cs" />
+    <Compile Include="Filter\StoreAuthorizeAttribute.cs" />
+    <Compile Include="Filter\StoreAuthorizeFilter.cs" />
+    <Compile Include="Filter\StoreAnonymousAttribute.cs" />
+    <Compile Include="Filter\StoreAutorizeFilterService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -607,6 +612,10 @@
     <ProjectReference Include="..\Able.Store.CacheService\Able.Store.CacheService.csproj">
       <Project>{3ca28c6e-5ff5-4eea-9b05-84b374140864}</Project>
       <Name>Able.Store.CacheService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Able.Store.CommData\Able.Store.CommData.csproj">
+      <Project>{6D1D18DB-CD3E-40B9-A4AB-BC0296A6EBAB}</Project>
+      <Name>Able.Store.CommData</Name>
     </ProjectReference>
     <ProjectReference Include="..\Able.Store.Infrastructure\Able.Store.Infrastructure.csproj">
       <Project>{6dfbb547-375f-49f1-83fb-11f5d8d71f06}</Project>

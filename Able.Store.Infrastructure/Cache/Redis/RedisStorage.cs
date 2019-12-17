@@ -137,8 +137,14 @@ namespace Able.Store.Infrastructure.Cache.Redis
 
             var data = _redisRepository.HashSetGet(dataBaseIndex, redisKey, filedValue);
 
-            var result = Utils.JsonPase.Deserialize<Value>(data);
-            return result;
+            if (data.HasValue)
+            {
+
+                var result = Utils.JsonPase.Deserialize<Value>(data);
+                return result;
+            }
+
+            return default(Value);
         }
 
         public IList<Value> HashSetGet<Key, FiledKey, Value>(int dataBaseIndex, Key key, HashSet<FiledKey> fileds)
@@ -163,6 +169,7 @@ namespace Able.Store.Infrastructure.Cache.Redis
             var redisKey = RedisValueKeyHelper.ToKey(key);
 
             var data = _redisRepository.HashSetGetAll(dataBaseIndex, redisKey);
+
 
             Dictionary<Key, Value> dicResults = new Dictionary<Key, Value>();
 
@@ -226,11 +233,16 @@ namespace Able.Store.Infrastructure.Cache.Redis
         public Value StringGet<Key, Value>(int dataBaseIndex, Key key)
         {
             var redisKey = RedisValueKeyHelper.ToKey(key);
+
             var data = _redisRepository.StringGet(dataBaseIndex, redisKey);
 
-            var result = Utils.JsonPase.Deserialize<Value>(data);
+            if ( data.HasValue)
+            {
+                var result = Utils.JsonPase.Deserialize<Value>(data);
 
-            return result;
+                return result;
+            }
+            return default(Value);
         }
         public IList<Value> StringGet<Key, Value>(int dataBaseIndex, HashSet<Key> keys)
         {

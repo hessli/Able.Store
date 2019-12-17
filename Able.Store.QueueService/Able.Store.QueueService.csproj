@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Implementations\Systems\SystemQueueService.cs" />
     <Compile Include="Interface\Orders\LogisticsRequestFactory.cs" />
     <Compile Include="Implementations\Order\OrderQueueService.cs" />
     <Compile Include="Interface\Orders\IOrderQueueService.cs" />
@@ -43,6 +44,7 @@
     <Compile Include="Interface\Orders\LogisticsContactBody.cs" />
     <Compile Include="Interface\Orders\LogisticsRequestBody.cs" />
     <Compile Include="Interface\Orders\SenderTemplete.cs" />
+    <Compile Include="Interface\Systems\ISystemQueueService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
