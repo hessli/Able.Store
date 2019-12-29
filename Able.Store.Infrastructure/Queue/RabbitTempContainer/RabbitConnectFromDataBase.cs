@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Able.Store.Infrastructure.Queue.RabbitTempContainer
 {
-    public class RabbitConnectFromDataBase :AbstractDbSQL, IConfigurationSource
+    public class RabbitConnectFromDataBase :AbstractMysqlDbSQL, IConfigurationSource
     {
         public RabbitConnectFromDataBase():base("baseProvider")
         {

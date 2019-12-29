@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Able.Store.Infrastructure.Cache.Redis
 {
-    public class RedisConnectDAO: AbstractDbSQL, IConfigurationSource
+    public class RedisConnectDAO: AbstractMysqlDbSQL, IConfigurationSource
     {
         public RedisConnectDAO() : base("baseProvider")
         {

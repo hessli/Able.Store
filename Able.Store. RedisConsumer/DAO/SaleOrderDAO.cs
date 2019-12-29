@@ -4,13 +4,11 @@ namespace Able.Store.RedisConsumer.DAO
 {
    public class SaleOrderDAO
     {
-
         private string connectionStr = System.Configuration.ConfigurationManager.ConnectionStrings["store"].ConnectionString;
         public void UpdateState(Order order) {
 
             using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(connectionStr))
             {
-
                 connection.Open();
 
                 connection.Execute("update oms_order set order_status=@Status where id=@Id", order);

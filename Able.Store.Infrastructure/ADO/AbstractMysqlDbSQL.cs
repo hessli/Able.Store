@@ -12,12 +12,12 @@ namespace Able.Store.Infrastructure.ADO
         public string CommandText;
         public MySqlParameter[] Parameters;
     }
-    public abstract class AbstractDbSQL
+    public abstract class AbstractMysqlDbSQL
     {
 
         private string _connectionString = "";
         private string _connectionName = "";
-        public AbstractDbSQL(string connectionName)
+        public AbstractMysqlDbSQL(string connectionName)
         {
             _connectionName = connectionName;
             _connectionString= ConfigurationManager.ConnectionStrings[_connectionName].ConnectionString;

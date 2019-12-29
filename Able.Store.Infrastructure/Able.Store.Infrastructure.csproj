@@ -95,7 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADO\AbstractDbSQL.cs" />
+    <Compile Include="ADO\AbstractMysqlDbSQL.cs" />
     <Compile Include="Cache\ICacheStorage.cs" />
     <Compile Include="Cache\Local\ILocalCachLock.cs" />
     <Compile Include="Cache\Local\LocalCacheStorage.cs" />
@@ -125,28 +125,16 @@
     <Compile Include="Dappers\ColumnAttribute.cs" />
     <Compile Include="Dappers\FallbackTypeMapper.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
-    <Compile Include="Email\AndFilter.cs" />
-    <Compile Include="Email\BaseConfig.cs" />
-    <Compile Include="Email\BaseController.cs" />
-    <Compile Include="Email\BaseInterceptorRecord.cs" />
-    <Compile Include="Email\CommInterceptorConfig.cs" />
-    <Compile Include="Email\CommInterceptorRecord.cs" />
-    <Compile Include="Email\DayFilter.cs" />
-    <Compile Include="Email\EmailEmitterController.cs" />
-    <Compile Include="Email\EmailEmitterService.cs" />
+    <Compile Include="Email\AbstractSenderData.cs" />
+    <Compile Include="Email\EmailConnection.cs" />
+    <Compile Include="Email\EmailDBRepository.cs" />
+    <Compile Include="Email\EmailDispatch.cs" />
+    <Compile Include="Email\EmailPackageData.cs" />
+    <Compile Include="Email\EmailSender.cs" />
+    <Compile Include="Email\EmailSendLog.cs" />
     <Compile Include="Email\EmailService.cs" />
-    <Compile Include="Email\HourFilter.cs" />
-    <Compile Include="Email\IBaseConfig.cs" />
-    <Compile Include="Email\IBaseService.cs" />
-    <Compile Include="Email\IClearRestricts.cs" />
-    <Compile Include="Email\IEmailConfig.cs" />
-    <Compile Include="Email\IEmailService.cs" />
-    <Compile Include="Email\IFilter.cs" />
-    <Compile Include="Email\IInterceptorEmitter.cs" />
-    <Compile Include="Email\InterceptorConfig.cs" />
-    <Compile Include="Email\InterceptorEmitter.cs" />
-    <Compile Include="Email\Interceptors.cs" />
-    <Compile Include="Email\OrFilter.cs" />
+    <Compile Include="Email\IEmailRepository.cs" />
+    <Compile Include="Email\SendCompleteHandler.cs" />
     <Compile Include="Exceptions\AbstractException.cs" />
     <Compile Include="Exceptions\ConstExceptionLevel.cs" />
     <Compile Include="Exceptions\LowException.cs" />
@@ -182,6 +170,7 @@
     <Compile Include="Queue\Rabbit\RabbitObjFactory.cs" />
     <Compile Include="Queue\Rabbit\RabbitQueueNameOption.cs" />
     <Compile Include="Queue\Rabbit\RabbitExchangeOption.cs" />
+    <Compile Include="Reflect\ObjectCopier.cs" />
     <Compile Include="Utils\AutofacHelper.cs" />
     <Compile Include="Domain\Business\BaseGenerateNo.cs" />
     <Compile Include="Domain\Business\IGenerateNo.cs" />
@@ -234,7 +223,6 @@
     <Compile Include="Queue\Rabbit\RabbitConnectOptions.cs" />
     <Compile Include="Queue\Rabbit\RabbitOption.cs" />
     <Compile Include="Reflect\BaseReflect.cs" />
-    <Compile Include="Reflect\ReflectEntity.cs" />
     <Compile Include="UniOfWork\IUnitOfWork.cs" />
     <Compile Include="Base64.cs" />
     <Compile Include="Utils\JsonPase.cs" />
